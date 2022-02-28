@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/generated/l10n.dart';
+import 'package:phongtro/resources/colors.dart';
+import 'package:phongtro/resources/dimensions.dart';
+import 'package:phongtro/ui/screen/home_screen.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({Key? key}) : super(key: key);
@@ -12,13 +15,25 @@ class SigninScreen extends StatefulWidget {
 class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            //_buildIconApp(),
-            _buildLoginForn(),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.colorItem1,
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildIconApp(),
+                const SizedBox(
+                  height: 20,
+                ),
+                _buildLoginForm(),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -28,92 +43,64 @@ class _SigninScreenState extends State<SigninScreen> {
     return Column(
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width * 1,
-          height: MediaQuery.of(context).size.height * 0.3,
-          child: Image.network(
-              'https://ancona.esn.it/sites/esnancona.it/files/styles/zoom/public/pages/images/house%20search.jpg?itok=UumP9zrE'),
+          width: AppDimensions.d80w,
+          height: AppDimensions.d40h,
+          child: Image.asset('images/bgr.png'),
         ),
-        Text(S.of(context).appname)
       ],
     );
   }
 
-  Widget _buildLoginForn() {
-    return Container(
-      width: MediaQuery.of(context).size.width * 1,
-      height: MediaQuery.of(context).size.height * 0.5,
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(2),
-              child: TextField(
-                //controller: userController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.email_outlined),
-                  hintText: S.of(context).username,
-                  // errorText: snapshot.hasError ? snapshot.error.toString() : null,
+  Widget _buildLoginForm() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 60,
+          width: AppDimensions.d80w,
+          child: ElevatedButton.icon(
+            icon: Image.asset('images/face.png'),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const HomeScreen();
+                  },
                 ),
-              ),
+              );
+            },
+            label: Text(
+              S.of(context).fb_login,
+              style: const TextStyle(color: AppColors.black),
             ),
-            Padding(
-              padding: EdgeInsets.all(2),
-              child: TextField(
-                obscureText: true,
-                //controller: passController,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.vpn_key_outlined),
-                  hintText: S.of(context).password,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextButton(
-              child: Text(
-                S.of(context).login.toUpperCase(),
-                style: TextStyle(fontSize: 14),
-              ),
-              style: ButtonStyle(
-                padding:
-                    MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: const BorderSide(color: Colors.black),
-                  ),
-                ),
-              ),
-              onPressed: () {},
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            /*Container(
-              height: 44.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-                gradient: LinearGradient(
-                  colors: [Colors.lightGreenAccent, Colors.greenAccent],
-                ),
-              ),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    shadowColor: Colors.transparent),
-                child: Text('Elevated Button'),
-              ),
-            ),*/
-          ],
+            style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                //side: BorderSide(width:3, color:Colors.brown),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+                padding: const EdgeInsets.all(20)),
+          ),
         ),
-      ),
+        const SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          height: 60,
+          width: AppDimensions.d80w,
+          child: ElevatedButton.icon(
+            icon: Image.asset('images/google.png'),
+            onPressed: () {},
+            label: Text(
+              S.of(context).gmail_login,
+              style: TextStyle(color: AppColors.black),
+            ),
+            style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+                padding: EdgeInsets.all(20)),
+          ),
+        ),
+      ],
     );
   }
 }

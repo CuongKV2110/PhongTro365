@@ -23,15 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appname": MessageLookupByLibrary.simpleMessage("TimTro365"),
+        "fb_login":
+            MessageLookupByLibrary.simpleMessage("Đăng nhập bằng Facebook"),
+        "gmail_login":
+            MessageLookupByLibrary.simpleMessage("Đăng nhập bằng Gmail"),
         "hello":
             MessageLookupByLibrary.simpleMessage("Xin chào tất cả mọi người"),
         "kvc": MessageLookupByLibrary.simpleMessage("Kiều Văn Cường"),
         "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
         "setting": MessageLookupByLibrary.simpleMessage("Cài đặt"),
-        "splash1": MessageLookupByLibrary.simpleMessage(
-            "Tìm kiếm phòng trọ, tìm bạn ở ghép ở quanh ta"),
-        "username": MessageLookupByLibrary.simpleMessage("Tài khoản")
+        "splash1":
+            MessageLookupByLibrary.simpleMessage("Tìm phòng khó. Có tôi lo !"),
+        "support": MessageLookupByLibrary.simpleMessage("Hỗ trợ"),
+        "username": MessageLookupByLibrary.simpleMessage("Email")
       };
 }

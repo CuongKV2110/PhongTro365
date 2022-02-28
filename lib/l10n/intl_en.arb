@@ -3,10 +3,14 @@
   "kvc": "KieuVanCuong",
   "language": "Language",
   "login": "Login",
-  "username": "Username",
+  "logout": "Log Out",
+  "setting": "Settings",
+  "support": "Help & Support",
+  "username": "Email",
   "password": "Password",
-  "setting": "Setting",
   "appname": "TimTro365",
-  "splash1": "aaa"
+  "splash1": "Difficulty finding a room. I will help you !",
+  "fb_login": "Login with Facebook",
+  "gmail_login": "Login with Gmail"
 }
 

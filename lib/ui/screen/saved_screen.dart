@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class PostScreen extends StatefulWidget {
-  const PostScreen({Key? key}) : super(key: key);
+class SavedScreen extends StatefulWidget {
+  const SavedScreen({Key? key}) : super(key: key);
 
   @override
-  _PostScreenState createState() => _PostScreenState();
+  _SavedScreenState createState() => _SavedScreenState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _SavedScreenState extends State<SavedScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

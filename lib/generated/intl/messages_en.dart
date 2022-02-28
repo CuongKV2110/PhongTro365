@@ -23,13 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appname": MessageLookupByLibrary.simpleMessage("TimTro365"),
+        "fb_login": MessageLookupByLibrary.simpleMessage("Login with Facebook"),
+        "gmail_login": MessageLookupByLibrary.simpleMessage("Login with Gmail"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello Everybody"),
         "kvc": MessageLookupByLibrary.simpleMessage("KieuVanCuong"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Log Out"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
-        "setting": MessageLookupByLibrary.simpleMessage("Setting"),
-        "splash1": MessageLookupByLibrary.simpleMessage("aaa"),
-        "username": MessageLookupByLibrary.simpleMessage("Username")
+        "setting": MessageLookupByLibrary.simpleMessage("Settings"),
+        "splash1": MessageLookupByLibrary.simpleMessage(
+            "Difficulty finding a room. I will help you !"),
+        "support": MessageLookupByLibrary.simpleMessage("Help & Support"),
+        "username": MessageLookupByLibrary.simpleMessage("Email")
       };
 }

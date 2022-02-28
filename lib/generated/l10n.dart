@@ -90,10 +90,40 @@ class S {
     );
   }
 
-  /// `Username`
+  /// `Log Out`
+  String get logout {
+    return Intl.message(
+      'Log Out',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get setting {
+    return Intl.message(
+      'Settings',
+      name: 'setting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help & Support`
+  String get support {
+    return Intl.message(
+      'Help & Support',
+      name: 'support',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
   String get username {
     return Intl.message(
-      'Username',
+      'Email',
       name: 'username',
       desc: '',
       args: [],
@@ -110,16 +140,6 @@ class S {
     );
   }
 
-  /// `Setting`
-  String get setting {
-    return Intl.message(
-      'Setting',
-      name: 'setting',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `TimTro365`
   String get appname {
     return Intl.message(
@@ -130,11 +150,31 @@ class S {
     );
   }
 
-  /// `aaa`
+  /// `Difficulty finding a room. I will help you !`
   String get splash1 {
     return Intl.message(
-      'aaa',
+      'Difficulty finding a room. I will help you !',
       name: 'splash1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login with Facebook`
+  String get fb_login {
+    return Intl.message(
+      'Login with Facebook',
+      name: 'fb_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login with Gmail`
+  String get gmail_login {
+    return Intl.message(
+      'Login with Gmail',
+      name: 'gmail_login',
       desc: '',
       args: [],
     );

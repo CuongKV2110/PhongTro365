@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:phongtro/ui/screen/signin_screen.dart';
 import 'package:phongtro/ui/screen/splash_screen.dart';
+import 'package:sizer/sizer.dart';
 
 import 'generated/l10n.dart';
 
@@ -19,18 +20,22 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
-      locale: const Locale('vi'),
-      localizationsDelegates: const [
-        S.delegate,
-        FallbackCupertinoLocalisationsDelegate(),
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: S.delegate.supportedLocales,
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: const SplashScreen(),
+          locale: const Locale('vi'),
+          localizationsDelegates: const [
+            S.delegate,
+            FallbackCupertinoLocalisationsDelegate(),
+            GlobalCupertinoLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+        );
+      },
     );
   }
 }

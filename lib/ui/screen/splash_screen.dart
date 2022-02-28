@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/generated/l10n.dart';
+import 'package:phongtro/resources/colors.dart';
+import 'package:phongtro/resources/dimensions.dart';
+import 'package:phongtro/resources/fontsizes.dart';
 import 'package:phongtro/ui/screen/signin_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,44 +18,63 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 1,
-              height: MediaQuery.of(context).size.height * 0.3,
-              child: Image.network(
-                  'https://ancona.esn.it/sites/esnancona.it/files/styles/zoom/public/pages/images/house%20search.jpg?itok=UumP9zrE'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              S.of(context).appname,
-              style: TextStyle(fontSize: 30),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              S.of(context).splash1,
-              style: TextStyle(fontSize: 20),
-            ),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SigninScreen();
-                      },
-                    ),
-                  );
-                },
-                child: Text(S.of(context).login),
-            )
-          ],
+        backgroundColor: AppColors.white,
+        body: Padding(
+          padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: AppDimensions.d80w,
+                height: AppDimensions.d40h,
+                child: Image.asset('images/bgr3.jpg'),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                S.of(context).appname,
+                style: const TextStyle(fontSize: 30),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                S.of(context).splash1,
+                style: const TextStyle(fontSize: 20),
+              ),
+              SizedBox(
+                height: AppDimensions.d20h,
+              ),
+              SizedBox(
+                height: 50,
+                width: AppDimensions.d40w,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const SigninScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: Text(
+                    S.of(context).login,
+                    style: const TextStyle(color: AppColors.black),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: AppColors.colorItem1,
+                      //side: BorderSide(width:3, color:Colors.brown),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
+                      padding: const EdgeInsets.all(10)),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

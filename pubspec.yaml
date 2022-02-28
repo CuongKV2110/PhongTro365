@@ -19,6 +19,8 @@ dependencies:
   json_annotation: ^4.3.0
   intl: ^0.17.0
   timeago: 3.1.0
+  sizer: ^2.0.15
+  ionicons: ^0.1.2
   cached_network_image: ^3.2.0
 
 dev_dependencies:
@@ -32,9 +34,15 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - images/face.png
+    - images/google.png
+    - images/bgr.png
+    - images/bgr1.jpg
+    - images/bgr2.jpg
+    - images/bgr3.jpg
+    - images/bgr4.jpg
+
 
   # example:
   # fonts:

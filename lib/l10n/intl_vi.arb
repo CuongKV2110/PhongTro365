@@ -3,9 +3,13 @@
   "kvc": "Kiều Văn Cường",
   "language": "Ngôn ngữ",
   "login": "Đăng nhập",
-  "username": "Tài khoản",
-  "password": "Mật khẩu",
+  "logout": "Đăng xuất",
   "setting": "Cài đặt",
+  "support": "Hỗ trợ",
+  "username": "Email",
+  "password": "Mật khẩu",
   "appname": "TimTro365",
-  "splash1": "Tìm kiếm phòng trọ, tìm bạn ở ghép ở quanh ta"
+  "splash1": "Tìm phòng khó. Có tôi lo !",
+  "fb_login": "Đăng nhập bằng Facebook",
+  "gmail_login": "Đăng nhập bằng Gmail"
 }
