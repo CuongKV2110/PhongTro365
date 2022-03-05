@@ -11,5 +11,11 @@
   "appname": "TimTro365",
   "splash1": "Tìm phòng khó. Có tôi lo !",
   "fb_login": "Đăng nhập bằng Facebook",
-  "gmail_login": "Đăng nhập bằng Gmail"
+  "gmail_login": "Đăng nhập bằng Gmail",
+  "change_info": "Thay đổi thông tin",
+  "my_post": "Bài viết của tôi",
+  "saved": "Bài viết đã thích",
+  "app_info": "Thông tin ứng dụng",
+  "share_room": "Ở ghép"
+
 }

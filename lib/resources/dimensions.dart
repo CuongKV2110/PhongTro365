@@ -59,7 +59,8 @@ class AppDimensions {
   static double d100h = 100.0.h;
   static double d90h = 90.0.h;
   static double d74h = 74.0.h;
-  static double d70h = 74.0.h;
+  static double d70h = 70.0.h;
+  static double d60h = 60.0.h;
   static double d50h = 50.0.h;
   static double d48h = 48.0.h;
   static double d47h = 47.0.h;
@@ -70,6 +71,7 @@ class AppDimensions {
   static double d39h = 39.0.h;
   static double d36h = 36.0.h;
   static double d35h = 35.0.h;
+  static double d34h = 34.0.h;
   static double d33h = 33.0.h;
   static double d30h = 30.0.h;
   static double d29h = 29.0.h;

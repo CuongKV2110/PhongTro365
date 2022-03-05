@@ -11,13 +11,15 @@ class _SavedScreenState extends State<SavedScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(
-          children: const [
-            Text('Hello'),
-            Text('KVC'),
-            Text('Goodnight'),
-          ],
-        )
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return Text(index.toString());
+          },
+          itemCount: 10,
+        ),
+      ),
     );
   }
 }

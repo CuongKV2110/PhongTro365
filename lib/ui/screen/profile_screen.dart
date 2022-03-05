@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:phongtro/generated/l10n.dart';
+import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/resources/fontsizes.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -13,361 +16,266 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                width: AppDimensions.d90w,
-                height: AppDimensions.d30h,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    SizedBox(
-                      height: 30,
-                    ),
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundImage: AssetImage('images/bgr.png'),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      'KieuVanCuong',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(30, 8, 30, 8),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Column(
-                  children: [
-                    ListTile(
-                        leading: const CircleAvatar(
-                          radius: 18,
-                          child: Icon(
-                            Ionicons.moon,
-                            size: 18,
-                            color: Colors.white,
+                Container(
+                  width: AppDimensions.d90w,
+                  height: AppDimensions.d34h,
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: 1, color: AppColors.gray))),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 60,
+                            backgroundImage: AssetImage('images/bgr.png'),
                           ),
-                          backgroundColor: Colors.black,
-                        ),
-                        title: const Text('Chế độ tối'),
-                        trailing: SizedBox(
-                          width: 100,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: const [
-                              Text('Hệ thống'),
-                              Icon(Ionicons.chevron_forward)
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Kiều Văn Cường',
+                                style: TextStyle(
+                                    color: AppColors.color12031F,
+                                    fontSize: AppFontSizes.fs20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                'Người thuê trọ',
+                                style: TextStyle(
+                                  color: AppColors.color12031F,
+                                  fontSize: AppFontSizes.fs12,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
                             ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Ionicons.call_outline,
+                            size: 30,
                           ),
-                        )),
-                    ListTile(
-                      leading: const CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.toggle,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.green,
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            '0367031430',
+                            style: TextStyle(fontSize: AppFontSizes.fs16),
+                          )
+                        ],
                       ),
-                      title: const Text('Trạng thái hoạt động'),
-                      trailing: SizedBox(
-                        width: 100,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Text('Tắt'),
-                            Icon(Ionicons.chevron_forward)
-                          ],
-                        ),
+                      const SizedBox(
+                        height: 12,
                       ),
-                    ),
-                    ListTile(
-                      leading: const CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.chatbubble_ellipses_sharp,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.blue,
+                      Row(
+                        children: [
+                          const Icon(
+                            Ionicons.mail_outline,
+                            size: 30,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'cuongkv.it@gmail.com',
+                            style: TextStyle(fontSize: AppFontSizes.fs16),
+                          )
+                        ],
                       ),
-                      title: const Text('Tin nhắn đang chờ'),
-                      trailing: SizedBox(
-                        width: 100,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: 26,
-                              height: 26,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: Colors.red,
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  '32',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Icon(Ionicons.chevron_forward)
-                          ],
-                        ),
+                      const SizedBox(
+                        height: 12,
                       ),
-                    ),
-                    ListTile(
-                      leading: const CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.archive,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.purple,
+                      Row(
+                        children: [
+                          const Icon(
+                            Ionicons.location_outline,
+                            size: 30,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Nam Tu Liem, Ha Noi',
+                            style: TextStyle(fontSize: AppFontSizes.fs16),
+                          )
+                        ],
                       ),
-                      title: const Text('Đoạn chat đã lưu trữ'),
-                      trailing: SizedBox(
-                        width: 100,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: 26,
-                              height: 26,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: Colors.red,
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  '15',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Icon(Ionicons.chevron_forward)
-                          ],
-                        ),
-                      ),
-                    ),
-                    const ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.call,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.blue,
-                      ),
-                      title: Text('Số di động'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                    const ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.shield,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.blue,
-                      ),
-                      title: Text('Quyền riêng tư'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+                GestureDetector(
+                  child: SizedBox(
+                    width: AppDimensions.d90w,
+                    height: 64,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.edit_outlined,
+                          size: 30,
+                          color: AppColors.blue700,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          S.of(context).change_info,
+                          style: TextStyle(
+                              color: AppColors.color12031F,
+                              fontSize: AppFontSizes.fs16),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.notifications,
-                          size: 18,
-                          color: Colors.white,
+                GestureDetector(
+                  child: SizedBox(
+                    width: AppDimensions.d90w,
+                    height: 64,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.library_books_outlined,
+                          size: 30,
+                          color: AppColors.blue700,
                         ),
-                        backgroundColor: Colors.purple,
-                      ),
-                      title: const Text('Thông báo & âm thanh'),
-                      trailing: SizedBox(
-                        width: 100,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Text('Bật'),
-                            Icon(Ionicons.chevron_forward)
-                          ],
+                        const SizedBox(
+                          width: 20,
                         ),
-                      ),
+                        Text(
+                          S.of(context).my_post,
+                          style: TextStyle(
+                              color: AppColors.color12031F,
+                              fontSize: AppFontSizes.fs16),
+                        )
+                      ],
                     ),
-                    const ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.people,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.purple,
-                      ),
-                      title: Text('Danh bạ điện thoại'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                    const ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.book,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.pinkAccent,
-                      ),
-                      title: Text('Tin'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                    const ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.person,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.purple,
-                      ),
-                      title: Text('Avatar'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                    const ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.image,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.green,
-                      ),
-                      title: Text('Ảnh & file phương tiện'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+                GestureDetector(
+                  child: SizedBox(
+                    width: AppDimensions.d90w,
+                    height: 64,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.favorite_outline,
+                          size: 30,
+                          color: AppColors.blue700,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          S.of(context).saved,
+                          style: TextStyle(
+                              color: AppColors.color12031F,
+                              fontSize: AppFontSizes.fs16),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-                child: Column(
-                  children: const [
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.git_compare_sharp,
-                          size: 18,
-                          color: Colors.white,
+                GestureDetector(
+                  child: SizedBox(
+                    width: AppDimensions.d90w,
+                    height: 64,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.settings_outlined,
+                          size: 30,
+                          color: AppColors.blue700,
                         ),
-                        backgroundColor: Colors.purple,
-                      ),
-                      title: Text('Chuyển tài khoản'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.settings_sharp,
-                          size: 18,
-                          color: Colors.white,
+                        const SizedBox(
+                          width: 20,
                         ),
-                        backgroundColor: Colors.grey,
-                      ),
-                      title: Text('Cài đặt tài khoản'),
-                      trailing: Icon(Ionicons.chevron_forward),
+                        Text(
+                          S.of(context).setting,
+                          style: TextStyle(
+                              color: AppColors.color12031F,
+                              fontSize: AppFontSizes.fs16),
+                        )
+                      ],
                     ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.warning_sharp,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.deepOrange,
-                      ),
-                      title: Text('Báo cáo sự cố'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.hand_right_sharp,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.blue,
-                      ),
-                      title: Text('Trợ giúp'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 18,
-                        child: Icon(
-                          Ionicons.document_text_sharp,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.grey,
-                      ),
-                      title: Text('Pháp lý & chính sách'),
-                      trailing: Icon(Ionicons.chevron_forward),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
+                GestureDetector(
+                  child: SizedBox(
+                    width: AppDimensions.d90w,
+                    height: 64,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.assignment_outlined,
+                          size: 30,
+                          color: AppColors.blue700,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          S.of(context).app_info,
+                          style: TextStyle(
+                              color: AppColors.color12031F,
+                              fontSize: AppFontSizes.fs16),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    print('Log  Out');
+                  },
+                  child: SizedBox(
+                    width: AppDimensions.d90w,
+                    height: 64,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.power_settings_new_outlined,
+                          size: 30,
+                          color: AppColors.red,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          S.of(context).logout,
+                          style: TextStyle(
+                              color: AppColors.red,
+                              fontSize: AppFontSizes.fs16),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

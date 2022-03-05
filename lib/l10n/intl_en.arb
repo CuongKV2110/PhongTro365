@@ -11,6 +11,11 @@
   "appname": "TimTro365",
   "splash1": "Difficulty finding a room. I will help you !",
   "fb_login": "Login with Facebook",
-  "gmail_login": "Login with Gmail"
+  "gmail_login": "Login with Gmail",
+  "change_info": "Change information",
+  "my_post": "My post",
+  "saved": "Posts saved",
+  "app_info": "App information",
+  "share_room": "ShareRoom"
 }
 

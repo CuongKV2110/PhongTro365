@@ -22,7 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "app_info": MessageLookupByLibrary.simpleMessage("App information"),
         "appname": MessageLookupByLibrary.simpleMessage("TimTro365"),
+        "change_info":
+            MessageLookupByLibrary.simpleMessage("Change information"),
         "fb_login": MessageLookupByLibrary.simpleMessage("Login with Facebook"),
         "gmail_login": MessageLookupByLibrary.simpleMessage("Login with Gmail"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello Everybody"),
@@ -30,8 +33,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "my_post": MessageLookupByLibrary.simpleMessage("My post"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "saved": MessageLookupByLibrary.simpleMessage("Posts saved"),
         "setting": MessageLookupByLibrary.simpleMessage("Settings"),
+        "share_room": MessageLookupByLibrary.simpleMessage("ShareRoom"),
         "splash1": MessageLookupByLibrary.simpleMessage(
             "Difficulty finding a room. I will help you !"),
         "support": MessageLookupByLibrary.simpleMessage("Help & Support"),

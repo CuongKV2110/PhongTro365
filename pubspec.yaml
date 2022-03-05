@@ -37,11 +37,19 @@ flutter:
   assets:
     - images/face.png
     - images/google.png
+    - images/google1.png
+    - images/2.png
     - images/bgr.png
-    - images/bgr1.jpg
-    - images/bgr2.jpg
+    - images/6.png
+    - images/9.png
     - images/bgr3.jpg
     - images/bgr4.jpg
+    - images/7.jpg
+    - images/8.jpg
+    - images/3.jpg
+    - images/4.jpg
+    - images/10.jpg
+    - images/12.png
 
 
   # example:
