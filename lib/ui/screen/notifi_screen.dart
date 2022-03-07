@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
@@ -17,47 +16,55 @@ class _NotifiScreenState extends State<NotifiScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.fromLTRB(16, 10, 16, 6),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Notifications',
-                    style: TextStyle(
-                      fontSize: AppFontSizes.fs20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Icon(Icons.notifications_none_outlined, size: AppFontSizes.fs28,),
-                ],
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      contentPadding: EdgeInsets.all(10),
-                      leading: CircleAvatar(
-                        radius: 30,
-                        child: Icon(
-                          Icons.account_circle_outlined,
-                          size: 26,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.grey,
-                      ),
-                      title: Text('Notifications'),
-                      trailing: Icon(Ionicons.ellipsis_horizontal_outline),
-                    );
-                  },
-                  itemCount: 20,
-                ),
-              )
-            ],
+        appBar: AppBar(
+          elevation: 1,
+          centerTitle: true,
+          backgroundColor: AppColors.white,
+          title: const Text(
+            'Notifications',
+            style: TextStyle(color: AppColors.black),
           ),
         ),
+        body: ListView.builder(
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 40,
+                        backgroundImage: AssetImage('images/code1.jpg'),
+                      ),
+                      const SizedBox(width: 16,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: AppDimensions.d60w,
+                            height: AppDimensions.d5h,
+                            child: Text(
+                              'Kieu Van Cuong da tra loi binh luan cua ban',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                              style: TextStyle(fontSize: AppFontSizes.fs12),
+                            ),
+                          ),
+                          const SizedBox(height: 4,),
+                          const Text('About 23 minutes ago'),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const Icon(Icons.more_horiz_outlined)
+                ],
+              ),
+            );
+          },
+          itemCount: 10,
+        )
       ),
     );
   }

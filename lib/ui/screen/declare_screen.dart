@@ -24,6 +24,7 @@ class _DeclareScreenState extends State<DeclareScreen> {
     return SafeArea(
       child: Scaffold(
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Stack(
               children: [
@@ -50,24 +51,7 @@ class _DeclareScreenState extends State<DeclareScreen> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              width: AppDimensions.d80w,
-              height: AppDimensions.d20h,
-              child: _buildQuestion1(),
-            ),
-            SizedBox(
-              width: AppDimensions.d80w,
-              height: AppDimensions.d20h,
-              child: _buildQuestion2(),
-            ),
-            SizedBox(
-              width: AppDimensions.d80w,
-              height: AppDimensions.d20h,
-              child: _buildQuestion3(),
-            ),
+            _buildQuestion(),
             _buildConfirm()
           ],
         ),
@@ -75,11 +59,67 @@ class _DeclareScreenState extends State<DeclareScreen> {
     );
   }
 
-  _buildQuestion1() {
+  Widget _buildQuestion() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(
+          width: AppDimensions.d90w,
+          height: AppDimensions.d18h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: AppColors.white,
+            border: Border.all(
+              width: 1,
+              color: AppColors.black,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: _buildQuestion1(),
+          ),
+        ),
+        Container(
+          width: AppDimensions.d90w,
+          height: AppDimensions.d18h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: AppColors.white,
+            border: Border.all(
+              width: 1,
+              color: AppColors.black,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: _buildQuestion2(),
+          ),
+        ),
+        Container(
+          width: AppDimensions.d90w,
+          height: AppDimensions.d18h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: AppColors.white,
+            border: Border.all(
+              width: 1,
+              color: AppColors.black,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: _buildQuestion3(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildQuestion1() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Bạn là chủ trọ hay cần thuê trọ ?"),
+        const Text("Bạn muốn tìm phòng mới hay tìm người ở ghép"),
         Row(
           children: [
             Radio(
@@ -90,7 +130,7 @@ class _DeclareScreenState extends State<DeclareScreen> {
                     _cau1 = int.parse(value.toString());
                   });
                 }),
-            const Text("Chủ trọ")
+            const Text("Tìm phòng mới")
           ],
         ),
         Row(
@@ -103,14 +143,14 @@ class _DeclareScreenState extends State<DeclareScreen> {
                     _cau1 = int.parse(value.toString());
                   });
                 }),
-            const Text("Người thuê trọ")
+            const Text("Tìm người ở ghép")
           ],
         ),
       ],
     );
   }
 
-  _buildQuestion2() {
+  Widget _buildQuestion2() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -145,7 +185,7 @@ class _DeclareScreenState extends State<DeclareScreen> {
     );
   }
 
-  _buildQuestion3() {
+  Widget _buildQuestion3() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

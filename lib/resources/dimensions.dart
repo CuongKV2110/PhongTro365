@@ -15,7 +15,8 @@ class AppDimensions {
   static double d60w = 60.0.w;
   static double d55w = 55.0.w;
   static double d54w = 54.0.w;
-  static double d50w = 55.0.w;
+  static double d50w = 50.0.w;
+  static double d49w = 49.0.w;
   static double d48w = 48.0.w;
   static double d40w = 40.0.w;
   static double d45w = 45.0.w;
