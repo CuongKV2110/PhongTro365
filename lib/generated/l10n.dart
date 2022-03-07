@@ -229,6 +229,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Find roomer or roommates`
+  String get content1 {
+    return Intl.message(
+      'Find roomer or roommates',
+      name: 'content1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Easy and fast post creation`
+  String get content2 {
+    return Intl.message(
+      'Easy and fast post creation',
+      name: 'content2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save time, money and efficiency`
+  String get content3 {
+    return Intl.message(
+      'Save time, money and efficiency',
+      name: 'content3',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

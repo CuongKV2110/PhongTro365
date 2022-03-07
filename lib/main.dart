@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const SplashScreen(),
+          home: const LoginScreen(),
           locale: const Locale('vi'),
           localizationsDelegates: const [
             S.delegate,

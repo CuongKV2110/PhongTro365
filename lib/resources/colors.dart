@@ -45,6 +45,9 @@ class AppColors {
   static const Color brownDark = Color(0xFF674032);
 
   static const Color colorHeader = Color(0xFF94CC33);
+  static const Color green1 = Color(0xFF75D438);
+  static const Color green2 = Color(0xFF63C126);
+  static const Color green3 = Color(0xFF4DC41F);
   static const Color colorItem1 = Color(0xFF4DCBC1);
   static const Color colorItem2 = Color(0xFFFBBF26);
   static const Color colorItem3 = Color(0xFFE85D30);

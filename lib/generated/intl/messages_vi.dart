@@ -26,6 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "appname": MessageLookupByLibrary.simpleMessage("TimTro365"),
         "change_info":
             MessageLookupByLibrary.simpleMessage("Thay đổi thông tin"),
+        "content1": MessageLookupByLibrary.simpleMessage(
+            "Tìm người thuê phòng, người ở ghép"),
+        "content2": MessageLookupByLibrary.simpleMessage(
+            "Hãy đăng bài để mọi người cùng tham khảo và trao đổi"),
+        "content3": MessageLookupByLibrary.simpleMessage(
+            "Tiết kiệm thời gian, hiệu quả"),
         "fb_login":
             MessageLookupByLibrary.simpleMessage("Đăng nhập bằng Facebook"),
         "gmail_login":

@@ -26,6 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "appname": MessageLookupByLibrary.simpleMessage("TimTro365"),
         "change_info":
             MessageLookupByLibrary.simpleMessage("Change information"),
+        "content1":
+            MessageLookupByLibrary.simpleMessage("Find roomer or roommates"),
+        "content2":
+            MessageLookupByLibrary.simpleMessage("Easy and fast post creation"),
+        "content3": MessageLookupByLibrary.simpleMessage(
+            "Save time, money and efficiency"),
         "fb_login": MessageLookupByLibrary.simpleMessage("Login with Facebook"),
         "gmail_login": MessageLookupByLibrary.simpleMessage("Login with Gmail"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello Everybody"),

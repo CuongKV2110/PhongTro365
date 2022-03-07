@@ -1,10 +1,9 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/models/slide.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
+import 'package:phongtro/resources/fontsizes.dart';
+import 'package:phongtro/ui/screen/declare_screen.dart';
 import 'package:phongtro/ui/widget/slide_dots.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -54,35 +53,91 @@ class _DetailScreenState extends State<DetailScreen> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          SizedBox(height:
-                            50,),
+                          const SizedBox(
+                            height: 50,
+                          ),
                           SizedBox(
                             width: AppDimensions.d100w,
                             height: AppDimensions.d50h,
                             child: Image.asset(slideList[index].imgUrl),
                           ),
-                          const SizedBox(height: 20,),
-                          Text(slideList[index].description)
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                            child: Text(
+                              slideList[index].content,
+                              style: TextStyle(
+                                  fontSize: AppFontSizes.fs12,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                            child: Text(
+                              slideList[index].description,
+                              style: TextStyle(
+                                fontSize: AppFontSizes.fs12,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
                         ],
                       );
                     },
                   ),
                   Stack(
-                    alignment: AlignmentDirectional.topStart,
+                    alignment: AlignmentDirectional.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(bottom: 50),
-                        child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            for (int i = 0; i < slideList.length; i++)
-                              if (i == _currentPage)
-                                SlideDots(true)
-                              else
-                                SlideDots(false)
-                          ],
-                        ),
+                        margin: const EdgeInsets.only(bottom: 50),
+                        child: _currentPage == 2
+                            ? GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const DeclareScreen();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 50,
+                                  width: 150,
+                                  child: Text(
+                                    'START NOW',
+                                    style: TextStyle(
+                                        fontSize: AppFontSizes.fs16,
+                                        color: AppColors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          AppColors.blue,
+                                          AppColors.color4DCBC1,
+                                        ],
+                                      ),
+                                      color: AppColors.colorItem1,
+                                      borderRadius: BorderRadius.circular(40)),
+                                ),
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  for (int i = 0; i < slideList.length; i++)
+                                    if (i == _currentPage)
+                                      SlideDots(true)
+                                    else
+                                      SlideDots(false)
+                                ],
+                              ),
                       )
                     ],
                   )
