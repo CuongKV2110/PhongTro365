@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/newfeed_sreen.dart';
 import 'package:phongtro/ui/screen/notifi_screen.dart';
+import 'package:phongtro/ui/screen/post_screen.dart';
 import 'package:phongtro/ui/screen/profile_screen.dart';
 import 'package:phongtro/ui/screen/saved_screen.dart';
+import 'package:phongtro/ui/screen/shareroom_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,12 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.favorite_outline,
-              ),
-              label: 'Saved',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
                 Icons.notifications_none_outlined,
               ),
               label: 'Notify',
@@ -75,14 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_selectedIndex == 0) {
       return NewFeedScreen();
     } else if (_selectedIndex == 1) {
-      return SavedScreen();
+      return ShareRoomScreen();
     } else if (_selectedIndex == 2) {
-      return SavedScreen();
-    } else if (_selectedIndex == 3) {
       return NotifiScreen();
     } else {
       return ProfileScreen();
     }
   }
-
 }

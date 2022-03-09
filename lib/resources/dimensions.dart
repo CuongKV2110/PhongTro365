@@ -8,6 +8,7 @@ class AppDimensions {
   static const double d20 = 20.0;
 
   static double d100w = 100.0.w;
+  static double d92w = 92.0.w;
   static double d90w = 90.0.w;
   static double d80w = 80.0.w;
   static double d70w = 70.0.w;

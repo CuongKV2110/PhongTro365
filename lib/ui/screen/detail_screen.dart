@@ -3,8 +3,7 @@ import 'package:phongtro/models/slide.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
-import 'package:phongtro/ui/screen/confirm%20_screen.dart';
-import 'package:phongtro/ui/screen/declare_screen.dart';
+import 'package:phongtro/ui/screen/home_screen.dart';
 import 'package:phongtro/ui/widget/slide_dots.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -99,7 +98,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return const ConfirmScreen();
+                                        return const HomeScreen();
                                       },
                                     ),
                                   );

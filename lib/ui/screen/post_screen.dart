@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({Key? key}) : super(key: key);
@@ -11,13 +12,15 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(
-          children: const [
-            Text('Hello'),
-            Text('KVC'),
-            Text('Goodnight'),
-          ],
-        )
+        child: Scaffold(
+          body: Column(
+            children: const [
+              Text('Hello'),
+              Text('KVC'),
+              Text('Goodnight'),
+            ],
+          ),
+        ),
     );
   }
 }

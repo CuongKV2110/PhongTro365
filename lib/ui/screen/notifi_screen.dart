@@ -28,14 +28,14 @@ class _NotifiScreenState extends State<NotifiScreen> {
         body: ListView.builder(
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+              padding: const EdgeInsets.fromLTRB(16, 14, 16,14),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
                       const CircleAvatar(
-                        radius: 40,
+                        radius: 36,
                         backgroundImage: AssetImage('images/code1.jpg'),
                       ),
                       const SizedBox(width: 16,),

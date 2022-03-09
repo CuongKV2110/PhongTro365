@@ -54,6 +54,10 @@ flutter:
     - images/code1.jpg
     - images/room1.jpg
     - images/room2.jpg
+    - images/HN.jpg
+    - images/HN1.jpg
+    - images/new.png
+    - images/new1.png
 
 
   # example:
