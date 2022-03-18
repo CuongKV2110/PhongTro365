@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phongtro/generated/l10n.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
-import 'package:phongtro/ui/screen/detail_screen.dart';
+import 'package:phongtro/ui/screen/splash_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         backgroundColor: AppColors.white,
         body: Padding(
-          padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+          padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
           child: Column(
             children: [
               const SizedBox(
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 width: AppDimensions.d80w,
                 height: AppDimensions.d40h,
-                child: Image.asset('images/bgr3.jpg'),
+                child: Image.asset('images/bgr.jpg'),
               ),
               const SizedBox(
                 height: 10,
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return const DetailScreen();
+                    return const SplashScreen();
                   },
                 ),
               );
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return const DetailScreen();
+                    return const SplashScreen();
                   },
                 ),
               );

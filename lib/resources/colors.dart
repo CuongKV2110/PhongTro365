@@ -24,6 +24,9 @@ class AppColors {
   static const Color purple = Color(0xFF9B51E0);
   static const Color lightPurple = Color(0xFFBB6BD9);
   static const Color red = Color(0xFFEB5757);
+  static const Color red1 = Color(0xFFE52323);
+  static const Color red2 = Color(0xFFF61C1C);
+  static const Color pink1 = Color(0xFFF398AB);
   static const Color darkRed = Color(0xFFD14D4D);
   static const Color yellow = Color(0xFFF2C94C);
   static const Color yellowGao = Color(0xFFdc8b12);
@@ -32,8 +35,11 @@ class AppColors {
   static const Color bgkVideoPlayer = Color(0x3C000000);
   static const Color brown = Color(0xFF674032);
   static const Color blue = Color(0xFF2196F3);
+  static const Color blue1 = Color(0xFF35D0F6);
+  static const Color pink2 = Color(0xFFEA34BC);
   static const Color blue700 = Color(0xFF1976D2);
   static const Color lightBlue1 = Color(0xFF4DCBC1);
+  static const Color lightBlue2 = Color(0xFF44F1E3);
 
   static const Color mainColorCreator = Color(0xFF4DCBC1);
 
@@ -45,7 +51,7 @@ class AppColors {
   static const Color brownDark = Color(0xFF674032);
 
   static const Color colorHeader = Color(0xFF94CC33);
-  static const Color green0 = Color(0xFF9ED737);
+  static const Color green0 = Color(0xFF86E80C);
   static const Color green1 = Color(0xFF75D438);
   static const Color green2 = Color(0xFF63C126);
   static const Color green3 = Color(0xFF4DC41F);
@@ -53,6 +59,7 @@ class AppColors {
   static const Color colorItem2 = Color(0xFFFBBF26);
   static const Color colorItem3 = Color(0xFFE85D30);
   static const Color orange0 = Color(0xFFEF8A32);
+  static const Color orange2 = Color(0xFFFA9938);
   static const Color colorItem4 = Color(0xFFAC6A53);
 
   static const Color brownText = Color(0xFF674032);

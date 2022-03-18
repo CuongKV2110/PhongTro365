@@ -36,7 +36,7 @@ class _NotifiScreenState extends State<NotifiScreen> {
                     children: [
                       const CircleAvatar(
                         radius: 36,
-                        backgroundImage: AssetImage('images/code1.jpg'),
+                        backgroundImage: AssetImage('images/avt2.jpg'),
                       ),
                       const SizedBox(width: 16,),
                       Column(

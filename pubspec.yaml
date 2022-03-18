@@ -22,6 +22,7 @@ dependencies:
   sizer: ^2.0.15
   ionicons: ^0.1.2
   cached_network_image: ^3.2.0
+  awesome_dialog: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -37,27 +38,36 @@ flutter:
   assets:
     - images/face.png
     - images/google.png
-    - images/google1.png
+    - images/1.png
     - images/2.png
-    - images/bgr.png
-    - images/6.png
-    - images/9.png
-    - images/bgr3.jpg
-    - images/bgr4.jpg
-    - images/7.jpg
-    - images/8.jpg
-    - images/3.jpg
-    - images/4.jpg
-    - images/10.jpg
-    - images/12.png
-    - images/a.png
-    - images/code1.jpg
+    - images/3.png
+    - images/4.png
+    - images/5.png
+    - images/new.png
+    - images/bgr.jpg
     - images/room1.jpg
     - images/room2.jpg
+    - images/room3.jpg
+    - images/room4.jpg
     - images/HN.jpg
     - images/HN1.jpg
-    - images/new.png
-    - images/new1.png
+    - images/avt1.jpg
+    - images/avt2.jpg
+    - images/bep.png
+    - images/maygiat.png
+    - images/wifi.png
+    - images/toilet.png
+    - images/dieuhoa.png
+    - images/xemay.png
+    - images/tulanh.png
+    - images/time.png
+    - images/time1.png
+    - images/control.png
+    - images/money.png
+    - images/phone.png
+    - images/location.png
+    - images/room5.png
+
 
 
   # example:

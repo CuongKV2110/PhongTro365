@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:phongtro/models/slide.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
-import 'package:phongtro/ui/screen/home_screen.dart';
-import 'package:phongtro/ui/widget/slide_dots.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -14,136 +12,348 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  int _currentPage = 0;
-  final PageController _pageController = PageController(initialPage: 0);
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
-
-  _onPageChanged(int index) {
-    setState(() {
-      _currentPage = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.white,
-        body: Column(
+        appBar: AppBar(
+          elevation: 0,
+          leading: const Icon(
+            Icons.arrow_back_outlined,
+            color: AppColors.black,
+          ),
+          title: const Text(
+            'Detail Room',
+            style: TextStyle(color: AppColors.black),
+          ),
+          centerTitle: true,
+          backgroundColor: AppColors.gray6,
+        ),
+        body: Stack(
           children: [
-            Expanded(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  PageView.builder(
-                    scrollDirection: Axis.horizontal,
-                    controller: _pageController,
-                    itemCount: slideList.length,
-                    onPageChanged: _onPageChanged,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          SizedBox(
-                            width: AppDimensions.d100w,
-                            height: AppDimensions.d50h,
-                            child: Image.asset(slideList[index].imgUrl),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-                            child: Text(
-                              slideList[index].content,
-                              style: TextStyle(
-                                  fontSize: AppFontSizes.fs12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-                            child: Text(
-                              slideList[index].description,
-                              style: TextStyle(
-                                fontSize: AppFontSizes.fs12,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      );
-                    },
+            Container(
+              width: AppDimensions.d100w,
+              height: AppDimensions.d100h,
+              color: AppColors.white,
+            ),
+            ListView(
+              children: [
+                SizedBox(
+                  width: AppDimensions.d100w,
+                  height: AppDimensions.d30h,
+                  child: Image.asset(
+                    'images/room3.jpg',
+                    fit: BoxFit.cover,
                   ),
-                  Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 50),
-                        child: _currentPage == 2
-                            ? GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const HomeScreen();
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: 50,
-                                  width: 150,
-                                  child: Text(
-                                    'START NOW',
-                                    style: TextStyle(
-                                        fontSize: AppFontSizes.fs16,
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
+                  child: SizedBox(
+                    width: AppDimensions.d100w,
+                    height: AppDimensions.d20h,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Row(
+                          children: const [
+                            Icon(Ionicons.location_outline),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text('Mễ Trì Hạ, Nam Từ Liêm, HN')
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Row(
+                          children: const [
+                            Icon(Ionicons.card_outline),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text('2.500.000 VNĐ/tháng')
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 170,
+                              height: 30,
+                              child: Row(
+                                children: const [
+                                  Icon(Ionicons.expand_outline),
+                                  SizedBox(
+                                    width: 4,
                                   ),
-                                  decoration: BoxDecoration(
-                                      gradient: const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          AppColors.blue,
-                                          AppColors.color4DCBC1,
-                                        ],
-                                      ),
-                                      color: AppColors.colorItem1,
-                                      borderRadius: BorderRadius.circular(40)),
-                                ),
-                              )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  for (int i = 0; i < slideList.length; i++)
-                                    if (i == _currentPage)
-                                      SlideDots(true)
-                                    else
-                                      SlideDots(false)
+                                  Text('Diện tích 25m2')
                                 ],
                               ),
-                      )
+                            ),
+                            SizedBox(
+                              width: 170,
+                              height: 30,
+                              child: Row(
+                                children: const [
+                                  Icon(Ionicons.ear_outline),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text('Không chung chủ')
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 170,
+                              height: 30,
+                              child: Row(
+                                children: const [
+                                  Icon(Ionicons.call_outline),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text('0367031430')
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 170,
+                              height: 30,
+                              child: Row(
+                                children: const [
+                                  Icon(Ionicons.time_outline),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text('3 ngày trước')
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Các tiện ích",
+                        style: TextStyle(
+                            fontSize: AppFontSizes.fs16,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Container(
+                        width: AppDimensions.d100w,
+                        height: AppDimensions.d24h,
+                        child: GridView(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                          ),
+                          children: [
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/wifi.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('Wifi')
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/toilet.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('WC riêng')
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/time.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('Tự do')
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/xemay.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('Để xe')
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/bep.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('Bếp')
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/tulanh.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('Tủ lạnh')
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/maygiat.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('Máy giặt')
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(
+                                  'images/dieuhoa.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                const Text('Điều hòa')
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: AppDimensions.d100w,
+                height: 60,
+                color: AppColors.gray6,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: AppColors.gray6,
+                          border: Border.all(width: 1, color: AppColors.black),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Ionicons.navigate_circle_outline),
+                            SizedBox(width: 6),
+                            Text('Location')
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: AppColors.gray6,
+                          border: Border.all(width: 1, color: AppColors.black),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Ionicons.call_outline),
+                            SizedBox(width: 6),
+                            Text('Call')
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: AppColors.gray6,
+                          border: Border.all(width: 1, color: AppColors.black),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Ionicons.arrow_redo_outline),
+                            SizedBox(width: 6),
+                            Text('Share')
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

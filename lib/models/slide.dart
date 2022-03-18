@@ -12,17 +12,17 @@ class Slide {
 
 final slideList = [
   Slide(
-    imgUrl: 'images/9.png',
+    imgUrl: 'images/1.png',
     content: 'Tìm người thuê phòng, người ở ghép',
     description: 'Bạn đang có phòng cho thuê hay đang cần tìm người ở ghép ?',
   ),
   Slide(
-    imgUrl: 'images/6.png',
+    imgUrl: 'images/2.png',
     content: 'Đăng bài dễ dàng, nhanh chóng',
     description: 'Cung cấp môi trường, công cụ đăng bài nhanh chóng. Bình luận, đánh giá phòng trọ',
   ),
   Slide(
-    imgUrl: 'images/12.png',
+    imgUrl: 'images/3.png',
     content: 'Tiết kiệm thời gian, hiệu quả',
     description: 'Hãy trải nghiệm và nó sẽ giúp bạn một cách hiệu quả nhất',
   ),

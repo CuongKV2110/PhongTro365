@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
+import 'package:phongtro/ui/screen/detail_screen.dart';
 import 'package:phongtro/ui/screen/post_screen.dart';
 
 class NewFeedScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _NewFeedScreenState extends State<NewFeedScreen> {
           backgroundColor: AppColors.gray,
           onPressed: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (contex) {
+              MaterialPageRoute(builder: (context) {
                 return PostScreen();
               }),
             );
@@ -63,13 +64,16 @@ class _NewFeedScreenState extends State<NewFeedScreen> {
         background: Container(
           width: AppDimensions.d100w,
           height: AppDimensions.d20h,
-          child: Image.asset('images/HN1.jpg', fit: BoxFit.fill,),
+          child: Image.asset(
+            'images/HN1.jpg',
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildSearch(){
+  Widget _buildSearch() {
     return SliverAppBar(
       pinned: true,
       backgroundColor: AppColors.white,
@@ -79,18 +83,13 @@ class _NewFeedScreenState extends State<NewFeedScreen> {
         width: AppDimensions.d92w,
         height: AppDimensions.d10h,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(10,4,10,4),
+          padding: EdgeInsets.fromLTRB(10, 4, 10, 4),
           child: Container(
             width: AppDimensions.d90w,
             height: AppDimensions.d10h,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                    width: 0.5,
-                    color: AppColors.black
-
-                )
-            ),
+                border: Border.all(width: 0.5, color: AppColors.black)),
           ),
         ),
       ),
@@ -116,7 +115,10 @@ class _NewFeedScreenState extends State<NewFeedScreen> {
           child: Container(
             width: AppDimensions.d92w,
             height: AppDimensions.d20h,
-            child: Image.asset('images/HN.jpg', fit: BoxFit.fill,),
+            child: Image.asset(
+              'images/HN.jpg',
+              fit: BoxFit.fill,
+            ),
           ),
         ),
       ),
@@ -126,263 +128,275 @@ class _NewFeedScreenState extends State<NewFeedScreen> {
   Widget _buildPost() {
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
-        return Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundImage: AssetImage('images/2.png')),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: const [
-                                Text(
-                                  'Kieu Van Cuong',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Row(
-                              children: const [
-                                Text('2h ago'),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Icon(
-                                  Icons.public_sharp,
-                                  color: AppColors.gray8,
-                                  size: 16,
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.location_on_outlined,
-                          size: 14,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          'Ha Noi',
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 4,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                const Text(
-                  'Có phòng đầy đủ đồ đạc, cần cho thuê tại Mễ Trì Hạ Nam Từ Liêm, giá 2tr4/tháng. ',
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 6,0,6),
-                  child: Row(
+        return GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return const DetailScreen();
+                },
+              ),
+            );
+          },
+          child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 150,
-                        height: 30,
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                AppColors.gray,
-                                AppColors.white,
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                            border:
-                                Border.all(color: AppColors.black, width: 0.5)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.attach_money_outlined,
-                              size: 16,
-                            ),
-                            Text('2.500.000 VND'),
-                          ],
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                              backgroundImage: AssetImage('images/avt1.jpg')),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: const [
+                                  Text(
+                                    'Kieu Van Cuong',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Row(
+                                children: const [
+                                  Text('2h ago'),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(
+                                    Icons.public_sharp,
+                                    color: AppColors.gray8,
+                                    size: 16,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.location_on_outlined,
+                            size: 14,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            'Ha Noi',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 4,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Text(
+                    'Có phòng đầy đủ đồ đạc, cần cho thuê tại Mễ Trì Hạ Nam Từ Liêm, giá 2tr4/tháng. ',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 6, 0, 6),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  AppColors.gray,
+                                  AppColors.white,
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: AppColors.black, width: 0.5)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.attach_money_outlined,
+                                size: 16,
+                              ),
+                              Text('2.500.000 VND'),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          width: 140,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  AppColors.gray,
+                                  AppColors.white,
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: AppColors.black, width: 0.5)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.people_outline,
+                                size: 16,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text('Không chung chủ'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Stack(
+                    children: [
+                      SizedBox(
+                        width: AppDimensions.d92w,
+                        height: AppDimensions.d26h,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'images/room4.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 90,
-                        height: 30,
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                AppColors.gray,
-                                AppColors.white,
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                            border:
-                                Border.all(color: AppColors.black, width: 0.5)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.people_outline,
-                              size: 16,
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Text('2 người'),
-                          ],
+                      const Positioned(
+                        top: 8,
+                        right: 8,
+                        child: Icon(
+                          Icons.favorite,
+                          color: AppColors.white,
+                          size: 30,
                         ),
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Stack(
-                  children: [
-                    SizedBox(
-                      width: AppDimensions.d92w,
-                      height: AppDimensions.d26h,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          'images/code1.jpg',
-                          fit: BoxFit.cover,
-                        ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 4, 14, 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: const [
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text('112 likes'),
+                            ],
+                          ),
+                          Row(
+                            children: const [
+                              Text('25 Comments'),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text('12 Shares')
+                            ],
+                          )
+                        ],
                       ),
                     ),
-                    const Positioned(
-                      top: 8,
-                      right: 8,
-                      child: Icon(
-                        Icons.favorite,
-                        color: AppColors.white,
-                        size: 30,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 4, 14, 16),
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom:
+                                BorderSide(width: 0.5, color: AppColors.gray))),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: const [
+                            Icon(Icons.thumb_up_outlined),
                             SizedBox(
                               width: 6,
                             ),
-                            Text('112 likes'),
+                            Text('Like')
                           ],
                         ),
                         Row(
                           children: const [
-                            Text('25 Comments'),
+                            Icon(Icons.chat_outlined),
                             SizedBox(
                               width: 6,
                             ),
-                            Text('12 Shares')
+                            Text('Comment')
                           ],
-                        )
+                        ),
+                        Row(
+                          children: const [
+                            Icon(Icons.share_outlined),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text('Share')
+                          ],
+                        ),
                       ],
                     ),
                   ),
-                  decoration: const BoxDecoration(
-                      border: Border(
-                          bottom:
-                              BorderSide(width: 0.5, color: AppColors.gray))),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: const [
-                          Icon(Icons.thumb_up_outlined),
-                          SizedBox(
-                            width: 6,
-                          ),
-                          Text('Like')
-                        ],
-                      ),
-                      Row(
-                        children: const [
-                          Icon(Icons.chat_outlined),
-                          SizedBox(
-                            width: 6,
-                          ),
-                          Text('Comment')
-                        ],
-                      ),
-                      Row(
-                        children: const [
-                          Icon(Icons.share_outlined),
-                          SizedBox(
-                            width: 6,
-                          ),
-                          Text('Share')
-                        ],
-                      ),
-                    ],
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  width: AppDimensions.d90w,
-                  height: 6,
-                  color: AppColors.gray,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            ));
+                  Container(
+                    width: AppDimensions.d90w,
+                    height: 6,
+                    color: AppColors.gray,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
+              )),
+        );
       }),
     );
   }

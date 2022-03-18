@@ -51,7 +51,7 @@ class _SavedScreenState extends State<SavedScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             width: AppDimensions.d49w,
                             height: AppDimensions.d8h,
                             child: Text(
@@ -61,7 +61,7 @@ class _SavedScreenState extends State<SavedScreen> {
                               style: TextStyle(fontSize: AppFontSizes.fs12),
                             ),
                           ),
-                          Text('Saved about 2 days ago'),
+                          const Text('Saved about 2 days ago'),
                         ],
                       ),
                     ],

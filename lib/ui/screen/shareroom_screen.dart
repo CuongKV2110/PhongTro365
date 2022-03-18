@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
+import 'package:phongtro/ui/screen/detail_screen.dart';
 
 class ShareRoomScreen extends StatefulWidget {
   const ShareRoomScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _ShareRoomScreenState extends State<ShareRoomScreen> {
             style: TextStyle(color: AppColors.black),
           ),
           backgroundColor: AppColors.white,
-          elevation: 0,
+          elevation: 1,
         ),
         body: ListView.builder(
           itemCount: 10,
@@ -46,7 +47,7 @@ class _ShareRoomScreenState extends State<ShareRoomScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
-                                'images/code1.jpg',
+                                'images/room2.jpg',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -128,22 +129,33 @@ class _ShareRoomScreenState extends State<ShareRoomScreen> {
                               ),
                             ],
                           ),
-                          Container(
-                            width: 100,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: AppColors.colorFAC524,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                width: 1,
-                                color: AppColors.black,
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'View Details',
-                                style: TextStyle(
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const DetailScreen();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: AppColors.colorFAC524,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  width: 1,
                                   color: AppColors.black,
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'View Details',
+                                  style: TextStyle(
+                                    color: AppColors.black,
+                                  ),
                                 ),
                               ),
                             ),
