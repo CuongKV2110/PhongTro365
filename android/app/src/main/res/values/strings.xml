@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">1441282932994240</string>
+    <string name="fb_login_protocol_scheme">fb1441282932994240</string>
+    <string name="facebook_client_token">88eb0a61e15aabc0224c932758d83944</string>
+    <string name="app_name">phongtro</string>
+</resources>

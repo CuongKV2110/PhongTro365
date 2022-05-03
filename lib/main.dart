@@ -1,12 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:phongtro/ui/screen/login_screen.dart';
+import 'package:phongtro/ui/screen/splash_screen/pages/splash_screen.dart';
 import 'package:sizer/sizer.dart';
-
 import 'generated/l10n.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -22,8 +24,8 @@ class _MyAppState extends State<MyApp> {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
+          home: SplashScreen(),
           debugShowCheckedModeBanner: false,
-          home: const LoginScreen(),
           locale: const Locale('vi'),
           localizationsDelegates: const [
             S.delegate,
@@ -39,7 +41,8 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class FallbackCupertinoLocalisationsDelegate extends LocalizationsDelegate<MaterialLocalizations> {
+class FallbackCupertinoLocalisationsDelegate
+    extends LocalizationsDelegate<MaterialLocalizations> {
   const FallbackCupertinoLocalisationsDelegate();
 
   @override
@@ -57,4 +60,3 @@ class FallbackCupertinoLocalisationsDelegate extends LocalizationsDelegate<Mater
     return false;
   }
 }
-

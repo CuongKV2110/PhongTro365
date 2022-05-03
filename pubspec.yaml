@@ -23,7 +23,13 @@ dependencies:
   ionicons: ^0.1.2
   cached_network_image: ^3.2.0
   awesome_dialog: ^2.1.2
-
+  flutter_facebook_auth: ^4.1.2
+  google_sign_in: 5.2.4
+  firebase_analytics: 9.1.4
+  firebase_auth: 3.3.10
+  firebase_core: ^1.14.1
+  provider: ^6.0.2
+  cloud_firestore: ^3.1.13
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -51,8 +57,7 @@ flutter:
     - images/room4.jpg
     - images/HN.jpg
     - images/HN1.jpg
-    - images/avt1.jpg
-    - images/avt2.jpg
+    - images/avt.jpg
     - images/bep.png
     - images/maygiat.png
     - images/wifi.png

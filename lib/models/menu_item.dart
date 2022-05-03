@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
-class MenuItem{
-  final String title;
-  final IconData icon;
-  MenuItem({ required this.title, required this.icon});
+class MenuItem {
+  IconData icon;
+  String name;
+
+  MenuItem({
+    required this.icon,
+    required this.name,
+  });
 }
