@@ -10,7 +10,11 @@ class NewFeedScreen extends StatefulWidget {
   _NewFeedScreenState createState() => _NewFeedScreenState();
 }
 
-class _NewFeedScreenState extends State<NewFeedScreen> {
+class _NewFeedScreenState extends State<NewFeedScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

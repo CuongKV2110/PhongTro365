@@ -1,6 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
+import '../../../../bloc/login/login_bloc.dart';
+import '../../../../bloc/login/login_event.dart';
+import '../../../../bloc/login/login_state.dart';
+import '../../../../helpers/ui_helper.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
 import '../widgets/build_image_widget2.dart';
@@ -17,49 +23,83 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final auth = FirebaseAuth.instance;
+  final LoginBloc _loginBloc = LoginBloc();
+  String text = '';
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    _loginBloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
+    return BlocListener(
+      bloc: _loginBloc,
+      listener: (context, state) {
+        print(state);
+        if (state is LoginProcessing) {
+          UiHelper.showLoading(context);
+        }
+        if (state is LoginError) {
+          UiHelper.hideLoading(context);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(_loginBloc.errorMessage),
+          ));
+        }
+        if (state is LoginSuccess) {
+          print('Login thanh cong');
+          UiHelper.hideLoading(context);
+          Navigator.of(context).pushReplacement(
+            CupertinoPageRoute(
+              builder: (context) {
+                return const HomeScreen();
+              },
+            ),
+          );
+        }
+      },
+      child: SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.black,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                BuildImageWidget2(),
-                const SizedBox(
-                  height: 20,
+          body: BlocBuilder(
+            bloc: _loginBloc,
+            builder: (context, state) {
+              return GestureDetector(
+                onTap: () {
+                  print('A');
+                  FocusScope.of(context).requestFocus(FocusNode());
+                },
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      BuildImageWidget2(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      _buildSignIn(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      _buildSignInButton(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const BuildMediaWidget(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const SignUpWidget(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
                 ),
-                _buildSignIn(),
-                const SizedBox(
-                  height: 20,
-                ),
-                _buildSignInButton(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const BuildMediaWidget(),
-                const SizedBox(
-                  height: 10,
-                ),
-                const SignUpWidget(),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ),
       ),
@@ -146,19 +186,8 @@ class _SignInScreenState extends State<SignInScreen> {
       child: Center(
         child: ElevatedButton(
           onPressed: () {
-            FirebaseAuth.instance
-                .signInWithEmailAndPassword(
-                    email: emailController.text,
-                    password: passwordController.text)
-                .then((value) {
-              print("Created New Account");
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
-            }).onError((error, stackTrace) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text("Thong tin tai khoan khong chinh xac"),
-              ));
-            });
+            _loginBloc.add(LoginNormal(
+                emailController.text.trim(), passwordController.text.trim()));
           },
           style: ElevatedButton.styleFrom(
               primary: AppColors.black,

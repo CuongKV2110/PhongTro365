@@ -11,7 +11,11 @@ class NotifyScreen extends StatefulWidget {
   _NotifyScreenState createState() => _NotifyScreenState();
 }
 
-class _NotifyScreenState extends State<NotifyScreen> {
+class _NotifyScreenState extends State<NotifyScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

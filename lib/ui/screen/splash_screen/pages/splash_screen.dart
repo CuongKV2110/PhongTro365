@@ -41,50 +41,55 @@ class _SplashScreenState extends State<SplashScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.black,
-        body: Column(
-          children: [
-            _buildSkip(),
-            Expanded(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  PageView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    controller: _pageController,
-                    itemCount: slideList.length,
-                    onPageChanged: _onPageChanged,
-                    itemBuilder: (context, index) {
-                      return _buildBody(index);
-                    },
-                  ),
-                  Stack(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          bottom: 30,
-                        ),
-                        child: _currentPage == 2
-                            ? const ContinueButton()
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  for (int i = 0; i < slideList.length; i++)
-                                    if (i == _currentPage)
-                                      SlideDots(true)
-                                    else
-                                      SlideDots(false)
-                                ],
-                              ),
-                      )
-                    ],
-                  )
-                ],
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Column(
+            children: [
+              _buildSkip(),
+              Expanded(
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    PageView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      controller: _pageController,
+                      itemCount: slideList.length,
+                      onPageChanged: _onPageChanged,
+                      itemBuilder: (context, index) {
+                        return _buildBody(index);
+                      },
+                    ),
+                    Stack(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(
+                            bottom: 30,
+                          ),
+                          child: _currentPage == 2
+                              ? const ContinueButton()
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    for (int i = 0; i < slideList.length; i++)
+                                      if (i == _currentPage)
+                                        SlideDots(true)
+                                      else
+                                        SlideDots(false)
+                                  ],
+                                ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
