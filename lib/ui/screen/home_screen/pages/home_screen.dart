@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen>
             ],
           ),
           body: PageView(
-            physics: const NeverScrollableScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             onPageChanged: (index) {
               setState(() {
                 _currentIndex = index;

@@ -9,56 +9,10 @@ class BuildInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: AppDimensions.d100w,
-      child: Row(
+      child: Column(
         children: [
-          const Spacer(),
-          Column(
-            children: const [
-              Text(
-                '30.2K',
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'Following',
-                style: TextStyle(color: AppColors.white, fontSize: 14),
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 40,
-          ),
-          Container(
-            width: 1,
-            height: 30,
-            color: AppColors.white,
-          ),
-          const SizedBox(
-            width: 40,
-          ),
-          Column(
-            children: const [
-              Text(
-                '3',
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'Today Event',
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-          const Spacer(),
+          Text('SDT: 0367031430'),
+          Text('Me Tri Ha, Nam Tu Liem'),
         ],
       ),
     );

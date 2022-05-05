@@ -113,6 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
         children: [
           TextField(
             controller: emailController,
+            keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: AppColors.white),
             decoration: InputDecoration(
               border: InputBorder.none,

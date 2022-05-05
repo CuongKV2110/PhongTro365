@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:phongtro/models/extension.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
@@ -15,6 +18,103 @@ class _Post2ScreenState extends State<Post2Screen> {
   bool internet_checkbox = false;
   bool service_checkbox = false;
 
+  final List<Extension> lisExtension = [];
+
+  @override
+  void initState() {
+    lisExtension.add(
+      Extension(
+        icon: 'images/wifi.png',
+        name: 'wifi',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/toilet.png',
+        name: 'WC riêng',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/time.png',
+        name: 'Giờ giấc',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/xemay.png',
+        name: 'Để xe',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/bep.png',
+        name: 'Bếp',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/tulanh.png',
+        name: 'Tủ lạnh',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/maygiat.png',
+        name: 'Máy giặt',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/dieuhoa.png',
+        name: 'Điều hòa',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/dieuhoa.png',
+        name: 'Điều hòa',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/dieuhoa.png',
+        name: 'Điều hòa',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/dieuhoa.png',
+        name: 'Điều hòa',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/dieuhoa.png',
+        name: 'Điều hòa',
+        isPress: false,
+      ),
+    );
+    lisExtension.add(
+      Extension(
+        icon: 'images/dieuhoa.png',
+        name: 'Điều hòa',
+        isPress: false,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,6 +127,7 @@ class _Post2ScreenState extends State<Post2Screen> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +223,7 @@ class _Post2ScreenState extends State<Post2Screen> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: TextField(
                               textAlign: TextAlign.center,
                               keyboardType: TextInputType.number,
@@ -131,7 +232,7 @@ class _Post2ScreenState extends State<Post2Screen> {
                           const SizedBox(
                             width: 10,
                           ),
-                          Text('VND/Người'),
+                          const Text('VND/Người'),
                           Checkbox(
                             value: internet_checkbox,
                             onChanged: (value) {
@@ -199,127 +300,52 @@ class _Post2ScreenState extends State<Post2Screen> {
                             fontSize: AppFontSizes.fs16,
                             fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      SizedBox(
-                        width: AppDimensions.d100w,
-                        height: AppDimensions.d24h,
-                        child: GridView(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                          ),
-                          children: [
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/wifi.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('Wifi')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/toilet.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('WC riêng')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/time.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('Tự do')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/xemay.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('Để xe')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/bep.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('Bếp')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/tulanh.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('Tủ lạnh')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/maygiat.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('Máy giặt')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Image.asset(
-                                  'images/dieuhoa.png',
-                                  width: 40,
-                                  height: 40,
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                const Text('Điều hòa')
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  GridView.builder(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: lisExtension.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                      ),
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              lisExtension[index].isPress =
+                                  !lisExtension[index].isPress;
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                lisExtension[index].icon,
+                                width: 40,
+                                height: 40,
+                                color: lisExtension[index].isPress
+                                    ? AppColors.blue
+                                    : AppColors.black,
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                lisExtension[index].name,
+                                style: TextStyle(
+                                  color: lisExtension[index].isPress
+                                      ? AppColors.blue
+                                      : AppColors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      }),
                   const SizedBox(
                     height: 20,
                   ),
@@ -331,26 +357,28 @@ class _Post2ScreenState extends State<Post2Screen> {
                         }),
                       );
                     },
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      width: 150,
-                      child: Text(
-                        'NEXT',
-                        style: TextStyle(
-                            fontSize: AppFontSizes.fs16,
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            AppColors.blue,
-                            AppColors.color4DCBC1,
-                          ],
+                    child: Center(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 150,
+                        child: Text(
+                          'NEXT',
+                          style: TextStyle(
+                              fontSize: AppFontSizes.fs16,
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              AppColors.blue,
+                              AppColors.color4DCBC1,
+                            ],
+                          ),
                         ),
                       ),
                     ),

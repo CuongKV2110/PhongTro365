@@ -1,9 +1,6 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
-import '../../saved_screen/pages/saved_screen.dart';
-import '../../sign_in_screen/pages/sign_in_screen.dart';
 import 'avatar_profile.dart';
 import 'background_img.dart';
 import 'build_appbar.dart';
@@ -28,7 +25,7 @@ class BuildProfile extends StatelessWidget {
           child: BuildAppBar(),
         ),
         Positioned(
-          top: 120,
+          top: 100,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -37,13 +34,14 @@ class BuildProfile extends StatelessWidget {
                 children: [
                   Container(
                     width: AppDimensions.d80w,
-                    height: AppDimensions.d22h,
+                    height: AppDimensions.d26h,
                     color: Colors.transparent,
                   ),
                   Positioned(
+                    bottom: 0,
                     child: Container(
                       width: AppDimensions.d80w,
-                      height: AppDimensions.d16h,
+                      height: AppDimensions.d20h,
                       decoration: BoxDecoration(
                         color: AppColors.black,
                         borderRadius: BorderRadius.circular(16),

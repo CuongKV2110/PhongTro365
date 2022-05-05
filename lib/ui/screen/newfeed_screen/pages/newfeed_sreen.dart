@@ -247,7 +247,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                   ),
                   Container(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 4, 14, 16),
+                      padding: const EdgeInsets.fromLTRB(10, 4, 10, 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

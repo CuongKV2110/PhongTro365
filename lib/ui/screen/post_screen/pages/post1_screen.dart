@@ -88,6 +88,7 @@ class _Post1ScreenState extends State<Post1Screen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
+                        flex: 2,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -119,42 +120,39 @@ class _Post1ScreenState extends State<Post1Screen> {
                           ],
                         ),
                       ),
-                      Spacer(),
                       Expanded(
+                        flex: 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Diện tích',
                               style: TextStyle(
-                                fontSize: AppFontSizes.fs12,
-                                color: AppColors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  fontSize: AppFontSizes.fs12,
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 60,
-                                  height: 30,
-                                  child: const TextField(
-                                    textAlign: TextAlign.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: const [
+                                Expanded(
+                                  child: TextField(
+                                    textAlign: TextAlign.justify,
                                     keyboardType: TextInputType.number,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 10,
                                 ),
-                                const Text('m2')
+                                Expanded(child: Text('m2'))
                               ],
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -164,7 +162,7 @@ class _Post1ScreenState extends State<Post1Screen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Chi phí',
+                        'Giá phòng',
                         style: TextStyle(
                             fontSize: AppFontSizes.fs12,
                             color: AppColors.black,
@@ -194,45 +192,6 @@ class _Post1ScreenState extends State<Post1Screen> {
                   ),
                   const SizedBox(
                     height: 24,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Tiền điện',
-                        style: TextStyle(
-                            fontSize: AppFontSizes.fs12,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: AppDimensions.d40w,
-                            height: 30,
-                            child: const TextField(
-                              textAlign: TextAlign.center,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text('VND/Số'),
-                          const SizedBox(
-                            width: 20,
-                          )
-                          // Checkbox(value: value, onChanged: onChanged)
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                   GestureDetector(
                     onTap: () {
