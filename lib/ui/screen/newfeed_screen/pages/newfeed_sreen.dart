@@ -36,6 +36,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
               FocusScope.of(context).requestFocus(FocusNode());
             },
             child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
               slivers: [
                 _buildImage1(),
                 const SliverToBoxAdapter(
@@ -135,8 +136,15 @@ class _NewFeedScreenState extends State<NewFeedScreen>
               ),
             );
           },
-          child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+          child: Container(
+            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            width: AppDimensions.d100w,
+            decoration: BoxDecoration(
+              color: AppColors.gray.withOpacity(0.6),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -314,19 +322,10 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: AppDimensions.d90w,
-                    height: 6,
-                    color: AppColors.gray,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                 ],
-              )),
+              ),
+            ),
+          ),
         );
       }),
     );

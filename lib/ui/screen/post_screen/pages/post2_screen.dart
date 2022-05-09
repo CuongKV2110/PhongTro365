@@ -8,13 +8,21 @@ import 'package:phongtro/resources/fontsizes.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post3_screen.dart';
 
 class Post2Screen extends StatefulWidget {
-  const Post2Screen({Key? key}) : super(key: key);
+  String people;
+  String acreage;
+  String cost;
+  String location;
+
+  Post2Screen(this.people, this.acreage, this.cost, this.location);
 
   @override
   _Post2ScreenState createState() => _Post2ScreenState();
 }
 
 class _Post2ScreenState extends State<Post2Screen> {
+  TextEditingController waterController = TextEditingController();
+  TextEditingController electricityController = TextEditingController();
+  TextEditingController internetController = TextEditingController();
   bool internet_checkbox = false;
   bool service_checkbox = false;
 
@@ -78,41 +86,6 @@ class _Post2ScreenState extends State<Post2Screen> {
         isPress: false,
       ),
     );
-    lisExtension.add(
-      Extension(
-        icon: 'images/dieuhoa.png',
-        name: 'Điều hòa',
-        isPress: false,
-      ),
-    );
-    lisExtension.add(
-      Extension(
-        icon: 'images/dieuhoa.png',
-        name: 'Điều hòa',
-        isPress: false,
-      ),
-    );
-    lisExtension.add(
-      Extension(
-        icon: 'images/dieuhoa.png',
-        name: 'Điều hòa',
-        isPress: false,
-      ),
-    );
-    lisExtension.add(
-      Extension(
-        icon: 'images/dieuhoa.png',
-        name: 'Điều hòa',
-        isPress: false,
-      ),
-    );
-    lisExtension.add(
-      Extension(
-        icon: 'images/dieuhoa.png',
-        name: 'Điều hòa',
-        isPress: false,
-      ),
-    );
   }
 
   @override
@@ -123,12 +96,39 @@ class _Post2ScreenState extends State<Post2Screen> {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Tiện ích',
+              style: TextStyle(
+                color: AppColors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            automaticallyImplyLeading: false,
+            backgroundColor: AppColors.black,
+            elevation: 0,
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_outlined,
+                  color: AppColors.white,
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+          ),
           body: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: 20,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -148,7 +148,8 @@ class _Post2ScreenState extends State<Post2Screen> {
                           SizedBox(
                             width: AppDimensions.d40w,
                             height: 30,
-                            child: const TextField(
+                            child: TextField(
+                              controller: waterController,
                               textAlign: TextAlign.center,
                               keyboardType: TextInputType.number,
                             ),
@@ -187,7 +188,8 @@ class _Post2ScreenState extends State<Post2Screen> {
                           SizedBox(
                             width: AppDimensions.d40w,
                             height: 30,
-                            child: const TextField(
+                            child: TextField(
+                              controller: electricityController,
                               textAlign: TextAlign.center,
                               keyboardType: TextInputType.number,
                             ),
@@ -223,8 +225,9 @@ class _Post2ScreenState extends State<Post2Screen> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Expanded(
+                          Expanded(
                             child: TextField(
+                              controller: internetController,
                               textAlign: TextAlign.center,
                               keyboardType: TextInputType.number,
                             ),
@@ -253,48 +256,6 @@ class _Post2ScreenState extends State<Post2Screen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Tiền dịch vụ khác',
-                        style: TextStyle(
-                            fontSize: AppFontSizes.fs12,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Expanded(
-                            child: TextField(
-                              textAlign: TextAlign.center,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text('VND/Người'),
-                          Checkbox(
-                            value: service_checkbox,
-                            onChanged: (value) {
-                              setState(() {
-                                service_checkbox = value!;
-                              });
-                            },
-                          ),
-                          const Text('Miễn phí'),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
                         "Các tiện ích",
                         style: TextStyle(
                             fontSize: AppFontSizes.fs16,
@@ -306,7 +267,7 @@ class _Post2ScreenState extends State<Post2Screen> {
                     height: 20,
                   ),
                   GridView.builder(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: lisExtension.length,
                       gridDelegate:
@@ -349,35 +310,50 @@ class _Post2ScreenState extends State<Post2Screen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return const Post3Screen();
-                        }),
-                      );
-                    },
-                    child: Center(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 150,
-                        child: Text(
-                          'NEXT',
-                          style: TextStyle(
-                              fontSize: AppFontSizes.fs16,
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Post3Screen(
+                                widget.people,
+                                widget.acreage,
+                                widget.cost,
+                                widget.location,
+                                waterController.text.trim(),
+                                electricityController.text.trim(),
+                                internetController.text.trim(),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(28),
                         ),
+                      ),
+                      child: Ink(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
                           gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
                             colors: [
-                              AppColors.blue,
-                              AppColors.color4DCBC1,
+                              AppColors.orange1,
+                              AppColors.orange2,
                             ],
+                          ),
+                          borderRadius: BorderRadius.circular(28),
+                        ),
+                        child: Container(
+                          width: AppDimensions.d40w,
+                          height: 56,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Tiếp theo',
+                            style: TextStyle(fontSize: 18),
                           ),
                         ),
                       ),

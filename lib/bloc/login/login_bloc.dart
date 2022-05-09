@@ -6,14 +6,19 @@ import 'login_event.dart';
 import 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final auth = FirebaseAuth.instance;
-
   LoginBloc() : super(LoginInitial());
   String errorMessage = '';
   int i = 0;
 
   void dispose() {
     close();
+  }
+
+  Future<String> inputData() async {
+    final User user = FirebaseAuth.instance.currentUser!;
+    final String uid = user.uid.toString();
+    print(uid);
+    return uid;
   }
 
   @override
@@ -51,6 +56,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         try {
           await FirebaseAuth.instance.signInWithEmailAndPassword(
               email: event.email, password: event.password);
+          await inputData();
           yield LoginSuccess();
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {

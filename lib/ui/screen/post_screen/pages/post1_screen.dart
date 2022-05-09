@@ -13,6 +13,10 @@ class Post1Screen extends StatefulWidget {
 
 class _Post1ScreenState extends State<Post1Screen> {
   int _cau1 = 0;
+  TextEditingController peopleController = TextEditingController();
+  TextEditingController acreageController = TextEditingController();
+  TextEditingController costController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +28,21 @@ class _Post1ScreenState extends State<Post1Screen> {
         child: Scaffold(
           body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(14, 4, 14, 4),
+              padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: AppDimensions.d100w,
-                    height: AppDimensions.d20h,
-                    color: AppColors.red,
-                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Loại Phòng",
-                    style: TextStyle(
-                      fontSize: AppFontSizes.fs12,
-                      color: AppColors.black,
-                      fontWeight: FontWeight.bold,
+                  Center(
+                    child: Text(
+                      "Loại Phòng",
+                      style: TextStyle(
+                        fontSize: AppFontSizes.fs12,
+                        color: AppColors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -104,17 +106,18 @@ class _Post1ScreenState extends State<Post1Screen> {
                             ),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Expanded(
                                   child: TextField(
+                                    controller: peopleController,
                                     textAlign: TextAlign.center,
                                     keyboardType: TextInputType.number,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(child: Text('Người/Phòng'))
+                                const Expanded(child: Text('Người/Phòng'))
                               ],
                             ),
                           ],
@@ -136,10 +139,10 @@ class _Post1ScreenState extends State<Post1Screen> {
                               height: 10,
                             ),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: const [
+                              children: [
                                 Expanded(
                                   child: TextField(
+                                    controller: acreageController,
                                     textAlign: TextAlign.justify,
                                     keyboardType: TextInputType.number,
                                   ),
@@ -177,7 +180,8 @@ class _Post1ScreenState extends State<Post1Screen> {
                           SizedBox(
                             width: AppDimensions.d40w,
                             height: 30,
-                            child: const TextField(
+                            child: TextField(
+                              controller: costController,
                               textAlign: TextAlign.center,
                               keyboardType: TextInputType.number,
                             ),
@@ -193,34 +197,73 @@ class _Post1ScreenState extends State<Post1Screen> {
                   const SizedBox(
                     height: 24,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return const Post2Screen();
-                        }),
-                      );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      width: 150,
-                      child: Text(
-                        'NEXT',
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Địa chỉ',
                         style: TextStyle(
-                            fontSize: AppFontSizes.fs16,
-                            color: AppColors.white,
+                            fontSize: AppFontSizes.fs12,
+                            color: AppColors.black,
                             fontWeight: FontWeight.bold),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            AppColors.blue,
-                            AppColors.color4DCBC1,
-                          ],
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: AppDimensions.d90w,
+                        height: 30,
+                        child: TextField(
+                          controller: locationController,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Post2Screen(
+                                  peopleController.text.trim(),
+                                  acreageController.text.trim(),
+                                  costController.text.trim(),
+                                  locationController.text.trim());
+                            },
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(28),
+                        ),
+                      ),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              AppColors.orange1,
+                              AppColors.orange2,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(28),
+                        ),
+                        child: Container(
+                          width: AppDimensions.d40w,
+                          height: 56,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Tiếp theo',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ),
                     ),

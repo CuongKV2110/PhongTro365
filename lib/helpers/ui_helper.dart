@@ -71,16 +71,4 @@ class UiHelper {
       },
     );
   }
-
-  // static showToast(String msg, Toast toastType) {
-  //   Fluttertoast.showToast(
-  //     msg: msg,
-  //     toastLength: toastType,
-  //     gravity: ToastGravity.BOTTOM,
-  //     backgroundColor: Colors.black,
-  //     textColor: Colors.white,
-  //     fontSize: 16.0,
-  //   );
-  // }
-
 }
