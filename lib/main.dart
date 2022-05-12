@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
 import 'package:phongtro/ui/screen/splash_screen/pages/splash_screen.dart';
 import 'package:sizer/sizer.dart';
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          home: const SplashScreen(),
+          home: const HomeScreen(),
           debugShowCheckedModeBanner: false,
           locale: const Locale('vi'),
           localizationsDelegates: const [

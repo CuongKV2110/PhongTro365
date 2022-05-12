@@ -24,17 +24,29 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         return;
       } else {
         try {
+          FirebaseFirestore fireStore = FirebaseFirestore.instance;
+          var document = fireStore.collection('posts').doc();
           CollectionReference post =
               FirebaseFirestore.instance.collection('posts');
-          post.doc('6HIWUXmxyPGeFOpbxB1g').set({
+          await post.doc(document.id).set({
+            'owner': event.owner,
             'peolpe': event.people,
             'acreage': event.acreage,
             'cost': event.cost,
             'location': event.location,
+            'phone': event.phone,
             'water': event.water,
             'electricity': event.electricity,
-            'internet': event.internet,
+            'wifi': event.wifi,
+            'wc': event.wc,
+            'time': event.time,
+            'vehicle': event.vehicle,
+            'kitchen': event.kitchen,
+            'fridge': event.fridge,
+            'washing': event.washing,
+            'conditioning': event.conditioning,
             'content': event.content,
+            'postID': document.id,
           });
           yield CreatePostSuccess();
         } on FirebaseAuthException catch (e) {

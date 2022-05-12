@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,11 @@ import 'package:phongtro/bloc/create_post/create_post_bloc.dart';
 import 'package:phongtro/bloc/create_post/create_post_event.dart';
 import 'package:phongtro/bloc/create_post/create_post_state.dart';
 import 'package:phongtro/models/room.dart';
+import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
 import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
+import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
+import 'package:phongtro/ui/screen/post_screen/pages/post_notify_screen.dart';
+import 'package:phongtro/ui/screen/post_screen/widgets/content_widget.dart';
 import 'package:phongtro/ui/screen/saved_screen/pages/saved_screen.dart';
 
 import '../../../../helpers/ui_helper.dart';
@@ -18,16 +23,43 @@ import '../../../../resources/dimensions.dart';
 import '../../../../resources/fontsizes.dart';
 
 class Post3Screen extends StatefulWidget {
+  String owner;
   String people;
   String acreage;
   String cost;
   String location;
+  String phone;
   String water;
   String electricity;
   String internet;
+  bool wifi;
+  bool wc;
+  bool time;
+  bool vehicle;
+  bool kitchen;
+  bool fridge;
+  bool washing;
+  bool conditioning;
 
-  Post3Screen(this.people, this.acreage, this.cost, this.location, this.water,
-      this.electricity, this.internet);
+  Post3Screen(
+    this.owner,
+    this.people,
+    this.acreage,
+    this.cost,
+    this.location,
+    this.phone,
+    this.water,
+    this.electricity,
+    this.internet,
+    this.wifi,
+    this.wc,
+    this.time,
+    this.vehicle,
+    this.kitchen,
+    this.fridge,
+    this.washing,
+    this.conditioning,
+  );
 
   @override
   _Post3ScreenState createState() => _Post3ScreenState();
@@ -103,8 +135,8 @@ class _Post3ScreenState extends State<Post3Screen> {
           UiHelper.hideLoading(context);
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) {
-                return const SavedScreen();
+              builder: (BuildContext context) {
+                return PostNotifyScreen();
               },
             ),
           );
@@ -228,62 +260,51 @@ class _Post3ScreenState extends State<Post3Screen> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Nội dung',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextField(
-                                controller: contentController,
-                                textAlign: TextAlign.start,
-                                maxLines: 6,
-                                decoration: const InputDecoration(
-                                    hintText: 'Viết bài',
-                                    hintStyle:
-                                        TextStyle(color: AppColors.gray)),
-                              ),
-                            ],
-                          ),
+                          ContentWidget(contentController),
                           const SizedBox(
                             height: 24,
                           ),
                           Center(
                             child: ElevatedButton(
                               onPressed: () {
-                                String people = widget.people;
-                                String acreage = widget.acreage;
-                                String cost = widget.cost;
-                                String location = widget.location;
-                                String water = widget.water;
-                                String electricity = widget.electricity;
-                                String internet = widget.internet;
-                                String content = contentController.text.trim();
-
                                 Room room = Room(
-                                    people: people,
-                                    acreage: acreage,
-                                    cost: cost,
-                                    location: location,
-                                    water: water,
-                                    electricity: electricity,
-                                    internet: internet,
-                                    content: content);
+                                  owner: widget.owner,
+                                  people: widget.people,
+                                  acreage: widget.acreage,
+                                  cost: widget.cost,
+                                  location: widget.location,
+                                  phone: widget.phone,
+                                  water: widget.water,
+                                  electricity: widget.electricity,
+                                  internet: widget.internet,
+                                  wifi: widget.wifi,
+                                  wc: widget.wc,
+                                  time: widget.time,
+                                  vehicle: widget.vehicle,
+                                  kitchen: widget.kitchen,
+                                  fridge: widget.fridge,
+                                  washing: widget.washing,
+                                  conditioning: widget.conditioning,
+                                  content: contentController.text.trim(),
+                                );
                                 _createPostBloc.add(CreatePost(
+                                  room.owner,
                                   room.people,
                                   room.acreage,
                                   room.cost,
                                   room.location,
+                                  room.phone,
                                   room.water,
                                   room.electricity,
                                   room.internet,
+                                  room.wifi,
+                                  room.wc,
+                                  room.time,
+                                  room.vehicle,
+                                  room.kitchen,
+                                  room.fridge,
+                                  room.washing,
+                                  room.conditioning,
                                   room.content,
                                 ));
 

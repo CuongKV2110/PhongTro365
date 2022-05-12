@@ -43,17 +43,15 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          drawer: const BuildDrawer(),
+          drawer: BuildDrawer(),
           appBar: AppBar(
             centerTitle: true,
             title: Text(
               _currentIndex == 0
-                  ? 'Home Page'
+                  ? 'Tìm Phòng 365'
                   : (_currentIndex == 1
-                      ? 'Share Room'
-                      : (_currentIndex == 2
-                          ? 'Create New Post'
-                          : 'Notifications')),
+                      ? 'Tìm ở ghép'
+                      : (_currentIndex == 2 ? 'Đăng bài' : 'Thông báo')),
               style: TextStyle(
                 color: AppColors.white,
                 fontSize: 20,
@@ -102,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen>
             ],
           ),
           body: PageView(
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             onPageChanged: (index) {
               setState(() {
                 _currentIndex = index;
@@ -147,27 +145,27 @@ class _HomeScreenState extends State<HomeScreen>
           icon: Icon(
             Ionicons.home_outline,
           ),
-          label: 'Home',
+          label: 'Trang Chủ',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Ionicons.people_circle_outline,
           ),
-          label: 'Share',
+          label: 'Tìm ở ghép',
           backgroundColor: AppColors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Ionicons.add_circle_outline,
           ),
-          label: 'Create',
+          label: 'Đăng bài',
           backgroundColor: AppColors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Ionicons.notifications_outline,
           ),
-          label: 'Notify',
+          label: 'Thông báo',
         ),
       ],
     );

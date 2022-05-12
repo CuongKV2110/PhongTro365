@@ -20,7 +20,7 @@ class _SavedScreenState extends State<SavedScreen> {
           centerTitle: true,
           backgroundColor: AppColors.black,
           title: const Text(
-            'Saved Posts',
+            'Bài viết đã lưu',
             style: TextStyle(
               color: AppColors.white,
               fontSize: 20,

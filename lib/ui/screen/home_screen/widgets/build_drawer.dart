@@ -1,46 +1,25 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
+import 'package:phongtro/ui/screen/profile_screen/pages/profile_screen.dart';
+import 'package:phongtro/ui/screen/saved_screen/pages/saved_screen.dart';
 import 'package:phongtro/ui/screen/sign_in_screen/pages/sign_in_screen.dart';
 
 import '../../../../models/menu_item.dart';
 import '../../../../resources/colors.dart';
+import 'menu_widget.dart';
 
-class BuildDrawer extends StatefulWidget {
-  const BuildDrawer({Key? key}) : super(key: key);
-
-  @override
-  _BuildDrawerState createState() => _BuildDrawerState();
-}
-
-class _BuildDrawerState extends State<BuildDrawer> {
-  List<MenuItem> list = [];
-
-  @override
-  void initState() {
-    list.add(
-      MenuItem(
-          icon: Ionicons.person_outline, name: 'Follow and invite friends'),
-    );
-    list.add(
-      MenuItem(icon: Ionicons.notifications_outline, name: 'Notificaton'),
-    );
-    list.add(
-      MenuItem(icon: Ionicons.hand_left_outline, name: 'Privacy'),
-    );
-    list.add(
-      MenuItem(icon: Ionicons.shield_half_outline, name: 'Secutiry'),
-    );
-    list.add(
-      MenuItem(icon: Ionicons.person_circle_outline, name: 'Account'),
-    );
-    list.add(
-      MenuItem(icon: Ionicons.help_circle_outline, name: 'Help'),
-    );
-    list.add(
-      MenuItem(icon: Ionicons.information_circle_outline, name: 'About'),
-    );
-  }
+class BuildDrawer extends StatelessWidget {
+  final List<MenuItem> list = [
+    MenuItem(icon: Ionicons.person_circle_outline, name: 'Thông tin tài khoản'),
+    MenuItem(icon: Ionicons.create_outline, name: 'Bài viết đã đăng'),
+    MenuItem(icon: Ionicons.bookmark_outline, name: 'Bài viết đã lưu'),
+    MenuItem(icon: Ionicons.person_outline, name: 'Bạn bè và theo dõi'),
+    MenuItem(icon: Ionicons.hand_left_outline, name: 'Chính sách & điều khoản'),
+    MenuItem(icon: Ionicons.help_circle_outline, name: 'Trợ giúp'),
+    MenuItem(icon: Ionicons.information_circle_outline, name: 'Thông tin'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -68,34 +47,36 @@ class _BuildDrawerState extends State<BuildDrawer> {
                 shrinkWrap: true,
                 itemCount: list.length,
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            list[index].icon,
-                            color: AppColors.white,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            list[index].name,
-                            style: const TextStyle(color: AppColors.white),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                    ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            if (index == 0) {
+                              return ProfileScreen();
+                            }
+                            if (index == 1) {
+                              return SavedScreen();
+                            }
+                            if (index == 2) {
+                              return Post1Screen();
+                            }
+                            if (index == 3) {
+                              return ProfileScreen();
+                            } else
+                              return SizedBox();
+                          },
+                        ),
+                      );
+                    },
+                    child: MenuWidget(list[index]),
                   );
                 },
               ),
               Row(
                 children: [
                   const Text(
-                    'Sign-out',
+                    'Đăng xuất',
                     style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: AppColors.white,
@@ -114,11 +95,11 @@ class _BuildDrawerState extends State<BuildDrawer> {
                         buttonsBorderRadius: BorderRadius.circular(20),
                         headerAnimationLoop: false,
                         animType: AnimType.TOPSLIDE,
-                        title: 'Log Out',
-                        desc: 'Are you sure want to Log out ?',
+                        title: 'Đăng xuất',
+                        desc: 'Bạn có chắc chắn muốn đăng xuất ?',
                         showCloseIcon: false,
                         btnOkOnPress: () {},
-                        btnOkText: 'No',
+                        btnOkText: 'Thoát',
                         btnCancelOnPress: () {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
@@ -126,7 +107,7 @@ class _BuildDrawerState extends State<BuildDrawer> {
                                       const SignInScreen()),
                               (Route<dynamic> route) => false);
                         },
-                        btnCancelText: 'Yes',
+                        btnCancelText: 'Đăng xuất',
                         btnCancelColor: AppColors.red2,
                         btnOkColor: AppColors.green1,
                       ).show();

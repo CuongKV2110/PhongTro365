@@ -7,13 +7,26 @@ import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post3_screen.dart';
 
+import '../widgets/electricity_widget.dart';
+import '../widgets/internet_widget.dart';
+import '../widgets/water_widget.dart';
+
 class Post2Screen extends StatefulWidget {
+  String owner;
   String people;
   String acreage;
   String cost;
   String location;
+  String phone;
 
-  Post2Screen(this.people, this.acreage, this.cost, this.location);
+  Post2Screen(
+    this.owner,
+    this.people,
+    this.acreage,
+    this.cost,
+    this.location,
+    this.phone,
+  );
 
   @override
   _Post2ScreenState createState() => _Post2ScreenState();
@@ -23,9 +36,14 @@ class _Post2ScreenState extends State<Post2Screen> {
   TextEditingController waterController = TextEditingController();
   TextEditingController electricityController = TextEditingController();
   TextEditingController internetController = TextEditingController();
-  bool internet_checkbox = false;
-  bool service_checkbox = false;
-
+  bool wifi = false;
+  bool wc = false;
+  bool time = false;
+  bool vehicle = false;
+  bool kitchen = false;
+  bool fridge = false;
+  bool washing = false;
+  bool conditioning = false;
   final List<Extension> lisExtension = [];
 
   @override
@@ -47,7 +65,7 @@ class _Post2ScreenState extends State<Post2Screen> {
     lisExtension.add(
       Extension(
         icon: 'images/time.png',
-        name: 'Giờ giấc',
+        name: 'Tự do',
         isPress: false,
       ),
     );
@@ -129,126 +147,15 @@ class _Post2ScreenState extends State<Post2Screen> {
                   SizedBox(
                     height: 20,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Tiền nước',
-                        style: TextStyle(
-                            fontSize: AppFontSizes.fs12,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: AppDimensions.d40w,
-                            height: 30,
-                            child: TextField(
-                              controller: waterController,
-                              textAlign: TextAlign.center,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text('VND/Người'),
-                          const SizedBox(
-                            width: 20,
-                          )
-                          // Checkbox(value: value, onChanged: onChanged)
-                        ],
-                      ),
-                    ],
-                  ),
+                  WaterWidget(waterController),
                   const SizedBox(
                     height: 20,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Tiền điện',
-                        style: TextStyle(
-                            fontSize: AppFontSizes.fs12,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: AppDimensions.d40w,
-                            height: 30,
-                            child: TextField(
-                              controller: electricityController,
-                              textAlign: TextAlign.center,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text('VND/Số'),
-                          const SizedBox(
-                            width: 20,
-                          )
-                          // Checkbox(value: value, onChanged: onChanged)
-                        ],
-                      ),
-                    ],
-                  ),
+                  ElectricityWidget(electricityController),
                   const SizedBox(
                     height: 20,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Tiền mạng',
-                        style: TextStyle(
-                            fontSize: AppFontSizes.fs12,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: internetController,
-                              textAlign: TextAlign.center,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text('VND/Người'),
-                          Checkbox(
-                            value: internet_checkbox,
-                            onChanged: (value) {
-                              setState(() {
-                                internet_checkbox = value!;
-                              });
-                            },
-                          ),
-                          const Text('Miễn phí'),
-                        ],
-                      ),
-                    ],
-                  ),
+                  InternetWidget(internetController),
                   const SizedBox(
                     height: 20,
                   ),
@@ -313,17 +220,37 @@ class _Post2ScreenState extends State<Post2Screen> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
+                        setState(() {
+                          wifi = lisExtension[0].isPress;
+                          wc = lisExtension[1].isPress;
+                          time = lisExtension[2].isPress;
+                          vehicle = lisExtension[3].isPress;
+                          kitchen = lisExtension[4].isPress;
+                          washing = lisExtension[5].isPress;
+                          fridge = lisExtension[6].isPress;
+                          conditioning = lisExtension[7].isPress;
+                        });
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
                               return Post3Screen(
+                                widget.owner,
                                 widget.people,
                                 widget.acreage,
                                 widget.cost,
                                 widget.location,
+                                widget.phone,
                                 waterController.text.trim(),
                                 electricityController.text.trim(),
                                 internetController.text.trim(),
+                                wifi,
+                                wc,
+                                time,
+                                vehicle,
+                                kitchen,
+                                fridge,
+                                washing,
+                                conditioning,
                               );
                             },
                           ),
