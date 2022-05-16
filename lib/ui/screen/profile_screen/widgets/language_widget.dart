@@ -19,14 +19,14 @@ class LanguageWidget extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),
             padding: EdgeInsets.all(20),
-            primary: Colors.blue,
+            primary: AppColors.yellow1,
           ),
         ),
         SizedBox(
           height: 6,
         ),
         Text(
-          'Languague',
+          'Ngôn ngữ',
           style: TextStyle(color: AppColors.black),
         )
       ],

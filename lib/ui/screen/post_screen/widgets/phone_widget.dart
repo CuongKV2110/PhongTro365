@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../../../../resources/colors.dart';
-import '../../../../resources/dimensions.dart';
 import '../../../../resources/fontsizes.dart';
 
 class PhoneWidget extends StatefulWidget {
   TextEditingController phoneController;
 
-  PhoneWidget(this.phoneController);
+  PhoneWidget(this.phoneController, {Key? key}) : super(key: key);
 
   @override
   _PhoneWidgetState createState() => _PhoneWidgetState();

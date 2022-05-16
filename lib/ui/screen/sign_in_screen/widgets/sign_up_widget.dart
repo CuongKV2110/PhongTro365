@@ -16,8 +16,8 @@ class SignUpWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Didn\'t have any account ? ',
-                style: TextStyle(color: AppColors.white, fontSize: 14),
+                'Bạn chưa có tài khoản ? ',
+                style: TextStyle(color: AppColors.black, fontSize: 14),
               ),
               GestureDetector(
                 onTap: () {
@@ -30,10 +30,10 @@ class SignUpWidget extends StatelessWidget {
                   );
                 },
                 child: const Text(
-                  'Sign Up here',
+                  'Đăng ký ngay',
                   style: TextStyle(
                     decoration: TextDecoration.underline,
-                    color: AppColors.white,
+                    color: AppColors.black,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
@@ -41,13 +41,6 @@ class SignUpWidget extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(
-            height: 4,
-          ),
-          const Text(
-            'By Singing In, you agree to our terms & conditions',
-            style: const TextStyle(color: AppColors.white, fontSize: 12),
-          )
         ],
       ),
     );

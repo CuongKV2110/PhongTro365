@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../resources/colors.dart';
 
 class ContentWidget extends StatefulWidget {
-TextEditingController contentController;
+  TextEditingController contentController;
 
-
-ContentWidget(this.contentController);
+  ContentWidget(this.contentController);
 
   @override
   _ContentWidgetState createState() => _ContentWidgetState();
@@ -31,11 +30,10 @@ class _ContentWidgetState extends State<ContentWidget> {
         TextField(
           controller: widget.contentController,
           textAlign: TextAlign.start,
-          maxLines: 6,
+          maxLines: null,
           decoration: const InputDecoration(
               hintText: 'Viết bài',
-              hintStyle:
-              TextStyle(color: AppColors.gray)),
+              hintStyle: TextStyle(color: AppColors.gray)),
         ),
       ],
     );

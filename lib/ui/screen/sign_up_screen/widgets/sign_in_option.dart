@@ -13,17 +13,17 @@ class SignInOption extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Already have an account ! ',
-            style: TextStyle(color: AppColors.white, fontSize: 14),
+            'Bạn đã có tài khoản ? ',
+            style: TextStyle(color: AppColors.black, fontSize: 14),
           ),
           GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
             child: const Text(
-              'Sign In',
+              'Đăng nhập',
               style: TextStyle(
-                color: AppColors.white,
+                color: AppColors.black,
                 fontSize: 18,
                 decoration: TextDecoration.underline,
                 fontWeight: FontWeight.bold,

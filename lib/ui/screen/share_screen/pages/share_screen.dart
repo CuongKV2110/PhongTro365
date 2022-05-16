@@ -132,7 +132,7 @@ class _ShareScreenState extends State<ShareScreen> {
                               );
                             },
                             child: Container(
-                              width: 100,
+                              width: 120,
                               height: 40,
                               decoration: BoxDecoration(
                                 color: AppColors.colorFAC524,
@@ -144,7 +144,7 @@ class _ShareScreenState extends State<ShareScreen> {
                               ),
                               child: const Center(
                                 child: Text(
-                                  'View Details',
+                                  'Xem chi tiết',
                                   style: TextStyle(
                                     color: AppColors.black,
                                   ),

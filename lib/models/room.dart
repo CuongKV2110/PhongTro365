@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'room.g.dart';
+
+@JsonSerializable()
 class Room {
   String owner;
   String people;
@@ -17,6 +21,8 @@ class Room {
   bool washing;
   bool conditioning;
   String content;
+  String imgUrl;
+  String postID;
 
   Room({
     required this.owner,
@@ -37,5 +43,11 @@ class Room {
     required this.washing,
     required this.conditioning,
     required this.content,
+    required this.imgUrl,
+    required this.postID,
   });
+
+  factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RoomToJson(this);
 }

@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'create_post_event.dart';
 import 'create_post_state.dart';
@@ -28,9 +30,16 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           var document = fireStore.collection('posts').doc();
           CollectionReference post =
               FirebaseFirestore.instance.collection('posts');
+
+          File file = File(event.imgUrl);
+          int time = DateTime.now().millisecondsSinceEpoch;
+          String ref = 'posts/${document.id}/image_$time.png';
+          await FirebaseStorage.instance.ref(ref).putFile(file);
+          String imgDownloadURL =
+              await FirebaseStorage.instance.ref(ref).getDownloadURL();
           await post.doc(document.id).set({
             'owner': event.owner,
-            'peolpe': event.people,
+            'people': event.people,
             'acreage': event.acreage,
             'cost': event.cost,
             'location': event.location,
@@ -47,6 +56,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             'conditioning': event.conditioning,
             'content': event.content,
             'postID': document.id,
+            'imgUrl': imgDownloadURL,
           });
           yield CreatePostSuccess();
         } on FirebaseAuthException catch (e) {

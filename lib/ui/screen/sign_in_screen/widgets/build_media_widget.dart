@@ -26,22 +26,22 @@ class BuildMediaWidget extends StatelessWidget {
       child: Row(children: [
         Expanded(
           child: Divider(
-            color: AppColors.white,
+            color: AppColors.black50,
           ),
         ),
         SizedBox(
-          width: 6,
+          width: 10,
         ),
         Text(
-          "Or via social media",
-          style: TextStyle(color: AppColors.white, fontSize: 20),
+          "Hoặc đăng nhập với",
+          style: TextStyle(color: AppColors.black, fontSize: 16),
         ),
         SizedBox(
-          width: 6,
+          width: 10,
         ),
         Expanded(
           child: Divider(
-            color: AppColors.white,
+            color: AppColors.black50,
           ),
         ),
       ]),

@@ -61,44 +61,58 @@ class _SignInScreenState extends State<SignInScreen> {
         }
       },
       child: SafeArea(
-        child: Scaffold(
-          backgroundColor: AppColors.black,
-          body: BlocBuilder(
-            bloc: _loginBloc,
-            builder: (context, state) {
-              return GestureDetector(
-                onTap: () {
-                  print('A');
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      BuildImageWidget2(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      _buildSignIn(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      _buildSignInButton(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const BuildMediaWidget(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const SignUpWidget(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.lightBlue1,
+                AppColors.white,
+              ],
+            ),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: BlocBuilder(
+              bloc: _loginBloc,
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        BuildImageWidget2(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        _buildSignIn(),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        _buildSignInButton(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const BuildMediaWidget(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const SignUpWidget(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -113,29 +127,29 @@ class _SignInScreenState extends State<SignInScreen> {
           TextField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            style: const TextStyle(color: AppColors.white),
+            style: const TextStyle(color: AppColors.black),
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'E-mail',
               hintStyle: const TextStyle(
-                color: AppColors.white,
+                color: AppColors.black,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: const BorderSide(
-                  color: AppColors.white,
+                  color: AppColors.black,
                   width: 1.0,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: const BorderSide(
-                  color: AppColors.white,
+                  color: AppColors.black,
                   width: 1.0,
                 ),
               ),
               labelText: 'E-mail',
-              labelStyle: const TextStyle(color: AppColors.white),
+              labelStyle: const TextStyle(color: AppColors.black),
               alignLabelWithHint: true,
             ),
           ),
@@ -144,35 +158,32 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           TextField(
             controller: passwordController,
-            style: const TextStyle(color: AppColors.white),
+            style: const TextStyle(color: AppColors.black),
             obscureText: true,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Mật khẩu',
               hintStyle: const TextStyle(
-                color: AppColors.white,
+                color: AppColors.black,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: const BorderSide(
-                  color: AppColors.white,
+                  color: AppColors.black,
                   width: 1.0,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: const BorderSide(
-                  color: AppColors.white,
+                  color: AppColors.black,
                   width: 1.0,
                 ),
               ),
-              labelText: 'Pass word',
-              labelStyle: const TextStyle(color: AppColors.white),
+              labelText: 'Mật khẩu',
+              labelStyle: const TextStyle(color: AppColors.black),
               alignLabelWithHint: true,
             ),
-          ),
-          const SizedBox(
-            height: 20,
           ),
         ],
       ),
@@ -180,42 +191,38 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   Widget _buildSignInButton() {
-    return Container(
-      height: 56,
-      width: AppDimensions.d40w,
-      child: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            _loginBloc.add(LoginNormal(
-                emailController.text.trim(), passwordController.text.trim()));
-          },
-          style: ElevatedButton.styleFrom(
-              primary: AppColors.black,
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28),
-              ),
-              fixedSize: Size(AppDimensions.d40w - 4, 52)),
-          child: const Text(
-            'Sign In',
-            style: TextStyle(
-              color: AppColors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+    return ElevatedButton(
+      onPressed: () {
+        _loginBloc.add(LoginNormal(
+            emailController.text.trim(), passwordController.text.trim()));
+      },
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(28),
         ),
       ),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppColors.orange1,
-            AppColors.orange2,
-          ],
+      child: Ink(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.blue1,
+              AppColors.blue1,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(28),
         ),
-        borderRadius: BorderRadius.circular(32),
+        child: Container(
+          width: AppDimensions.d45w,
+          height: 56,
+          alignment: Alignment.center,
+          child: const Text(
+            'Đăng nhập',
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
       ),
     );
   }

@@ -45,14 +45,14 @@ class LogOutWidget extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),
             padding: EdgeInsets.all(20),
-            primary: Colors.blue,
+            primary: AppColors.yellow1,
           ),
         ),
         SizedBox(
           height: 6,
         ),
         Text(
-          'Log Out',
+          'Đăng xuất',
           style: TextStyle(color: AppColors.black),
         )
       ],

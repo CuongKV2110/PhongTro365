@@ -1,8 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/resources/colors.dart';
-import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
-import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
+import '../../home_screen/pages/home_screen.dart';
+import '../../posted_screen/pages/posted_screen.dart';
 
 class PostNotifyScreen extends StatelessWidget {
   const PostNotifyScreen({Key? key}) : super(key: key);
@@ -21,13 +21,13 @@ class PostNotifyScreen extends StatelessWidget {
         showCloseIcon: false,
         btnOkOnPress: () {
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               (Route<dynamic> route) => false);
         },
         btnOkText: 'Trang chủ',
         btnCancelOnPress: () {
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => DetailRoomScreen()),
+              MaterialPageRoute(builder: (context) => const PostedScreen()),
               (Route<dynamic> route) => false);
         },
         btnCancelText: 'Xem bài viết',

@@ -19,14 +19,14 @@ class MyPostWidget extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),
             padding: EdgeInsets.all(20),
-            primary: Colors.blue,
+            primary: AppColors.yellow1,
           ),
         ),
         SizedBox(
           height: 6,
         ),
         Text(
-          'My Post',
+          'Đã đăng',
           style: TextStyle(color: AppColors.black),
         )
       ],

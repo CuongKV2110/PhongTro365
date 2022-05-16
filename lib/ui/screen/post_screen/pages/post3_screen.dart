@@ -1,26 +1,18 @@
 import 'dart:io';
-import 'dart:ui';
-
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
 import 'package:phongtro/bloc/create_post/create_post_bloc.dart';
 import 'package:phongtro/bloc/create_post/create_post_event.dart';
 import 'package:phongtro/bloc/create_post/create_post_state.dart';
 import 'package:phongtro/models/room.dart';
-import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
-import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
-import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post_notify_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/widgets/content_widget.dart';
-import 'package:phongtro/ui/screen/saved_screen/pages/saved_screen.dart';
-
 import '../../../../helpers/ui_helper.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
-import '../../../../resources/fontsizes.dart';
 
 class Post3Screen extends StatefulWidget {
   String owner;
@@ -69,40 +61,31 @@ class _Post3ScreenState extends State<Post3Screen> {
   CreatePostBloc _createPostBloc = CreatePostBloc();
   TextEditingController contentController = TextEditingController();
   FilePickerResult? result1;
-  FilePickerResult? result2;
   PlatformFile? file1;
-  PlatformFile? file2;
-  late bool hide1 = false;
-  late bool hide2 = false;
+  bool isOpen = false;
+  File? _image;
+  ImagePicker _imagePicker = ImagePicker();
 
-  void hideImage1(int index) {
+  Future imagePickerMethod() async {
+    final pick = await _imagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
-      if (index == 1) {
-        hide1 = true;
-      }
-      if (index == 2) {
-        hide1 = true;
+      if (pick != null) {
+        _image = File(pick.path);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Error'),
+        ));
       }
     });
   }
 
-  void pickFiles(int index) async {
-    if (index == 1) {
-      result1 = await FilePicker.platform.pickFiles();
-      if (result1 == null) return;
-      file1 = result1!.files.first;
-      setState(() {
-        hide1 = false;
-      });
-    }
-    if (index == 2) {
-      result2 = await FilePicker.platform.pickFiles();
-      if (result2 == null) return;
-      file2 = result2!.files.first;
-      setState(() {
-        hide2 = false;
-      });
-    }
+  void pickFiles() async {
+    result1 = await FilePicker.platform.pickFiles();
+    if (result1 == null) return;
+    file1 = result1!.files.first;
+    setState(() {
+      isOpen = !isOpen;
+    });
   }
 
   void viewFile(PlatformFile file) {
@@ -136,7 +119,7 @@ class _Post3ScreenState extends State<Post3Screen> {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return PostNotifyScreen();
+                return const PostNotifyScreen();
               },
             ),
           );
@@ -175,6 +158,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                     ),
                   ),
                   body: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
                       child: Column(
@@ -193,70 +177,30 @@ class _Post3ScreenState extends State<Post3Screen> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: (file1 == null)
-                                    ? Container(
-                                        height: AppDimensions.d20h,
-                                        color: AppColors.gray,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            pickFiles(1);
-                                          },
-                                          child: const Icon(
-                                            Icons.add,
-                                            color: AppColors.black,
-                                          ),
-                                        ),
-                                      )
-                                    : ((hide1 == true)
-                                        ? const SizedBox(
-                                            height: 10,
-                                          )
-                                        : Container(
-                                            width: AppDimensions.d40w,
-                                            height: AppDimensions.d40h,
-                                            child: Image.file(
-                                              File(file1!.path.toString()),
-                                            ),
-                                          )),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Expanded(
-                                child: (file2 == null)
-                                    ? Container(
-                                        height: AppDimensions.d20h,
-                                        color: AppColors.gray,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            pickFiles(2);
-                                          },
-                                          child: const Icon(
-                                            Icons.add,
-                                            color: AppColors.black,
-                                          ),
-                                        ),
-                                      )
-                                    : ((hide2 == true)
-                                        ? const SizedBox(
-                                            height: 10,
-                                          )
-                                        : Container(
-                                            width: AppDimensions.d40w,
-                                            height: AppDimensions.d40h,
-                                            child: Image.file(
-                                              File(file2!.path.toString()),
-                                              fit: BoxFit.fill,
-                                              width: AppDimensions.d40w,
-                                              height: AppDimensions.d40h,
-                                            ),
-                                          )),
-                              ),
-                            ],
+                          Container(
+                            width: AppDimensions.d90w,
+                            height: AppDimensions.d30h,
+                            color: AppColors.gray,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: _image == null
+                                      ? Center(
+                                          child: Text('Images'),
+                                        )
+                                      : Image.file(_image!),
+                                )
+                              ],
+                            ),
                           ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                imagePickerMethod();
+                              },
+                              child: Text('Add images')),
                           const SizedBox(
                             height: 20,
                           ),
@@ -286,30 +230,33 @@ class _Post3ScreenState extends State<Post3Screen> {
                                   washing: widget.washing,
                                   conditioning: widget.conditioning,
                                   content: contentController.text.trim(),
+                                  imgUrl: _image!.path,
+                                  postID: '',
                                 );
-                                _createPostBloc.add(CreatePost(
-                                  room.owner,
-                                  room.people,
-                                  room.acreage,
-                                  room.cost,
-                                  room.location,
-                                  room.phone,
-                                  room.water,
-                                  room.electricity,
-                                  room.internet,
-                                  room.wifi,
-                                  room.wc,
-                                  room.time,
-                                  room.vehicle,
-                                  room.kitchen,
-                                  room.fridge,
-                                  room.washing,
-                                  room.conditioning,
-                                  room.content,
-                                ));
-
-                                print(room.electricity);
-                                print(room.water);
+                                _createPostBloc.add(
+                                  CreatePost(
+                                    room.owner,
+                                    room.people,
+                                    room.acreage,
+                                    room.cost,
+                                    room.location,
+                                    room.phone,
+                                    room.water,
+                                    room.electricity,
+                                    room.internet,
+                                    room.wifi,
+                                    room.wc,
+                                    room.time,
+                                    room.vehicle,
+                                    room.kitchen,
+                                    room.fridge,
+                                    room.washing,
+                                    room.conditioning,
+                                    room.content,
+                                    room.imgUrl,
+                                    room.postID,
+                                  ),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.zero,

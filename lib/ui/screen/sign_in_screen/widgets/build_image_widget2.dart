@@ -11,7 +11,7 @@ class BuildImageWidget2 extends StatelessWidget {
             bottomRight: Radius.elliptical(200, 150),
             bottomLeft: Radius.elliptical(40, 40)),
         child: Image.asset(
-          'images/1.png',
+          'images/2.png',
           width: AppDimensions.d100w,
           height: AppDimensions.d30h,
         ),

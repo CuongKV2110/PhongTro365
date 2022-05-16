@@ -23,7 +23,7 @@ class SlideDots extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
               border: Border.all(
-                color: AppColors.black,
+                color: AppColors.white,
                 width: 1.6,
               ),
               color: AppColors.orange1,

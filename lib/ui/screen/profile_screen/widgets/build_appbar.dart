@@ -25,7 +25,7 @@ class BuildAppBar extends StatelessWidget {
             ),
             Spacer(),
             Text(
-              'Profile',
+              'Trang cá nhân',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

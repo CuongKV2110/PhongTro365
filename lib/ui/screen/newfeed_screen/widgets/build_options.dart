@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
 
@@ -89,9 +90,6 @@ class _BuildOptionsState extends State<BuildOptions> {
         decoration: BoxDecoration(
           color: active ? AppColors.black : AppColors.transparent,
           borderRadius: BorderRadius.circular(16),
-          /*border: Border.all(
-            color: AppColors.black,
-          ),*/
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -142,14 +140,14 @@ class _BuildOptionsState extends State<BuildOptions> {
                   child: Image.network(
                     img_url,
                     width: AppDimensions.d70w,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return DetailRoomScreen();
+                        return const DetailRoomScreen();
                       },
                     ),
                   );

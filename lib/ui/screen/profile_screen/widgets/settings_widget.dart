@@ -19,14 +19,14 @@ class SettingsWidget extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),
             padding: EdgeInsets.all(20),
-            primary: Colors.blue,
+            primary: AppColors.yellow1,
           ),
         ),
         SizedBox(
           height: 6,
         ),
         Text(
-          'Settings',
+          'Cài đặt',
           style: TextStyle(color: AppColors.black),
         )
       ],

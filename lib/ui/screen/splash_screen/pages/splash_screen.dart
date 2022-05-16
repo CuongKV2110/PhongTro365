@@ -37,56 +37,71 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.black,
-        body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Column(
-            children: [
-              _buildSkip(),
-              Expanded(
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    PageView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      controller: _pageController,
-                      itemCount: slideList.length,
-                      onPageChanged: _onPageChanged,
-                      itemBuilder: (context, index) {
-                        return _buildBody(index);
-                      },
-                    ),
-                    Stack(
-                      alignment: AlignmentDirectional.bottomEnd,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                            bottom: 30,
-                          ),
-                          child: _currentPage == 2
-                              ? const ContinueButton()
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    for (int i = 0; i < slideList.length; i++)
-                                      if (i == _currentPage)
-                                        SlideDots(true)
-                                      else
-                                        SlideDots(false)
-                                  ],
-                                ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.lightBlue1,
+              AppColors.white,
             ],
+          ),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                _buildSkip(),
+                Expanded(
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      PageView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        controller: _pageController,
+                        itemCount: slideList.length,
+                        onPageChanged: _onPageChanged,
+                        itemBuilder: (context, index) {
+                          return _buildBody(index);
+                        },
+                      ),
+                      Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(
+                              bottom: 30,
+                            ),
+                            child: _currentPage == 2
+                                ? const ContinueButton()
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      for (int i = 0; i < slideList.length; i++)
+                                        if (i == _currentPage)
+                                          SlideDots(true)
+                                        else
+                                          SlideDots(false)
+                                    ],
+                                  ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -98,13 +113,13 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Column(
         children: [
           const SizedBox(
-            height: 40,
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 54),
             child: Container(
               width: AppDimensions.d65w,
-              height: AppDimensions.d45h,
+              height: AppDimensions.d50h,
               child: Image.asset(
                 slideList[index].imgUrl,
                 fit: BoxFit.contain,
@@ -130,7 +145,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Text(
               slideList[index].content,
               style: const TextStyle(
-                color: AppColors.white,
+                color: AppColors.black,
                 fontSize: 26,
               ),
               textAlign: TextAlign.center,
@@ -144,7 +159,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Text(
               slideList[index].description,
               style: const TextStyle(
-                color: AppColors.white,
+                color: AppColors.black,
                 fontSize: 14,
               ),
               textAlign: TextAlign.center,
@@ -165,9 +180,9 @@ class _SplashScreenState extends State<SplashScreen> {
               children: [
                 GestureDetector(
                   child: const Text(
-                    'Skip',
+                    'Bỏ qua',
                     style: TextStyle(
-                      color: AppColors.white,
+                      color: AppColors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),

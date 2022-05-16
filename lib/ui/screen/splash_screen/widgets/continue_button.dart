@@ -41,7 +41,7 @@ class ContinueButton extends StatelessWidget {
           height: 56,
           alignment: Alignment.center,
           child: const Text(
-            'Continue',
+            'Tiếp tục',
             style: const TextStyle(fontSize: 18),
           ),
         ),

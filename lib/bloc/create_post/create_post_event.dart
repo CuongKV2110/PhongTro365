@@ -31,24 +31,29 @@ class CreatePost extends CreatePostEvent {
   final bool washing;
   final bool conditioning;
   final String content;
+  final String imgUrl;
+  final String postID;
 
   CreatePost(
-      this.owner,
-      this.people,
-      this.acreage,
-      this.cost,
-      this.location,
-      this.phone,
-      this.water,
-      this.electricity,
-      this.internet,
-      this.wifi,
-      this.wc,
-      this.time,
-      this.vehicle,
-      this.kitchen,
-      this.fridge,
-      this.washing,
-      this.conditioning,
-      this.content);
+    this.owner,
+    this.people,
+    this.acreage,
+    this.cost,
+    this.location,
+    this.phone,
+    this.water,
+    this.electricity,
+    this.internet,
+    this.wifi,
+    this.wc,
+    this.time,
+    this.vehicle,
+    this.kitchen,
+    this.fridge,
+    this.washing,
+    this.conditioning,
+    this.content,
+    this.imgUrl,
+    this.postID,
+  );
 }

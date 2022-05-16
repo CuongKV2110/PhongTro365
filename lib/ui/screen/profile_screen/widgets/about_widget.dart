@@ -12,21 +12,21 @@ class AboutWidget extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {},
-          child: Icon(
+          child: const Icon(
             Ionicons.information_circle_outline,
             color: Colors.white,
           ),
           style: ElevatedButton.styleFrom(
-            shape: CircleBorder(),
-            padding: EdgeInsets.all(20),
-            primary: Colors.blue,
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(20),
+            primary: AppColors.yellow1,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 6,
         ),
-        Text(
-          'About',
+        const Text(
+          'Thông tin',
           style: TextStyle(color: AppColors.black),
         )
       ],
