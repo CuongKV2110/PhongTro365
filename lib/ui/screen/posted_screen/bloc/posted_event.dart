@@ -4,4 +4,7 @@ abstract class PostedEvent {
   List<Object> get props => [props];
 }
 
-class GetData extends PostedEvent {}
+class GetData extends PostedEvent {
+  late String postId;
+  GetData(this.postId);
+}

@@ -1,12 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:phongtro/ui/screen/newfeed_screen/pages/newfeed_sreen.dart';
 import 'package:phongtro/ui/screen/notify_screen/pages/notify_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
-import 'package:phongtro/ui/screen/share_screen/pages/share_screen.dart';
+import 'package:phongtro/ui/screen/shop_screen/pages/shop_detail_screen.dart';
 
 import '../../../../resources/colors.dart';
 import '../../profile_screen/pages/profile_screen.dart';
+import '../../shop_screen/pages/shop_screen.dart';
 import '../widgets/build_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -48,11 +49,11 @@ class _HomeScreenState extends State<HomeScreen>
             centerTitle: true,
             title: Text(
               _currentIndex == 0
-                  ? 'Tìm Phòng 365'
+                  ? 'Trang chủ'
                   : (_currentIndex == 1
                       ? 'Tìm ở ghép'
                       : (_currentIndex == 2 ? 'Đăng bài' : 'Thông báo')),
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen>
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) {
                         return const ProfileScreen();
                       },
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen>
             ],
           ),
           body: PageView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             onPageChanged: (index) {
               setState(() {
                 _currentIndex = index;
@@ -108,8 +109,8 @@ class _HomeScreenState extends State<HomeScreen>
             },
             controller: _controller,
             children: const [
-              NewFeedScreen(),
-              ShareScreen(),
+              ShopScreen(),
+              ShopDetailScreen(),
               Post1Screen(),
               NotifyScreen(),
             ],

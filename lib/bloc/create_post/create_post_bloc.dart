@@ -9,6 +9,7 @@ import 'create_post_state.dart';
 class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
   CreatePostBloc() : super(CreatePostInitial());
   String errorMessage = '';
+  String postId = '';
 
   void dispose() {
     close();
@@ -46,6 +47,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             'phone': event.phone,
             'water': event.water,
             'electricity': event.electricity,
+            'internet': event.internet,
             'wifi': event.wifi,
             'wc': event.wc,
             'time': event.time,
@@ -58,6 +60,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             'postID': document.id,
             'imgUrl': imgDownloadURL,
           });
+          postId = document.id;
           yield CreatePostSuccess();
         } on FirebaseAuthException catch (e) {
           yield CreatePostError();

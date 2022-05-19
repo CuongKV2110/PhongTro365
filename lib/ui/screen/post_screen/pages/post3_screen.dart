@@ -119,7 +119,7 @@ class _Post3ScreenState extends State<Post3Screen> {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return const PostNotifyScreen();
+                return PostNotifyScreen(_createPostBloc.postId);
               },
             ),
           );

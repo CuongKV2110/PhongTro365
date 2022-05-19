@@ -5,7 +5,10 @@ import '../../home_screen/pages/home_screen.dart';
 import '../../posted_screen/pages/posted_screen.dart';
 
 class PostNotifyScreen extends StatelessWidget {
-  const PostNotifyScreen({Key? key}) : super(key: key);
+  late String postId;
+
+
+  PostNotifyScreen(this.postId);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class PostNotifyScreen extends StatelessWidget {
         btnOkText: 'Trang chủ',
         btnCancelOnPress: () {
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const PostedScreen()),
+              MaterialPageRoute(builder: (context) => PostedScreen(postId)),
               (Route<dynamic> route) => false);
         },
         btnCancelText: 'Xem bài viết',

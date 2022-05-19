@@ -10,9 +10,9 @@ class PostedInitial extends PostedState {}
 class PostedProcessing extends PostedState {}
 
 class PostedSuccess extends PostedState {
-  final List<Room> data;
+  Room room;
 
-  PostedSuccess(this.data);
+  PostedSuccess(this.room);
 }
 
 class PostedError extends PostedState {}

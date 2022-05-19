@@ -18,6 +18,7 @@ class _ShareScreenState extends State<ShareScreen> {
     return SafeArea(
       child: Scaffold(
         body: ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: 10,
           itemBuilder: (context, index) {
             return Padding(

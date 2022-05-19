@@ -66,7 +66,7 @@ class _DetailRoomScreenState extends State<DetailRoomScreen> {
           child: ListView(
             shrinkWrap: true,
             children: [
-              ImageWidget(),
+              const ImageWidget(),
               InfoWidget(
                 'Location',
                 'cost',

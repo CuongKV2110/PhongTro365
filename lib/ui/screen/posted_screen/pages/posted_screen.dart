@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/ui/screen/posted_screen/bloc/posted_bloc.dart';
 import 'package:phongtro/ui/screen/posted_screen/bloc/posted_event.dart';
 import 'package:phongtro/ui/screen/posted_screen/bloc/posted_state.dart';
+import 'package:phongtro/ui/screen/posted_screen/widgets/build_room.dart';
 
 class PostedScreen extends StatefulWidget {
-  const PostedScreen({Key? key}) : super(key: key);
+  late String postId;
+
+  PostedScreen(this.postId);
 
   @override
   _PostedScreenState createState() => _PostedScreenState();
@@ -16,7 +19,7 @@ class _PostedScreenState extends State<PostedScreen> {
 
   @override
   void initState() {
-    _bloc.add(GetData());
+    _bloc.add(GetData(widget.postId));
   }
 
   @override
@@ -32,21 +35,8 @@ class _PostedScreenState extends State<PostedScreen> {
               );
             }
             if (state is PostedSuccess) {
-              return ListView.builder(
-                  itemCount: _bloc.list.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Card(
-                          child: ListTile(
-                            title: Text(_bloc.list[index].postID),
-                            subtitle: Text(_bloc.list[index].content),
-                          ),
-                        ),
-                        Image.network(_bloc.list[index].imgUrl),
-                      ],
-                    );
-                  });
+              print(state.room.imgUrl);
+              return BuildRoom(state.room);
             }
             if (state is PostedError) {
               return Center(
