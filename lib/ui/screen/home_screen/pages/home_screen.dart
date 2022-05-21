@@ -1,13 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/providers/singleton.dart';
+import 'package:phongtro/ui/screen/newfeed_screen/pages/newfeed_screen.dart';
+import 'package:phongtro/ui/screen/newfeed_screen/pages/share_screen.dart';
 import 'package:phongtro/ui/screen/notify_screen/pages/notify_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
-import 'package:phongtro/ui/screen/shop_screen/pages/shop_detail_screen.dart';
-
 import '../../../../resources/colors.dart';
 import '../../profile_screen/pages/profile_screen.dart';
-import '../../shop_screen/pages/shop_screen.dart';
 import '../widgets/build_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen>
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) {
-                        return const ProfileScreen();
+                        return ProfileScreen();
                       },
                     ),
                   );
@@ -85,13 +86,13 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Container(
                   alignment: Alignment.center,
                   child: ClipRRect(
-                    child: Image.asset(
-                      'images/avt.jpg',
+                    child: CachedNetworkImage(
+                      imageUrl: Singleton.instance.account.avt,
                       fit: BoxFit.cover,
                       width: 40,
                       height: 40,
                     ),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
               ),
@@ -109,8 +110,8 @@ class _HomeScreenState extends State<HomeScreen>
             },
             controller: _controller,
             children: const [
-              ShopScreen(),
-              ShopDetailScreen(),
+              NewFeedScreen(),
+              ShareScreen(),
               Post1Screen(),
               NotifyScreen(),
             ],

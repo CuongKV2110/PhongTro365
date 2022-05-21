@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
-import 'package:phongtro/bloc/create_post/create_post_bloc.dart';
-import 'package:phongtro/bloc/create_post/create_post_event.dart';
-import 'package:phongtro/bloc/create_post/create_post_state.dart';
 import 'package:phongtro/models/room.dart';
+import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post_notify_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/widgets/content_widget.dart';
 import '../../../../helpers/ui_helper.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
+import '../bloc/create_post/create_post_bloc.dart';
+import '../bloc/create_post/create_post_event.dart';
+import '../bloc/create_post/create_post_state.dart';
 
 class Post3Screen extends StatefulWidget {
   String owner;
+  String type;
   String people;
   String acreage;
   String cost;
@@ -35,6 +37,7 @@ class Post3Screen extends StatefulWidget {
 
   Post3Screen(
     this.owner,
+    this.type,
     this.people,
     this.acreage,
     this.cost,
@@ -213,6 +216,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                               onPressed: () {
                                 Room room = Room(
                                   owner: widget.owner,
+                                  type: widget.type,
                                   people: widget.people,
                                   acreage: widget.acreage,
                                   cost: widget.cost,
@@ -232,10 +236,13 @@ class _Post3ScreenState extends State<Post3Screen> {
                                   content: contentController.text.trim(),
                                   imgUrl: _image!.path,
                                   postID: '',
+                                  userID: Singleton.instance.account.userID,
+                                  userAvatar: Singleton.instance.account.avt,
                                 );
                                 _createPostBloc.add(
                                   CreatePost(
                                     room.owner,
+                                    room.type,
                                     room.people,
                                     room.acreage,
                                     room.cost,
@@ -255,6 +262,8 @@ class _Post3ScreenState extends State<Post3Screen> {
                                     room.content,
                                     room.imgUrl,
                                     room.postID,
+                                    room.userID,
+                                    room.userAvatar,
                                   ),
                                 );
                               },

@@ -1,6 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/ui/screen/my_post/pages/my_post_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
 import 'package:phongtro/ui/screen/profile_screen/pages/profile_screen.dart';
 import 'package:phongtro/ui/screen/saved_screen/pages/saved_screen.dart';
@@ -50,7 +52,7 @@ class BuildDrawer extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(
+                        CupertinoPageRoute(
                           builder: (context) {
                             if (index == 0) {
                               return ProfileScreen();
@@ -59,7 +61,7 @@ class BuildDrawer extends StatelessWidget {
                               return SavedScreen();
                             }
                             if (index == 2) {
-                              return Post1Screen();
+                              return SavedScreen();
                             }
                             if (index == 3) {
                               return ProfileScreen();

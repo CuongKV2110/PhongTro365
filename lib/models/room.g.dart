@@ -8,6 +8,7 @@ part of 'room.dart';
 
 Room _$RoomFromJson(Map<String, dynamic> json) => Room(
       owner: json['owner'] as String,
+      type: json['type'] as String,
       people: json['people'] as String,
       acreage: json['acreage'] as String,
       cost: json['cost'] as String,
@@ -27,10 +28,13 @@ Room _$RoomFromJson(Map<String, dynamic> json) => Room(
       content: json['content'] as String,
       imgUrl: json['imgUrl'] as String,
       postID: json['postID'] as String,
+      userID: json['userID'] as String,
+      userAvatar: json['userAvatar'] as String,
     );
 
 Map<String, dynamic> _$RoomToJson(Room instance) => <String, dynamic>{
       'owner': instance.owner,
+      'type': instance.type,
       'people': instance.people,
       'acreage': instance.acreage,
       'cost': instance.cost,
@@ -50,4 +54,6 @@ Map<String, dynamic> _$RoomToJson(Room instance) => <String, dynamic>{
       'content': instance.content,
       'imgUrl': instance.imgUrl,
       'postID': instance.postID,
+      'userID': instance.userID,
+      'userAvatar': instance.userAvatar,
     };

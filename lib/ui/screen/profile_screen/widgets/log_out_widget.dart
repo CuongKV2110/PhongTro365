@@ -21,11 +21,10 @@ class LogOutWidget extends StatelessWidget {
               buttonsBorderRadius: BorderRadius.circular(20),
               headerAnimationLoop: false,
               animType: AnimType.TOPSLIDE,
-              title: 'Log Out',
-              desc: 'Are you sure want to Log out ?',
+              title: 'Đăng muốn đăng xuất ?',
               showCloseIcon: false,
               btnOkOnPress: () {},
-              btnOkText: 'No',
+              btnOkText: 'Ở lại',
               btnCancelOnPress: () {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
@@ -33,7 +32,7 @@ class LogOutWidget extends StatelessWidget {
                             const SignInScreen()),
                     (Route<dynamic> route) => false);
               },
-              btnCancelText: 'Yes',
+              btnCancelText: 'Đăng xuất',
               btnCancelColor: AppColors.red,
               btnOkColor: AppColors.green2,
             ).show();

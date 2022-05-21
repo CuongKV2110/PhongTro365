@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:phongtro/models/account.dart';
 import '../../../../resources/colors.dart';
 import 'avatar_profile1.dart';
 
 class AvatarProfile extends StatelessWidget {
-  const AvatarProfile({Key? key}) : super(key: key);
+  Account account;
+
+  AvatarProfile(this.account);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AvatarProfile1(),
+        AvatarProfile1(account.avt),
         const SizedBox(
           height: 10,
         ),
-        const Text(
-          'Kieu Van Cuong',
+        Text(
+          account.displayName,
           style: TextStyle(
               color: AppColors.white,
               fontSize: 20,
@@ -24,8 +27,8 @@ class AvatarProfile extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const Text(
-          '@cuongkv.it@gmail.com',
+        Text(
+          account.email,
           style: TextStyle(
             color: AppColors.white,
             fontSize: 12,

@@ -1,25 +1,17 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/profile_screen/widgets/about_widget.dart';
-import 'package:phongtro/ui/screen/profile_screen/widgets/log_out_widget.dart';
-import 'package:phongtro/ui/screen/profile_screen/widgets/saved_widget.dart';
-import 'package:phongtro/ui/screen/profile_screen/widgets/settings_widget.dart';
-import '../../../../resources/colors.dart';
-import '../../saved_screen/pages/saved_screen.dart';
-import '../../sign_in_screen/pages/sign_in_screen.dart';
+
 import '../widgets/build_profile.dart';
 import '../widgets/language_widget.dart';
+import '../widgets/log_out_widget.dart';
 import '../widgets/mypost_widget.dart';
+import '../widgets/saved_widget.dart';
+import '../widgets/settings_widget.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
-
-  @override
-  _ProfileScreenState createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,11 +21,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              BuildProfile(),
+              BuildProfile(Singleton.instance.account),
               const SizedBox(
                 height: 20,
               ),
-              _buildOptions(context)
+              _buildOptions(context),
             ],
           ),
         ),

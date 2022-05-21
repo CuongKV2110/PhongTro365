@@ -11,8 +11,9 @@ import 'room_extension.dart';
 
 class BuildRoom extends StatelessWidget {
   Room room;
+  int back;
 
-  BuildRoom(this.room);
+  BuildRoom(this.room, this.back);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class BuildRoom extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
         children: [
-          RoomImage(room.imgUrl),
+          RoomImage(room.imgUrl, back),
           Padding(
             padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
             child: Column(
@@ -119,7 +120,7 @@ class BuildRoom extends StatelessWidget {
                       width: 4,
                     ),
                     Text("Tiền mạng: "),
-                    Text(room.internet),
+                    Text(room.internet == null ? 'Trong' : room.internet),
                     Text(" VNĐ/người"),
                   ],
                 ),

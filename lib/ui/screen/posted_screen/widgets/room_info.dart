@@ -11,25 +11,32 @@ class RoomInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
           height: 10,
         ),
         Row(
-          children: [
-            const Icon(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            Icon(
               Ionicons.location_outline,
               size: 20,
             ),
-            const SizedBox(
+            SizedBox(
               width: 4,
             ),
             Text('Địa chỉ: '),
-            const SizedBox(
+            SizedBox(
               width: 4,
             ),
-            Text(room.location)
           ],
+        ),
+        const SizedBox(
+          height: 6,
+        ),
+        Text(
+          room.location,
         ),
         const SizedBox(
           height: 16,
@@ -43,12 +50,31 @@ class RoomInfo extends StatelessWidget {
             const SizedBox(
               width: 4,
             ),
-            Text('Giá phòng: '),
+            const Text('Giá phòng: '),
             const SizedBox(
               width: 4,
             ),
             Text(room.cost),
-            Text(' VNĐ'),
+            const Text(' VNĐ'),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Row(
+          children: [
+            const Icon(
+              Ionicons.star_half_outline,
+              size: 20,
+            ),
+            const SizedBox(
+              width: 4,
+            ),
+            const Text('Loại phòng: '),
+            const SizedBox(
+              width: 4,
+            ),
+            Text(room.type),
           ],
         ),
         const SizedBox(
@@ -67,12 +93,12 @@ class RoomInfo extends StatelessWidget {
                   const SizedBox(
                     width: 4,
                   ),
-                  Text('Diện tích: '),
+                  const Text('Diện tích: '),
                   const SizedBox(
                     width: 4,
                   ),
                   Text(room.acreage),
-                  Text(' m2'),
+                  const Text(' m2'),
                 ],
               ),
             ),
@@ -80,7 +106,7 @@ class RoomInfo extends StatelessWidget {
               child: Row(
                 children: [
                   const Icon(
-                    Ionicons.ear_outline,
+                    Ionicons.key_outline,
                     size: 20,
                   ),
                   const SizedBox(

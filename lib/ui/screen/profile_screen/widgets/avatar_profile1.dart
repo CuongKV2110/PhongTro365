@@ -1,18 +1,21 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../resources/colors.dart';
 
 class AvatarProfile1 extends StatelessWidget {
-  const AvatarProfile1({Key? key}) : super(key: key);
+  String avt_url;
+
+  AvatarProfile1(this.avt_url);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Padding(
+      child: Padding(
         padding: EdgeInsets.all(3),
         child: CircleAvatar(
           radius: 50,
-          backgroundImage: AssetImage('images/avt.jpg'),
+          backgroundImage: CachedNetworkImageProvider(avt_url),
         ),
       ),
       width: 100,

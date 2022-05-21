@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:phongtro/bloc/sign_up/sign_up_bloc.dart';
-import 'package:phongtro/bloc/sign_up/sign_up_event.dart';
-import 'package:phongtro/bloc/sign_up/sign_up_state.dart';
+import 'package:phongtro/ui/screen/sign_up_screen/bloc/sign_up_bloc.dart';
 import 'package:phongtro/ui/screen/sign_in_screen/pages/sign_in_screen.dart';
 import '../../../../helpers/ui_helper.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
 import '../../sign_in_screen/widgets/build_image_widget2.dart';
+import '../bloc/sign_up_event.dart';
+import '../bloc/sign_up_state.dart';
 import '../widgets/sign_in_option.dart';
 
 class SignUpScreen extends StatefulWidget {

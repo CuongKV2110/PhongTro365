@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phongtro/models/account.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
 import 'avatar_profile.dart';
@@ -8,7 +9,9 @@ import 'build_container.dart';
 import 'build_info.dart';
 
 class BuildProfile extends StatelessWidget {
-  const BuildProfile({Key? key}) : super(key: key);
+  Account account;
+
+  BuildProfile(this.account);
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +51,16 @@ class BuildProfile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     top: 0,
-                    child: AvatarProfile(),
+                    child: AvatarProfile(account),
                   )
                 ],
               ),
               const SizedBox(
                 height: 10,
               ),
-              const BuildInfo(),
+              /*const BuildInfo(),*/
             ],
           ),
         ),

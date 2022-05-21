@@ -6,9 +6,10 @@ import 'package:phongtro/ui/screen/posted_screen/bloc/posted_state.dart';
 import 'package:phongtro/ui/screen/posted_screen/widgets/build_room.dart';
 
 class PostedScreen extends StatefulWidget {
+  int back;
   late String postId;
 
-  PostedScreen(this.postId);
+  PostedScreen({required this.back, required this.postId});
 
   @override
   _PostedScreenState createState() => _PostedScreenState();
@@ -36,7 +37,7 @@ class _PostedScreenState extends State<PostedScreen> {
             }
             if (state is PostedSuccess) {
               print(state.room.imgUrl);
-              return BuildRoom(state.room);
+              return BuildRoom(state.room, widget.back);
             }
             if (state is PostedError) {
               return Center(

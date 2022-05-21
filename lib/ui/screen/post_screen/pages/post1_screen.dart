@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
-import 'package:phongtro/ui/screen/post_screen/pages/bloc/post1_bloc.dart';
-import 'package:phongtro/ui/screen/post_screen/pages/bloc/post1_event.dart';
-import 'package:phongtro/ui/screen/post_screen/pages/bloc/post1_state.dart';
+import 'package:phongtro/ui/screen/post_screen/bloc/post1_bloc.dart';
+import 'package:phongtro/ui/screen/post_screen/bloc/post1_event.dart';
+import 'package:phongtro/ui/screen/post_screen/bloc/post1_state.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post2_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/widgets/location_widget.dart';
 import 'package:phongtro/ui/screen/post_screen/widgets/people_widget.dart';
@@ -24,6 +24,8 @@ class Post1Screen extends StatefulWidget {
 
 class _Post1ScreenState extends State<Post1Screen> {
   int _owner = 0;
+  int _type = 0;
+  String type = '';
   String owner = '';
   TextEditingController peopleController = TextEditingController();
   TextEditingController acreageController = TextEditingController();
@@ -53,6 +55,7 @@ class _Post1ScreenState extends State<Post1Screen> {
                     builder: (context) {
                       return Post2Screen(
                           owner,
+                          type,
                           peopleController.text.trim(),
                           acreageController.text.trim(),
                           costController.text.trim(),
@@ -128,6 +131,57 @@ class _Post1ScreenState extends State<Post1Screen> {
                       ],
                     ),
                     const SizedBox(
+                      height: 10,
+                    ),
+                    Center(
+                      child: Text(
+                        "Trạng thái",
+                        style: TextStyle(
+                          fontSize: AppFontSizes.fs12,
+                          color: AppColors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Radio(
+                                  value: 1,
+                                  groupValue: _type,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _type = int.parse(value.toString());
+                                    });
+                                  }),
+                              const Text("Phòng trống")
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Radio(
+                                  value: 2,
+                                  groupValue: _type,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _type = int.parse(value.toString());
+                                    });
+                                  }),
+                              const Text("Phòng ghép")
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
                       height: 24,
                     ),
                     Row(
@@ -155,15 +209,20 @@ class _Post1ScreenState extends State<Post1Screen> {
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          print(_owner);
                           if (_owner == 1) {
                             owner = 'Chung chủ';
                           } else {
                             owner = 'Không chung chủ';
                           }
+                          if (_type == 1) {
+                            type = 'Phòng trống';
+                          } else {
+                            type = 'Phòng ghép';
+                          }
                           bloc.add(
                             CheckData(
                               owner,
+                              type,
                               peopleController.text.trim(),
                               acreageController.text.trim(),
                               costController.text.trim(),

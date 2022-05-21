@@ -44,9 +44,10 @@ dev_dependencies:
   analyzer: ^2.7.0
   build_runner: any
 
+  # flutter packages pub run build_runner build --delete-conflicting-outputs
+
 flutter:
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/face.png

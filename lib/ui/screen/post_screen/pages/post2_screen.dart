@@ -6,18 +6,19 @@ import 'package:phongtro/models/extension.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
-import 'package:phongtro/ui/screen/post_screen/pages/bloc/post2_bloc.dart';
-import 'package:phongtro/ui/screen/post_screen/pages/bloc/post2_event.dart';
+import 'package:phongtro/ui/screen/post_screen/bloc/post2_bloc.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post3_screen.dart';
 
 import '../../../../helpers/ui_helper.dart';
+import '../bloc/post2_event.dart';
 import '../widgets/electricity_widget.dart';
 import '../widgets/internet_widget.dart';
 import '../widgets/water_widget.dart';
-import 'bloc/post2_state.dart';
+import '../bloc/post2_state.dart';
 
 class Post2Screen extends StatefulWidget {
   String owner;
+  String type;
   String people;
   String acreage;
   String cost;
@@ -26,6 +27,7 @@ class Post2Screen extends StatefulWidget {
 
   Post2Screen(
     this.owner,
+    this.type,
     this.people,
     this.acreage,
     this.cost,
@@ -119,6 +121,7 @@ class _Post2ScreenState extends State<Post2Screen> {
                     builder: (context) {
                       return Post3Screen(
                         widget.owner,
+                        widget.type,
                         widget.people,
                         widget.acreage,
                         widget.cost,

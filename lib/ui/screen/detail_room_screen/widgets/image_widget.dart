@@ -26,13 +26,7 @@ class ImageWidget extends StatelessWidget {
                 color: AppColors.white,
               ),
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return HomeScreen();
-                    },
-                  ),
-                );
+                Navigator.of(context).pop();
               }),
         )
       ],

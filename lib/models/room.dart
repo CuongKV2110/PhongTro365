@@ -4,6 +4,7 @@ part 'room.g.dart';
 @JsonSerializable()
 class Room {
   String owner;
+  String type;
   String people;
   String acreage;
   String cost;
@@ -23,9 +24,12 @@ class Room {
   String content;
   String imgUrl;
   String postID;
+  String userID;
+  String userAvatar;
 
   Room({
     required this.owner,
+    required this.type,
     required this.people,
     required this.acreage,
     required this.cost,
@@ -45,6 +49,8 @@ class Room {
     required this.content,
     required this.imgUrl,
     required this.postID,
+    required this.userID,
+    required this.userAvatar,
   });
 
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
