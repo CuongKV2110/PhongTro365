@@ -8,11 +8,16 @@ import 'build_appbar.dart';
 import 'build_container.dart';
 import 'build_info.dart';
 
-class BuildProfile extends StatelessWidget {
+class BuildProfile extends StatefulWidget {
   Account account;
 
   BuildProfile(this.account);
 
+  @override
+  _BuildProfileState createState() => _BuildProfileState();
+}
+
+class _BuildProfileState extends State<BuildProfile> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -53,7 +58,7 @@ class BuildProfile extends StatelessWidget {
                   ),
                   Positioned(
                     top: 0,
-                    child: AvatarProfile(account),
+                    child: AvatarProfile(widget.account),
                   )
                 ],
               ),

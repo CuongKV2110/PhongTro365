@@ -1,10 +1,3 @@
-abstract class NewFeedEvent {
-  NewFeedEvent([List props = const []]);
+abstract class NewFeedEvent {}
 
-  List<Object> get props => [props];
-}
-
-class GetData extends NewFeedEvent {
-  late String postId;
-  GetData(this.postId);
-}
+class GetData extends NewFeedEvent {}

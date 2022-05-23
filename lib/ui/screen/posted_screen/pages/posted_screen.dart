@@ -16,7 +16,7 @@ class PostedScreen extends StatefulWidget {
 }
 
 class _PostedScreenState extends State<PostedScreen> {
-  PostedBloc _bloc = PostedBloc();
+  final PostedBloc _bloc = PostedBloc();
 
   @override
   void initState() {

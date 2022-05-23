@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -14,9 +15,9 @@ class SavedWidget extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             Navigator.of(context).push(
-              MaterialPageRoute(
+              CupertinoPageRoute(
                 builder: (context) {
-                  return const SavedScreen();
+                  return SavedScreen();
                 },
               ),
             );

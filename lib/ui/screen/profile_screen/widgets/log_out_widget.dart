@@ -21,7 +21,7 @@ class LogOutWidget extends StatelessWidget {
               buttonsBorderRadius: BorderRadius.circular(20),
               headerAnimationLoop: false,
               animType: AnimType.TOPSLIDE,
-              title: 'Đăng muốn đăng xuất ?',
+              title: 'Bạn muốn đăng xuất ?',
               showCloseIcon: false,
               btnOkOnPress: () {},
               btnOkText: 'Ở lại',

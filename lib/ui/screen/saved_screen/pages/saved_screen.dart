@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
 import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
 import 'package:phongtro/ui/screen/saved_screen/bloc/saved_bloc.dart';
+import 'package:phongtro/ui/screen/saved_screen/bloc/saved_event.dart';
 
 import '../bloc/saved_state.dart';
 
@@ -24,7 +26,7 @@ class _SavedScreenState extends State<SavedScreen> {
 
   @override
   void initState() {
-    savedBloc.getData();
+    savedBloc.add(GetData());
   }
 
   @override
@@ -63,7 +65,7 @@ class _SavedScreenState extends State<SavedScreen> {
 
                 if (list.isEmpty) {
                   return const Center(
-                    child: Text('Chua co bai dang'),
+                    child: Text('Bạn chưa có bài đăng nào'),
                   );
                 } else {
                   return ListView.builder(
@@ -121,7 +123,33 @@ class _SavedScreenState extends State<SavedScreen> {
                                   ),
                                 ],
                               ),
-                              const Icon(Icons.more_horiz_outlined)
+                              GestureDetector(
+                                onTap: () {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.QUESTION,
+                                    width: 360,
+                                    buttonsBorderRadius:
+                                        BorderRadius.circular(20),
+                                    headerAnimationLoop: false,
+                                    animType: AnimType.SCALE,
+                                    showCloseIcon: false,
+                                    btnOkOnPress: () {
+                                      savedBloc
+                                          .add(DeletePost(list[index].postID));
+                                      savedBloc.add(GetData());
+                                    },
+                                    btnOkText: 'Xóa',
+                                    btnCancelOnPress: () {},
+                                    btnCancelText: 'Chỉnh sửa',
+                                    btnCancelColor: AppColors.red,
+                                    btnOkColor: AppColors.green2,
+                                  ).show();
+                                },
+                                child: const Icon(
+                                  Icons.more_horiz_outlined,
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -131,7 +159,7 @@ class _SavedScreenState extends State<SavedScreen> {
                 }
               } else if (state is SavedError) {
                 return const Center(
-                  child: const Text('Loi'),
+                  child: Text('Loi'),
                 );
               }
               return const Center();

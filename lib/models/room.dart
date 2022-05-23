@@ -26,6 +26,7 @@ class Room {
   String postID;
   String userID;
   String userAvatar;
+  String userName;
 
   Room({
     required this.owner,
@@ -51,6 +52,7 @@ class Room {
     required this.postID,
     required this.userID,
     required this.userAvatar,
+    required this.userName,
   });
 
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);

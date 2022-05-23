@@ -1,6 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/profile_screen/widgets/about_widget.dart';
 

@@ -2,8 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:phongtro/ui/screen/my_post/pages/my_post_screen.dart';
-import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
+import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
 import 'package:phongtro/ui/screen/profile_screen/pages/profile_screen.dart';
 import 'package:phongtro/ui/screen/saved_screen/pages/saved_screen.dart';
 import 'package:phongtro/ui/screen/sign_in_screen/pages/sign_in_screen.dart';
@@ -35,7 +34,12 @@ class BuildDrawer extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Scaffold.of(context).openEndDrawer();
+                  /* Scaffold.of(context).openEndDrawer();*/
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const HomeScreen()),
+                      (Route<dynamic> route) => false);
                 },
                 child: const Icon(
                   Icons.close,
@@ -97,11 +101,10 @@ class BuildDrawer extends StatelessWidget {
                         buttonsBorderRadius: BorderRadius.circular(20),
                         headerAnimationLoop: false,
                         animType: AnimType.TOPSLIDE,
-                        title: 'Đăng xuất',
-                        desc: 'Bạn có chắc chắn muốn đăng xuất ?',
+                        title: 'Bạn muốn đăng xuất ?',
                         showCloseIcon: false,
                         btnOkOnPress: () {},
-                        btnOkText: 'Thoát',
+                        btnOkText: 'Ở lại',
                         btnCancelOnPress: () {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
@@ -110,8 +113,8 @@ class BuildDrawer extends StatelessWidget {
                               (Route<dynamic> route) => false);
                         },
                         btnCancelText: 'Đăng xuất',
-                        btnCancelColor: AppColors.red2,
-                        btnOkColor: AppColors.green1,
+                        btnCancelColor: AppColors.red,
+                        btnOkColor: AppColors.green2,
                       ).show();
                     },
                     child: const Icon(

@@ -10,6 +10,14 @@ class NewFeedBloc extends Cubit<NewFeedState> {
     emit(NewFeedLoading());
     List<Room> newList = await PostProvider.getData();
 
-    emit(NewFeedLoaded(newList));
+    emit(NewFeedLoaded(data: newList));
+  }
+
+  void refreshData() async {
+    getData();
+  }
+
+  void dispose() {
+    close();
   }
 }

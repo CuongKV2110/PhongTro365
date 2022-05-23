@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:phongtro/ui/screen/profile_screen/pages/edit_profile_screen.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
 
@@ -35,13 +37,13 @@ class BuildAppBar extends StatelessWidget {
             Spacer(),
             GestureDetector(
               onTap: () {
-                /*Navigator.of(context).push(
-                  MaterialPageRoute(
+                Navigator.of(context).push(
+                  CupertinoPageRoute(
                     builder: (context) {
-                      return const EditScreen();
+                      return EditProfileScreen();
                     },
                   ),
-                );*/
+                );
               },
               child: Icon(
                 Icons.edit_outlined,

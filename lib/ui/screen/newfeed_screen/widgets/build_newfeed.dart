@@ -20,6 +20,7 @@ class BuildNewFeed extends StatefulWidget {
 
 class _BuildNewFeedState extends State<BuildNewFeed> {
   NewFeedBloc bloc = NewFeedBloc();
+  final ScrollController _controller = ScrollController();
   String img_url1 =
       'https://cdn.luxstay.com/users/9405/J7uB6ERI91TpUk80QSwRNF-N.jpg';
   String img_url2 =
@@ -27,62 +28,79 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
 
   @override
   void initState() {
-    bloc.getData();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<NewFeedBloc>(
-      create: (context) => bloc,
-      child: BlocBuilder<NewFeedBloc, NewFeedState>(builder: (context, state) {
-        if (state is NewFeedLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is NewFeedLoaded) {
-          return ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: state.listRoom.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Container(
-                      width: AppDimensions.d90w,
-                      height: AppDimensions.d50h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: AppColors.black50.withOpacity(0.2),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(19),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildHeader(state.listRoom[index]),
-                            const SizedBox(height: 10),
-                            _buildImage(state.listRoom[index]),
-                            const SizedBox(height: 10),
-                            _buildIcon(),
-                            const SizedBox(height: 10),
-                            _buildContent(state.listRoom[index]),
-                          ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        await Future.delayed(
+          const Duration(seconds: 2),
+        );
+        bloc.refreshData();
+      },
+      child: BlocProvider<NewFeedBloc>(
+        create: (context) => bloc..getData(),
+        child: BlocBuilder<NewFeedBloc, NewFeedState>(
+          builder: (context, state) {
+            if (state is NewFeedLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is NewFeedLoaded) {
+              return ListView.builder(
+                  controller: _controller,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: state.data.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Container(
+                          width: AppDimensions.d90w,
+                          height: AppDimensions.d50h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: AppColors.black50.withOpacity(0.2),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(19),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildHeader(state.data[index]),
+                                const SizedBox(height: 10),
+                                _buildImage(state.data[index]),
+                                const SizedBox(height: 10),
+                                _buildIcon(),
+                                const SizedBox(height: 10),
+                                _buildContent(state.data[index]),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    )
-                  ],
-                );
-              });
-        } else if (state is NewFeedError) {
-          return const Center(
-            child: const Text('Loi'),
-          );
-        }
-        return const Center();
-      }),
+                        const SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    );
+                  });
+            } else if (state is NewFeedError) {
+              return const Center(
+                child: Text('Loi'),
+              );
+            }
+            return const Center();
+          },
+        ),
+      ),
     );
   }
 
@@ -101,7 +119,7 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
           },
           child: InfoWidget(room),
         ),
-        Spacer(),
+        const Spacer(),
         ButtonWidget(room.postID),
       ],
     );
@@ -120,7 +138,7 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
@@ -148,7 +166,8 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 5,
                           blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
                         ),
                       ],
                     ),
@@ -174,7 +193,8 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 5,
                           blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
                         ),
                       ],
                     ),
@@ -208,7 +228,7 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
                   /*bloc.list[index].isTym = !bloc.list[index].isTym;*/
                 });
               },
-              child: Icon(
+              child: const Icon(
                 Icons.favorite_outline,
               ),
             ),
@@ -232,7 +252,7 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
               /*bloc.list[index].isSave = !bloc.list[index].isSave;*/
             });
           },
-          child: Icon(
+          child: const Icon(
             Icons.bookmark_outline,
             color: AppColors.black,
           ),

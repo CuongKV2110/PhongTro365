@@ -25,7 +25,7 @@ class InfoWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              Singleton.instance.account.displayName,
+              room.userName,
               style: const TextStyle(
                 color: AppColors.black,
                 fontSize: 14,

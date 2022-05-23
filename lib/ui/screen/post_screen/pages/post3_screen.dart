@@ -238,6 +238,8 @@ class _Post3ScreenState extends State<Post3Screen> {
                                   postID: '',
                                   userID: Singleton.instance.account.userID,
                                   userAvatar: Singleton.instance.account.avt,
+                                  userName:
+                                      Singleton.instance.account.displayName,
                                 );
                                 _createPostBloc.add(
                                   CreatePost(
@@ -264,6 +266,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                                     room.postID,
                                     room.userID,
                                     room.userAvatar,
+                                    room.userName,
                                   ),
                                 );
                               },

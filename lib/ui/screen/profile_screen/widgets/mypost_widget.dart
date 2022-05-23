@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/ui/screen/saved_screen/pages/saved_screen.dart';
 
 import '../../../../resources/colors.dart';
 
@@ -11,7 +13,15 @@ class MyPostWidget extends StatelessWidget {
     return Column(
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) {
+                  return SavedScreen();
+                },
+              ),
+            );
+          },
           child: Icon(
             Ionicons.create_outline,
             color: Colors.white,

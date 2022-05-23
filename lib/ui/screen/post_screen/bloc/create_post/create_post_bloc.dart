@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'create_post_event.dart';
@@ -65,18 +66,16 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             'imgUrl': imgDownloadURL,
             'userID': event.userID,
             'userAvatar': Singleton.instance.account.avt,
+            'userName': Singleton.instance.account.displayName,
           });
 
-          List<String> newPost = [];
-          newPost.add(document.id);
+          Singleton.instance.account.post.add(document.id);
 
-          Singleton.instance.account.post = newPost;
+          print(Singleton.instance.account.post.toString());
 
           await users.doc(Singleton.instance.account.userID).update({
             'post': Singleton.instance.account.post,
           });
-
-          print(newPost);
           print(Singleton.instance.account.post);
           postId = document.id;
           yield CreatePostSuccess();

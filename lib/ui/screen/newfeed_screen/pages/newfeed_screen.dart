@@ -24,17 +24,18 @@ class _NewFeedScreenState extends State<NewFeedScreen>
       child: Scaffold(
         backgroundColor: AppColors.white,
         body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              children: const [
-                SizedBox(
-                  height: 10,
-                ),
-                BuildNewFeedBar(),
-                BuildNewFeed(),
-              ],
-            )),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: const [
+              SizedBox(
+                height: 10,
+              ),
+              BuildNewFeedBar(),
+              BuildNewFeed(),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -10,6 +10,8 @@ class Singleton {
     displayName: '',
     avt:
         'https://vi.seaicons.com/wp-content/uploads/2017/03/Users-Folder-icon.png',
+    phoneNumber: '',
+    address: '',
     post: [],
   );
 

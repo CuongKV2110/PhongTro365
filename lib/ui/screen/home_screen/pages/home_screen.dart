@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/pages/newfeed_screen.dart';
-import 'package:phongtro/ui/screen/newfeed_screen/pages/share_screen.dart';
+import 'package:phongtro/ui/screen/share_screen/pages/share_screen.dart';
 import 'package:phongtro/ui/screen/notify_screen/pages/notify_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
 import '../../../../resources/colors.dart';

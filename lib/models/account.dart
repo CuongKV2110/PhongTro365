@@ -8,6 +8,8 @@ class Account {
   String userID;
   String displayName;
   String avt;
+  String phoneNumber;
+  String address;
   List<String> post;
 
   Account({
@@ -16,6 +18,8 @@ class Account {
     required this.userID,
     required this.displayName,
     required this.avt,
+    required this.phoneNumber,
+    required this.address,
     required this.post,
   });
 
