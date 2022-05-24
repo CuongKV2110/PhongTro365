@@ -39,67 +39,59 @@ class _BuildNewFeedState extends State<BuildNewFeed> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        await Future.delayed(
-          const Duration(seconds: 2),
-        );
-        bloc.refreshData();
-      },
-      child: BlocProvider<NewFeedBloc>(
-        create: (context) => bloc..getData(),
-        child: BlocBuilder<NewFeedBloc, NewFeedState>(
-          builder: (context, state) {
-            if (state is NewFeedLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is NewFeedLoaded) {
-              return ListView.builder(
-                  controller: _controller,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: state.data.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Container(
-                          width: AppDimensions.d90w,
-                          height: AppDimensions.d50h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            color: AppColors.black50.withOpacity(0.2),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(19),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _buildHeader(state.data[index]),
-                                const SizedBox(height: 10),
-                                _buildImage(state.data[index]),
-                                const SizedBox(height: 10),
-                                _buildIcon(),
-                                const SizedBox(height: 10),
-                                _buildContent(state.data[index]),
-                              ],
-                            ),
+    return BlocProvider<NewFeedBloc>(
+      create: (context) => bloc..getData(),
+      child: BlocBuilder<NewFeedBloc, NewFeedState>(
+        builder: (context, state) {
+          if (state is NewFeedLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is NewFeedLoaded) {
+            return ListView.builder(
+                controller: _controller,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: state.data.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Container(
+                        width: AppDimensions.d90w,
+                        height: AppDimensions.d50h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7),
+                          color: AppColors.black50.withOpacity(0.2),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(19),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildHeader(state.data[index]),
+                              const SizedBox(height: 10),
+                              _buildImage(state.data[index]),
+                              const SizedBox(height: 10),
+                              _buildIcon(),
+                              const SizedBox(height: 10),
+                              _buildContent(state.data[index]),
+                            ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        )
-                      ],
-                    );
-                  });
-            } else if (state is NewFeedError) {
-              return const Center(
-                child: Text('Loi'),
-              );
-            }
-            return const Center();
-          },
-        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      )
+                    ],
+                  );
+                });
+          } else if (state is NewFeedError) {
+            return const Center(
+              child: Text('Loi'),
+            );
+          }
+          return const Center();
+        },
       ),
     );
   }

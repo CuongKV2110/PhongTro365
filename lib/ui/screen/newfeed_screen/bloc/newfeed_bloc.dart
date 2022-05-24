@@ -14,6 +14,7 @@ class NewFeedBloc extends Cubit<NewFeedState> {
   }
 
   void refreshData() async {
+    print('Refresh data');
     getData();
   }
 
