@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/bloc/newfeed_state.dart';
 import 'package:shimmer/shimmer.dart';
@@ -9,7 +10,6 @@ import '../../../../models/room.dart';
 import '../../../../resources/dimensions.dart';
 import '../../profile_screen/pages/profile_screen.dart';
 import '../bloc/newfeed_bloc.dart';
-import '../widgets/build_newfeed.dart';
 import '../widgets/build_newfeed_bar.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/info_widget.dart';
@@ -121,6 +121,45 @@ class _NewFeedScreenState extends State<NewFeedScreen>
   }
 
   Widget _buildNewFeed(List<Room> data) {
+    Room room = Room(
+      owner: "Chung chủ",
+      type: 'Phòng trống',
+      people: "32",
+      acreage: "",
+      cost: '3',
+      location: "ADADAD",
+      phone: "ADĐ",
+      water: '34',
+      electricity: '34',
+      internet: 'internet',
+      wifi: true,
+      wc: true,
+      time: true,
+      vehicle: true,
+      kitchen: true,
+      fridge: true,
+      washing: true,
+      conditioning: true,
+      content: '',
+      imgUrl: 'imgUrl',
+      postID: 'postID',
+      userID: 'userID',
+      userAvatar: 'userAvatar',
+      userName: 'userName',
+      timePost: 2,
+    );
+
+    for (int i = 0; i < data.length - 1; i++) {
+      for (int j = i + 1; j < data.length; j++) {
+        if (data[i].timePost < data[j].timePost) {
+          // Hoan vi 2 so a[i] va a[j]
+          room = data[i];
+          data[i] = data[j];
+          data[j] = room;
+        }
+      }
+    }
+
     return ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -144,7 +183,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                       const SizedBox(height: 10),
                       _buildImage(data[index]),
                       const SizedBox(height: 10),
-                      _buildIcon(),
+                      _buildIcon(data[index]),
                       const SizedBox(height: 10),
                       _buildContent(data[index]),
                     ],
@@ -272,33 +311,16 @@ class _NewFeedScreenState extends State<NewFeedScreen>
     );
   }
 
-  Widget _buildIcon() {
+  Widget _buildIcon(Room room) {
     return Row(
       children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  /*bloc.list[index].isTym = !bloc.list[index].isTym;*/
-                });
-              },
-              child: const Icon(
-                Icons.favorite_outline,
-              ),
-            ),
-            const SizedBox(
-              width: 4,
-            ),
-            const Text(
-              '2.3K',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: AppColors.black,
-                fontSize: 12,
-              ),
-            )
-          ],
+        Text(
+          'Chi phí: ' + room.cost + " VNĐ",
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: AppColors.black,
+            fontSize: 13,
+          ),
         ),
         const Spacer(),
         GestureDetector(
@@ -308,7 +330,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
             });
           },
           child: const Icon(
-            Icons.bookmark_outline,
+            Ionicons.bookmark_outline,
             color: AppColors.black,
           ),
         ),
@@ -321,7 +343,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
       room.content,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(color: AppColors.black, fontSize: 12, height: 1.7),
+      style: const TextStyle(color: AppColors.black, fontSize: 13, height: 1.7),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../models/room.dart';
 import '../../../../resources/colors.dart';
@@ -50,35 +51,53 @@ class ShareItem extends StatelessWidget {
                   ),
                   Row(
                     children: [
+                      Image.asset(
+                        'images/money3.png',
+                        width: 24,
+                        height: 24,
+                        color: AppColors.white,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
                       Text(
-                        room.cost.toString(),
+                        room.cost + ' VNĐ',
                         style: const TextStyle(
                           color: AppColors.orange1,
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: 13,
                         ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        room.type,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: AppColors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 6,
                       ),
                       const Spacer(),
                       GestureDetector(
                         onTap: () {},
                         child: const Icon(
-                          Icons.favorite,
+                          Ionicons.bookmark_outline,
+                          color: AppColors.white,
+                          size: 20,
                         ),
                       )
                     ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    room.postID,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: AppColors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
                   const SizedBox(
                     height: 6,

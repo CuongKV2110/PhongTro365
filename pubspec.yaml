@@ -37,6 +37,7 @@ dependencies:
   image_picker: ^0.8.5+3
   permission_handler: ^9.2.0
   shimmer: ^2.0.0
+  dropdown_button2: 1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -58,15 +59,10 @@ flutter:
     - images/3.png
     - images/4.png
     - images/5.png
-    - images/new.png
+
     - images/bgr.jpg
-    - images/room1.jpg
-    - images/room2.jpg
-    - images/room3.jpg
-    - images/room4.jpg
     - images/HN.jpg
     - images/HN1.jpg
-    - images/avt.jpg
     - images/bep.png
     - images/maygiat.png
     - images/wifi.png
@@ -81,6 +77,15 @@ flutter:
     - images/phone.png
     - images/location.png
     - images/room5.png
+    - images/search.png
+    - images/create.png
+    - images/home.png
+    - images/home1.png
+    - images/notify1.png
+    - images/notify2.png
+    - images/money2.png
+    - images/money1.png
+    - images/money3.png
 
 
 

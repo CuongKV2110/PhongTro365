@@ -31,6 +31,7 @@ Room _$RoomFromJson(Map<String, dynamic> json) => Room(
       userID: json['userID'] as String,
       userAvatar: json['userAvatar'] as String,
       userName: json['userName'] as String,
+      timePost: json['timePost'] as int,
     );
 
 Map<String, dynamic> _$RoomToJson(Room instance) => <String, dynamic>{
@@ -58,4 +59,5 @@ Map<String, dynamic> _$RoomToJson(Room instance) => <String, dynamic>{
       'userID': instance.userID,
       'userAvatar': instance.userAvatar,
       'userName': instance.userName,
+      'timePost': instance.timePost,
     };

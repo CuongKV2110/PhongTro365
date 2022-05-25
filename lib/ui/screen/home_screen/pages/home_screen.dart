@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
               _currentIndex == 0
                   ? 'Trang chủ'
                   : (_currentIndex == 1
-                      ? 'Tìm ở ghép'
+                      ? 'Tìm phòng'
                       : (_currentIndex == 2 ? 'Đăng bài' : 'Thông báo')),
               style: const TextStyle(
                 color: AppColors.white,
@@ -142,30 +142,52 @@ class _HomeScreenState extends State<HomeScreen>
           _currentIndex = index;
         });
       },
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(
-            Ionicons.home_outline,
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Image.asset(
+              'images/home1.png',
+              color: _currentIndex == 0 ? AppColors.orange2 : AppColors.gray,
+              width: 26,
+              height: 26,
+            ),
           ),
-          label: 'Trang Chủ',
+          label: 'Trang chủ',
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Ionicons.people_circle_outline,
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Image.asset(
+              'images/search.png',
+              color: _currentIndex == 1 ? AppColors.orange2 : AppColors.gray,
+              width: 26,
+              height: 26,
+            ),
           ),
-          label: 'Tìm ở ghép',
-          backgroundColor: AppColors.white,
+          label: 'Tìm phòng',
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Ionicons.add_circle_outline,
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Image.asset(
+              'images/create.png',
+              color: _currentIndex == 2 ? AppColors.orange2 : AppColors.gray,
+              width: 24,
+              height: 24,
+            ),
           ),
           label: 'Đăng bài',
-          backgroundColor: AppColors.white,
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Ionicons.notifications_outline,
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Image.asset(
+              'images/notify2.png',
+              color: _currentIndex == 3 ? AppColors.orange2 : AppColors.gray,
+              width: 26,
+              height: 26,
+            ),
           ),
           label: 'Thông báo',
         ),

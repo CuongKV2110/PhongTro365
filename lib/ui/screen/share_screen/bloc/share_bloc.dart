@@ -12,4 +12,9 @@ class ShareBloc extends Cubit<ShareState> {
 
     emit(ShareLoaded(newList));
   }
+
+  void refreshData() async {
+    print('Refresh data');
+    getData();
+  }
 }

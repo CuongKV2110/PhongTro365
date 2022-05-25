@@ -23,7 +23,7 @@ class _ShareScreenState extends State<ShareScreen> {
   List<Room> _foundList = [];
   ShareBloc shareBloc = ShareBloc();
 
-  void _runSearch(String text) {
+  /*void _runSearch(String text) {
     List<Room> _results = [];
     if (text.isEmpty) {
       _results = [];
@@ -36,7 +36,7 @@ class _ShareScreenState extends State<ShareScreen> {
     setState(() {
       _foundList = _results;
     });
-  }
+  }*/
 
   @override
   void initState() {
@@ -51,134 +51,128 @@ class _ShareScreenState extends State<ShareScreen> {
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: Scaffold(
-          backgroundColor: AppColors.white,
-          body: BlocProvider<ShareBloc>(
-            create: (context) => shareBloc,
-            child: BlocBuilder<ShareBloc, ShareState>(
-              builder: (context, state) {
-                if (state is ShareLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is ShareLoaded) {
-                  for (int i = 0; i < state.listRoom.length; i++) {
-                    if (state.listRoom[i].type == 'Phòng ghép') {
-                      _foundList.add(state.listRoom[i]);
-                    }
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await Future.delayed(
+              const Duration(seconds: 2),
+            );
+            shareBloc.refreshData();
+          },
+          child: Scaffold(
+            backgroundColor: AppColors.white,
+            body: BlocProvider<ShareBloc>(
+              create: (context) => shareBloc,
+              child: BlocBuilder<ShareBloc, ShareState>(
+                builder: (context, state) {
+                  if (state is ShareLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is ShareLoaded) {
+                    return _buildSearch(state.listRoom);
+                  } else if (state is ShareError) {
+                    return const Center(
+                      child: Text('Loi'),
+                    );
                   }
-                  return SizedBox(
-                    height: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(19, 0, 29, 0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextField(
-                                  controller: _searchController,
-                                  onChanged: (value) {
-                                    _runSearch(_searchController.text);
-                                  },
-                                  style:
-                                      const TextStyle(color: AppColors.black),
-                                  decoration: const InputDecoration(
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.black),
-                                    ),
-                                    border: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.black),
-                                    ),
-                                    hintText: 'Tìm kiếm',
-                                    hintStyle: TextStyle(
-                                      color: AppColors.black50,
-                                      fontSize: 15,
-                                    ),
-                                    prefixIcon: Icon(
-                                      Icons.search,
-                                      color: AppColors.black50,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: const Icon(Ionicons.options_outline,
-                                    color: AppColors.orange1),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          /*Expanded(
-                            child: _foundList.isNotEmpty
-                                ? GridView.builder(
-                                    shrinkWrap: true,
-                                    physics: const BouncingScrollPhysics(),
-                                    gridDelegate:
-                                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                                      maxCrossAxisExtent: 200,
-                                      childAspectRatio: 0.6,
-                                      crossAxisSpacing: 20,
-                                      mainAxisSpacing: 20,
-                                    ),
-                                    itemCount: _foundList.length,
-                                    itemBuilder: (_, index) {
-                                      return Container(
-                                        alignment: Alignment.center,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              CupertinoPageRoute(
-                                                builder: (context) {
-                                                  return PostedScreen(
-                                                    back: 0,
-                                                    postId: _foundList[index]
-                                                        .postID,
-                                                  );
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          child: ShareItem(_foundList[index]),
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                : const Text(
-                                    'Khong co ket qua',
-                                    style: TextStyle(fontSize: 24),
-                                  ),
-                          )*/
-                        ],
-                      ),
-                    ),
-                  );
-                } else if (state is ShareError) {
-                  return const Center(
-                    child: Text('Loi'),
-                  );
-                }
-                return const Center();
-              },
+                  return const Center();
+                },
+              ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearch(List<Room> list) {
+    return SizedBox(
+      height: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(19, 0, 29, 0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      /*_runSearch(_searchController.text);*/
+                    },
+                    style: const TextStyle(color: AppColors.black),
+                    decoration: const InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.black),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.black),
+                      ),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.black),
+                      ),
+                      hintText: 'Tìm kiếm',
+                      hintStyle: TextStyle(
+                        color: AppColors.black50,
+                        fontSize: 15,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: AppColors.black50,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Icon(Ionicons.options_outline,
+                      color: AppColors.orange1),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+                child: GridView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 0.6,
+                crossAxisSpacing: 26,
+                mainAxisSpacing: 36,
+              ),
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  alignment: Alignment.center,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return PostedScreen(
+                              back: 0,
+                              postId: list[index].postID,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: ShareItem(list[index]),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                );
+              },
+            ))
+          ],
         ),
       ),
     );

@@ -49,7 +49,7 @@ class ButtonWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: const Text(
               'Chi tiết',
-              style: TextStyle(fontSize: 11),
+              style: TextStyle(fontSize: 12),
             ),
           ),
         ),

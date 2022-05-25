@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
 import '../../../../resources/fontsizes.dart';
 
@@ -32,7 +30,7 @@ class _NotifyScreenState extends State<NotifyScreen>
                   children: [
                     const CircleAvatar(
                       radius: 36,
-                      backgroundImage: AssetImage('images/avt.jpg'),
+                      backgroundImage: AssetImage('images/HN.jpg'),
                     ),
                     const SizedBox(
                       width: 16,

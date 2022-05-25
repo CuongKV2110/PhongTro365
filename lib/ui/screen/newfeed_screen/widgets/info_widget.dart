@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:phongtro/helpers/date_helper.dart';
 import 'package:phongtro/providers/singleton.dart';
 
 import '../../../../models/room.dart';
@@ -28,19 +29,19 @@ class InfoWidget extends StatelessWidget {
               room.userName,
               style: const TextStyle(
                 color: AppColors.black,
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 6,
             ),
             Text(
-              room.phone,
-              style: TextStyle(
+              DateHelper.getTimeAgo(room.timePost),
+              style: const TextStyle(
                 color: AppColors.black,
-                fontSize: 9,
-                letterSpacing: 1.6,
+                fontSize: 13,
+                letterSpacing: 0.8,
               ),
             )
           ],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
+import 'package:phongtro/helpers/date_helper.dart';
 import 'package:phongtro/models/room.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post_notify_screen.dart';
@@ -240,34 +241,37 @@ class _Post3ScreenState extends State<Post3Screen> {
                                   userAvatar: Singleton.instance.account.avt,
                                   userName:
                                       Singleton.instance.account.displayName,
+                                  timePost:
+                                      DateTime.now().millisecondsSinceEpoch ~/
+                                              1000,
                                 );
                                 _createPostBloc.add(
                                   CreatePost(
-                                    room.owner,
-                                    room.type,
-                                    room.people,
-                                    room.acreage,
-                                    room.cost,
-                                    room.location,
-                                    room.phone,
-                                    room.water,
-                                    room.electricity,
-                                    room.internet,
-                                    room.wifi,
-                                    room.wc,
-                                    room.time,
-                                    room.vehicle,
-                                    room.kitchen,
-                                    room.fridge,
-                                    room.washing,
-                                    room.conditioning,
-                                    room.content,
-                                    room.imgUrl,
-                                    room.postID,
-                                    room.userID,
-                                    room.userAvatar,
-                                    room.userName,
-                                  ),
+                                      room.owner,
+                                      room.type,
+                                      room.people,
+                                      room.acreage,
+                                      room.cost,
+                                      room.location,
+                                      room.phone,
+                                      room.water,
+                                      room.electricity,
+                                      room.internet,
+                                      room.wifi,
+                                      room.wc,
+                                      room.time,
+                                      room.vehicle,
+                                      room.kitchen,
+                                      room.fridge,
+                                      room.washing,
+                                      room.conditioning,
+                                      room.content,
+                                      room.imgUrl,
+                                      room.postID,
+                                      room.userID,
+                                      room.userAvatar,
+                                      room.userName,
+                                      room.timePost),
                                 );
                               },
                               style: ElevatedButton.styleFrom(

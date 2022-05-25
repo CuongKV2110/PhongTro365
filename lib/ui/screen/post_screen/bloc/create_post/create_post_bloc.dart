@@ -67,6 +67,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             'userID': event.userID,
             'userAvatar': Singleton.instance.account.avt,
             'userName': Singleton.instance.account.displayName,
+            'timePost': event.timePost,
           });
 
           Singleton.instance.account.post.add(document.id);

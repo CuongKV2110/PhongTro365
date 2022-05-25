@@ -37,6 +37,7 @@ class CreatePost extends CreatePostEvent {
   final String userID;
   final String userAvatar;
   final String userName;
+  final int timePost;
 
   CreatePost(
     this.owner,
@@ -63,5 +64,6 @@ class CreatePost extends CreatePostEvent {
     this.userID,
     this.userAvatar,
     this.userName,
+    this.timePost,
   );
 }
