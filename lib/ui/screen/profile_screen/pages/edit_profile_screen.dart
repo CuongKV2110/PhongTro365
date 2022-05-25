@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:open_file/open_file.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
 import 'package:phongtro/ui/screen/profile_screen/bloc/edit_bloc.dart';
@@ -25,6 +30,38 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   TextEditingController displayName = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController address = TextEditingController();
+
+  FilePickerResult? result1;
+  PlatformFile? file1;
+  bool isOpen = false;
+  File? _image;
+  ImagePicker _imagePicker = ImagePicker();
+
+  Future imagePickerMethod() async {
+    final pick = await _imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pick != null) {
+        _image = File(pick.path);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Error'),
+        ));
+      }
+    });
+  }
+
+  void pickFiles() async {
+    result1 = await FilePicker.platform.pickFiles();
+    if (result1 == null) return;
+    file1 = result1!.files.first;
+    setState(() {
+      isOpen = !isOpen;
+    });
+  }
+
+  void viewFile(PlatformFile file) {
+    OpenFile.open(file.path);
+  }
 
   @override
   void initState() {
@@ -71,15 +108,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               Stack(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: CircleAvatar(
-                                        radius: 50,
-                                        backgroundImage:
-                                            CachedNetworkImageProvider(
-                                                Singleton.instance.account.avt),
-                                      ),
-                                    ),
+                                    child: _image == null
+                                        ? CircleAvatar(
+                                            radius: 50,
+                                            backgroundImage:
+                                                CachedNetworkImageProvider(
+                                                    Singleton
+                                                        .instance.account.avt),
+                                          )
+                                        : Container(
+                                            width: 50,
+                                            height: 50,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              child: Image.file(_image!,
+                                                  fit: BoxFit.fill),
+                                            ),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(30)),
+                                          ),
                                     width: 100,
                                     height: 100,
                                     decoration: BoxDecoration(
@@ -94,16 +143,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       borderRadius: BorderRadius.circular(50),
                                     ),
                                   ),
-                                  const Positioned(
+                                  Positioned(
                                     bottom: 3,
                                     right: 10,
-                                    child: CircleAvatar(
-                                      backgroundColor: AppColors.orange1,
-                                      radius: 12,
-                                      child: Icon(
-                                        Icons.edit_outlined,
-                                        color: AppColors.white,
-                                        size: 14,
+                                    child: GestureDetector(
+                                      behavior: HitTestBehavior.translucent,
+                                      onTap: () {
+                                        imagePickerMethod();
+                                      },
+                                      child: CircleAvatar(
+                                        backgroundColor: AppColors.orange1,
+                                        radius: 12,
+                                        child: Icon(
+                                          Icons.edit_outlined,
+                                          color: AppColors.white,
+                                          size: 14,
+                                        ),
                                       ),
                                     ),
                                   )
@@ -186,10 +241,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 bloc.editProfile(
-                                  displayName.text.trim(),
-                                  phoneNumber.text.trim(),
-                                  address.text.trim(),
-                                );
+                                    displayName.text.trim(),
+                                    phoneNumber.text.trim(),
+                                    address.text.trim(),
+                                    _image!.path);
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.zero,
@@ -249,7 +304,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       radius: 50,
                                       backgroundImage:
                                           CachedNetworkImageProvider(
-                                              Singleton.instance.account.avt),
+                                              state.account.avt),
                                     ),
                                   ),
                                   width: 100,
