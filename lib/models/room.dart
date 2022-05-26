@@ -22,7 +22,7 @@ class Room {
   bool washing;
   bool conditioning;
   String content;
-  String imgUrl;
+  List<String>? imgUrl;
   String postID;
   String userID;
   String userAvatar;

@@ -41,7 +41,7 @@ class ShareItem extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(4),
                       child: CachedNetworkImage(
-                        imageUrl: room.imgUrl,
+                        imageUrl: room.imgUrl![0],
                         fit: BoxFit.fill,
                       ),
                     ),

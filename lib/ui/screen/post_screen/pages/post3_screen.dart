@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
-import 'package:phongtro/helpers/date_helper.dart';
 import 'package:phongtro/models/room.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post_notify_screen.dart';
@@ -65,30 +64,84 @@ class _Post3ScreenState extends State<Post3Screen> {
   CreatePostBloc _createPostBloc = CreatePostBloc();
   TextEditingController contentController = TextEditingController();
   FilePickerResult? result1;
+  FilePickerResult? result2;
+  FilePickerResult? result3;
   PlatformFile? file1;
-  bool isOpen = false;
-  File? _image;
-  ImagePicker _imagePicker = ImagePicker();
+  PlatformFile? file2;
+  PlatformFile? file3;
+  bool isOpen1 = false;
+  bool isOpen2 = false;
+  bool isOpen3 = false;
+  File? _image1;
+  File? _image2;
+  File? _image3;
+  ImagePicker _imagePicker1 = ImagePicker();
+  ImagePicker _imagePicker2 = ImagePicker();
+  ImagePicker _imagePicker3 = ImagePicker();
 
-  Future imagePickerMethod() async {
-    final pick = await _imagePicker.pickImage(source: ImageSource.gallery);
+  Future image1PickerMethod() async {
+    final pick1 = await _imagePicker1.pickImage(source: ImageSource.gallery);
     setState(() {
-      if (pick != null) {
-        _image = File(pick.path);
+      if (pick1 != null) {
+        _image1 = File(pick1.path);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Error'),
         ));
       }
     });
   }
 
-  void pickFiles() async {
+  void pickFiles1() async {
     result1 = await FilePicker.platform.pickFiles();
     if (result1 == null) return;
     file1 = result1!.files.first;
     setState(() {
-      isOpen = !isOpen;
+      isOpen1 = !isOpen1;
+    });
+  }
+
+  Future image2PickerMethod() async {
+    final pick2 = await _imagePicker2.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pick2 != null) {
+        _image2 = File(pick2.path);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Error'),
+        ));
+      }
+    });
+  }
+
+  void pickFiles2() async {
+    result2 = await FilePicker.platform.pickFiles();
+    if (result2 == null) return;
+    file2 = result2!.files.first;
+    setState(() {
+      isOpen2 = !isOpen2;
+    });
+  }
+
+  Future image3PickerMethod() async {
+    final pick3 = await _imagePicker3.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pick3 != null) {
+        _image3 = File(pick3.path);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Error'),
+        ));
+      }
+    });
+  }
+
+  void pickFiles3() async {
+    result3 = await FilePicker.platform.pickFiles();
+    if (result3 == null) return;
+    file3 = result3!.files.first;
+    setState(() {
+      isOpen3 = !isOpen3;
     });
   }
 
@@ -162,7 +215,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                     ),
                   ),
                   body: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
                       child: Column(
@@ -181,30 +234,165 @@ class _Post3ScreenState extends State<Post3Screen> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Container(
-                            width: AppDimensions.d90w,
+                          SizedBox(
+                            width: AppDimensions.d100w,
                             height: AppDimensions.d30h,
-                            color: AppColors.gray,
-                            child: Column(
+                            child: Row(
                               children: [
                                 Expanded(
-                                  child: _image == null
-                                      ? Center(
-                                          child: Text('Images'),
-                                        )
-                                      : Image.file(_image!),
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: _image1 == null
+                                            ? Center(
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    image1PickerMethod();
+                                                  },
+                                                  child: Container(
+                                                    width: double.maxFinite,
+                                                    height: double.maxFinite,
+                                                    child: const Center(
+                                                      child: Text(
+                                                        '+',
+                                                        style: TextStyle(
+                                                            fontSize: 30,
+                                                            color: AppColors
+                                                                .gray8),
+                                                      ),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: AppColors.gray,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  image1PickerMethod();
+                                                },
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: Image.file(
+                                                    _image1!,
+                                                    width: AppDimensions.d50w,
+                                                    height: AppDimensions.d30h,
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: _image2 == null
+                                            ? Center(
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    image2PickerMethod();
+                                                  },
+                                                  child: Container(
+                                                    width: double.maxFinite,
+                                                    height: double.maxFinite,
+                                                    child: const Center(
+                                                      child: Text(
+                                                        '+',
+                                                        style: const TextStyle(
+                                                            fontSize: 26,
+                                                            color: AppColors
+                                                                .gray8),
+                                                      ),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: AppColors.gray,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  image2PickerMethod();
+                                                },
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: Image.file(
+                                                    _image2!,
+                                                    width: AppDimensions.d40w,
+                                                    height: AppDimensions.d15h,
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Expanded(
+                                        child: _image3 == null
+                                            ? Center(
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    image3PickerMethod();
+                                                  },
+                                                  child: Container(
+                                                    width: double.maxFinite,
+                                                    height: double.maxFinite,
+                                                    child: const Center(
+                                                      child: Text(
+                                                        '+',
+                                                        style: TextStyle(
+                                                            fontSize: 26,
+                                                            color: AppColors
+                                                                .gray8),
+                                                      ),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: AppColors.gray,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  image3PickerMethod();
+                                                },
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: Image.file(
+                                                    _image3!,
+                                                    width: AppDimensions.d40w,
+                                                    height: AppDimensions.d15h,
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                imagePickerMethod();
-                              },
-                              child: Text('Add images')),
                           const SizedBox(
                             height: 20,
                           ),
@@ -215,6 +403,11 @@ class _Post3ScreenState extends State<Post3Screen> {
                           Center(
                             child: ElevatedButton(
                               onPressed: () {
+                                List<String> imgUrl = [
+                                  _image1!.path,
+                                  _image2!.path,
+                                  _image3!.path
+                                ];
                                 Room room = Room(
                                   owner: widget.owner,
                                   type: widget.type,
@@ -235,7 +428,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                                   washing: widget.washing,
                                   conditioning: widget.conditioning,
                                   content: contentController.text.trim(),
-                                  imgUrl: _image!.path,
+                                  imgUrl: imgUrl,
                                   postID: '',
                                   userID: Singleton.instance.account.userID,
                                   userAvatar: Singleton.instance.account.avt,
@@ -243,7 +436,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                                       Singleton.instance.account.displayName,
                                   timePost:
                                       DateTime.now().millisecondsSinceEpoch ~/
-                                              1000,
+                                          1000,
                                 );
                                 _createPostBloc.add(
                                   CreatePost(
@@ -266,7 +459,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                                       room.washing,
                                       room.conditioning,
                                       room.content,
-                                      room.imgUrl,
+                                      room.imgUrl!,
                                       room.postID,
                                       room.userID,
                                       room.userAvatar,

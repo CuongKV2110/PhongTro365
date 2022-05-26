@@ -96,7 +96,7 @@ class _SavedScreenState extends State<SavedScreen> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
                                       child: CachedNetworkImage(
-                                        imageUrl: list[index].imgUrl,
+                                        imageUrl: list[index].imgUrl![0],
                                         fit: BoxFit.fill,
                                       ),
                                     ),

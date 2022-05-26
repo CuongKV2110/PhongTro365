@@ -26,7 +26,8 @@ Room _$RoomFromJson(Map<String, dynamic> json) => Room(
       washing: json['washing'] as bool,
       conditioning: json['conditioning'] as bool,
       content: json['content'] as String,
-      imgUrl: json['imgUrl'] as String,
+      imgUrl:
+          (json['imgUrl'] as List<dynamic>?)?.map((e) => e as String).toList(),
       postID: json['postID'] as String,
       userID: json['userID'] as String,
       userAvatar: json['userAvatar'] as String,

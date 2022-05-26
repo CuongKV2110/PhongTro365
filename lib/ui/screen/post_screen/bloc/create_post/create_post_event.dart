@@ -32,7 +32,7 @@ class CreatePost extends CreatePostEvent {
   final bool washing;
   final bool conditioning;
   final String content;
-  final String imgUrl;
+  final List<String> imgUrl;
   final String postID;
   final String userID;
   final String userAvatar;

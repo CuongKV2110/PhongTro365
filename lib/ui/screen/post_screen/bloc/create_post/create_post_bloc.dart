@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'create_post_event.dart';
@@ -12,6 +11,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
   CreatePostBloc() : super(CreatePostInitial());
   String errorMessage = '';
   String postId = '';
+  List<String> listImg = [];
 
   void dispose() {
     close();
@@ -36,12 +36,25 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           CollectionReference users =
               FirebaseFirestore.instance.collection('users');
 
-          File file = File(event.imgUrl);
+          File file1 = File(event.imgUrl[0]);
+          File file2 = File(event.imgUrl[1]);
+          File file3 = File(event.imgUrl[2]);
           int time = DateTime.now().millisecondsSinceEpoch;
-          String ref = 'posts/${document.id}/image_$time.png';
-          await FirebaseStorage.instance.ref(ref).putFile(file);
-          String imgDownloadURL =
-              await FirebaseStorage.instance.ref(ref).getDownloadURL();
+          String ref1 = 'posts/${document.id}/image1_$time.png';
+          String ref2 = 'posts/${document.id}/image2_$time.png';
+          String ref3 = 'posts/${document.id}/image3_$time.png';
+          await FirebaseStorage.instance.ref(ref1).putFile(file1);
+          await FirebaseStorage.instance.ref(ref2).putFile(file2);
+          await FirebaseStorage.instance.ref(ref3).putFile(file3);
+          String imgDownloadURL1 =
+              await FirebaseStorage.instance.ref(ref1).getDownloadURL();
+          String imgDownloadURL2 =
+              await FirebaseStorage.instance.ref(ref2).getDownloadURL();
+          String imgDownloadURL3 =
+              await FirebaseStorage.instance.ref(ref3).getDownloadURL();
+          listImg.add(imgDownloadURL1);
+          listImg.add(imgDownloadURL2);
+          listImg.add(imgDownloadURL3);
           await post.doc(document.id).set({
             'owner': event.owner,
             'type': event.type,
@@ -63,7 +76,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             'conditioning': event.conditioning,
             'content': event.content,
             'postID': document.id,
-            'imgUrl': imgDownloadURL,
+            'imgUrl': listImg,
             'userID': event.userID,
             'userAvatar': Singleton.instance.account.avt,
             'userName': Singleton.instance.account.displayName,
@@ -72,12 +85,10 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
 
           Singleton.instance.account.post.add(document.id);
 
-          print(Singleton.instance.account.post.toString());
-
           await users.doc(Singleton.instance.account.userID).update({
             'post': Singleton.instance.account.post,
           });
-          print(Singleton.instance.account.post);
+
           postId = document.id;
           yield CreatePostSuccess();
         } on FirebaseAuthException catch (e) {

@@ -28,11 +28,6 @@ class _NewFeedScreenState extends State<NewFeedScreen>
 
   NewFeedBloc bloc = NewFeedBloc();
 
-  String img_url1 =
-      'https://cdn.luxstay.com/users/9405/J7uB6ERI91TpUk80QSwRNF-N.jpg';
-  String img_url2 =
-      'https://cdn.luxstay.com/rooms/31878/large/room_31878_3_1567770866.jpg';
-
   @override
   void initState() {
     super.initState();
@@ -72,16 +67,16 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                     child: ListView(
                       physics: const BouncingScrollPhysics(),
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        BuildNewFeedBar(),
+                        const BuildNewFeedBar(),
                         _buildNewFeed(state.data),
                       ],
                     ),
                   );
                 }
-                return Center();
+                return const Center();
               },
             ),
           ),
@@ -98,7 +93,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView.builder(
             itemCount: 6,
             itemBuilder: (context, index) {
@@ -109,7 +104,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 340),
+                    const SizedBox(height: 340),
                   ],
                 ),
               );
@@ -141,7 +136,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
       washing: true,
       conditioning: true,
       content: '',
-      imgUrl: 'imgUrl',
+      imgUrl: [],
       postID: 'postID',
       userID: 'userID',
       userAvatar: 'userAvatar',
@@ -239,7 +234,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: CachedNetworkImage(
-                    imageUrl: room.imgUrl,
+                    imageUrl: room.imgUrl![0],
                     fit: BoxFit.fill,
                     width: AppDimensions.d50w,
                     height: AppDimensions.d40h,
@@ -268,7 +263,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(6),
                       child: CachedNetworkImage(
-                        imageUrl: img_url1,
+                        imageUrl: room.imgUrl![1],
                         fit: BoxFit.fill,
                         width: AppDimensions.d30w,
                         height: 100,
@@ -295,7 +290,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(6),
                       child: CachedNetworkImage(
-                        imageUrl: img_url2,
+                        imageUrl: room.imgUrl![2],
                         fit: BoxFit.fill,
                         width: AppDimensions.d30w,
                         height: 100,

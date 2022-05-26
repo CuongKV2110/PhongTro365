@@ -36,7 +36,6 @@ class _PostedScreenState extends State<PostedScreen> {
               );
             }
             if (state is PostedSuccess) {
-              print(state.room.imgUrl);
               return BuildRoom(state.room, widget.back);
             }
             if (state is PostedError) {
