@@ -9,7 +9,6 @@ class ElectricityWidget extends StatefulWidget {
 
   ElectricityWidget(this.electricityController);
 
-
   @override
   _ElectricityWidgetState createState() => _ElectricityWidgetState();
 }
@@ -45,7 +44,7 @@ class _ElectricityWidgetState extends State<ElectricityWidget> {
             const SizedBox(
               width: 10,
             ),
-            const Text('VND/Số'),
+            const Text('VNĐ/Số'),
             const SizedBox(
               width: 20,
             )

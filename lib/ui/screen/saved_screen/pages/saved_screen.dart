@@ -4,11 +4,13 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phongtro/helpers/date_helper.dart';
 import 'package:phongtro/models/room.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
+import 'package:phongtro/ui/screen/edit_post_screen/pages/edit_post_screen.dart';
 import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
 import 'package:phongtro/ui/screen/saved_screen/bloc/saved_bloc.dart';
 import 'package:phongtro/ui/screen/saved_screen/bloc/saved_event.dart';
@@ -119,7 +121,8 @@ class _SavedScreenState extends State<SavedScreen> {
                                               fontSize: AppFontSizes.fs12),
                                         ),
                                       ),
-                                      Text(list[index].cost),
+                                      Text(DateHelper.getTimeAgo(
+                                          list[index].timePost)),
                                     ],
                                   ),
                                 ],
@@ -141,7 +144,15 @@ class _SavedScreenState extends State<SavedScreen> {
                                       savedBloc.add(GetData());
                                     },
                                     btnOkText: 'Xóa',
-                                    btnCancelOnPress: () {},
+                                    btnCancelOnPress: () {
+                                      Navigator.of(context).push(
+                                        CupertinoPageRoute(
+                                          builder: (context) {
+                                            return EditPostScreen(list[index]);
+                                          },
+                                        ),
+                                      );
+                                    },
                                     btnCancelText: 'Chỉnh sửa',
                                     btnCancelColor: AppColors.red,
                                     btnOkColor: AppColors.green2,

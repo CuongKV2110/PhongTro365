@@ -43,7 +43,7 @@ class _PeopleWidgetState extends State<PeopleWidget> {
               const SizedBox(
                 width: 10,
               ),
-              const Expanded(child: Text('Người/Phòng'))
+              const Expanded(child: Text('người/Phòng'))
             ],
           ),
         ],

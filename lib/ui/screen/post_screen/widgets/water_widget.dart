@@ -44,7 +44,7 @@ class _WaterWidgetState extends State<WaterWidget> {
             const SizedBox(
               width: 10,
             ),
-            const Text('VND/Người'),
+            const Text('VNĐ/Người'),
             const SizedBox(
               width: 20,
             )

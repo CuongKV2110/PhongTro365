@@ -18,7 +18,7 @@ class _PhoneWidgetState extends State<PhoneWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Số điện thoại',
+          'Số điện thoại liên hệ',
           style: TextStyle(
               fontSize: AppFontSizes.fs12,
               color: AppColors.black,

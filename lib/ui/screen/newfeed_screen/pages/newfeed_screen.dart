@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/bloc/newfeed_state.dart';
+import 'package:phongtro/ui/screen/profile_screen/pages/view_profile.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../models/room.dart';
 import '../../../../resources/dimensions.dart';
-import '../../profile_screen/pages/profile_screen.dart';
 import '../bloc/newfeed_bloc.dart';
 import '../widgets/build_newfeed_bar.dart';
 import '../widgets/button_widget.dart';
@@ -201,7 +201,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
             Navigator.of(context).push(
               CupertinoPageRoute(
                 builder: (context) {
-                  return ProfileScreen();
+                  return ViewProfile(room);
                 },
               ),
             );

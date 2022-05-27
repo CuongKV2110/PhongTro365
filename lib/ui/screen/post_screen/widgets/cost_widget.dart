@@ -44,7 +44,7 @@ class _CostWidgetState extends State<CostWidget> {
             const SizedBox(
               width: 10,
             ),
-            const Text('VND/Tháng')
+            const Text('VNĐ/Tháng')
           ],
         ),
       ],

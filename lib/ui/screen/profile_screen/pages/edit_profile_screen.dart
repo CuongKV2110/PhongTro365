@@ -11,7 +11,6 @@ import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
 import 'package:phongtro/ui/screen/profile_screen/bloc/edit_bloc.dart';
 import 'package:phongtro/ui/screen/profile_screen/bloc/edit_state.dart';
-import 'package:phongtro/ui/screen/profile_screen/pages/profile_screen.dart';
 
 import '../../../../models/account.dart';
 import '../../../../resources/colors.dart';
@@ -43,7 +42,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       if (pick != null) {
         _image = File(pick.path);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Error'),
         ));
       }
@@ -65,6 +64,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void initState() {
+    displayName.text = Singleton.instance.account.displayName;
     super.initState();
   }
 
@@ -151,7 +151,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       onTap: () {
                                         imagePickerMethod();
                                       },
-                                      child: CircleAvatar(
+                                      child: const CircleAvatar(
                                         backgroundColor: AppColors.orange1,
                                         radius: 12,
                                         child: Icon(
@@ -169,7 +169,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               const Text(
                                 'Cập nhật ảnh đại diện',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -210,7 +210,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               TextField(
                                 controller: phoneNumber,
-                                decoration: const InputDecoration(),
+                                decoration:
+                                    const InputDecoration(hintText: 'Thêm SĐT'),
                                 keyboardType: TextInputType.phone,
                               ),
                             ],
@@ -230,7 +231,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               TextField(
                                 controller: address,
-                                decoration: const InputDecoration(),
+                                decoration: const InputDecoration(
+                                    hintText: 'Thêm địa chỉ'),
                               ),
                             ],
                           ),
@@ -240,11 +242,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Center(
                             child: ElevatedButton(
                               onPressed: () {
+                                String name = displayName.text.isEmpty
+                                    ? "Đang cập nhật"
+                                    : displayName.text.trim();
+                                String phone = phoneNumber.text.isEmpty
+                                    ? "Đang cập nhật"
+                                    : phoneNumber.text.trim();
+                                String locate = address.text.isEmpty
+                                    ? "Đang cập nhật"
+                                    : address.text.trim();
                                 bloc.editProfile(
-                                    displayName.text.trim(),
-                                    phoneNumber.text.trim(),
-                                    address.text.trim(),
-                                    _image!.path);
+                                    name, phone, locate, _image!.path);
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.zero,
@@ -386,7 +394,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Center(
@@ -395,7 +403,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   Navigator.of(context).push(
                                     CupertinoPageRoute(
                                       builder: (context) {
-                                        return HomeScreen();
+                                        return const HomeScreen();
                                       },
                                     ),
                                   );

@@ -27,6 +27,7 @@ class BuildDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: AppColors.black,
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.only(left: 24),
           child: Column(
@@ -50,6 +51,7 @@ class BuildDrawer extends StatelessWidget {
                 height: 40,
               ),
               ListView.builder(
+                physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: list.length,
                 itemBuilder: (context, index) {

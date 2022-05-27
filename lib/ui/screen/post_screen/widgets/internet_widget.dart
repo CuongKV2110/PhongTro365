@@ -9,7 +9,6 @@ class InternetWidget extends StatefulWidget {
 
   InternetWidget(this.internetController);
 
-
   @override
   _InternetWidgetState createState() => _InternetWidgetState();
 }
@@ -45,7 +44,7 @@ class _InternetWidgetState extends State<InternetWidget> {
             const SizedBox(
               width: 10,
             ),
-            const Text('VND/Người'),
+            const Text('VNĐ/Người'),
             const SizedBox(
               width: 20,
             )
