@@ -78,6 +78,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             'content': event.content,
             'postID': document.id,
             'imgUrl': listImg,
+            'comment': [],
             'userID': event.userID,
             'userAvatar': Singleton.instance.account.avt,
             'userName': Singleton.instance.account.displayName,

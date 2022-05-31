@@ -4,11 +4,11 @@ part 'comment.g.dart';
 
 @JsonSerializable()
 class Comment {
-  String commentId;
-  String postId;
-  String userId;
-  String content;
-  int time;
+  String commentId = '';
+  String postId = '';
+  String userId = '';
+  String content = '';
+  int time = 0;
 
   Comment({
     required this.commentId,

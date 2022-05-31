@@ -72,12 +72,12 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
       yield DetailSuccess(room);
     }
 
-    if (event is LoadComment) {
+    /*if (event is LoadComment) {
       yield DetailProcessing();
       List<Comment> newList = await PostProvider.getComment();
       print(newList[0].content);
       print(newList[1].content);
       yield DetailSuccess(room);
-    }
+    }*/
   }
 }

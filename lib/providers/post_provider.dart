@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:phongtro/models/comment.dart';
+import 'package:phongtro/models/comment_detail.dart';
+import '../models/account.dart';
 import '../models/room.dart';
 
 class PostProvider {
@@ -12,12 +14,40 @@ class PostProvider {
     return list;
   }
 
-  static Future<List<Comment>> getComment() async {
-    List<Comment> listComment;
+  static Future<List<CommentDetail>> getComment(Room room) async {
+    List<Comment> listComment = [];
+    List<Comment> resultComment = [];
+    List<Account> listAccount = [];
+    List<CommentDetail> listCommentDetail = [];
+
     final FirebaseFirestore data = FirebaseFirestore.instance;
 
     var res = await data.collection("comments").get();
     listComment = res.docs.map((doc) => Comment.fromJson(doc.data())).toList();
-    return listComment;
+
+    for (int i = 0; i < listComment.length; i++) {
+      for (int j = 0; j < room.comment!.length; j++) {
+        if (listComment[i].commentId == room.comment![j]) {
+          resultComment.add(listComment[i]);
+        }
+      }
+    }
+
+    var resAccount = await data.collection("users").get();
+    listAccount =
+        resAccount.docs.map((doc) => Account.fromJson(doc.data())).toList();
+
+    for (int i = 0; i < listAccount.length; i++) {
+      for (int j = 0; j < resultComment.length; j++) {
+        CommentDetail commentDetail = CommentDetail(resultComment[j], '', '');
+        if (commentDetail.comment.userId == listAccount[i].userID) {
+          commentDetail.avt = listAccount[i].avt;
+          commentDetail.username = listAccount[i].displayName;
+          listCommentDetail.add(commentDetail);
+        }
+      }
+    }
+
+    return listCommentDetail;
   }
 }

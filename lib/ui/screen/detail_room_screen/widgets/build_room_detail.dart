@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/models/comment.dart';
 import 'package:phongtro/providers/singleton.dart';
@@ -13,7 +12,6 @@ import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
 import '../../../../models/room.dart';
 import '../../../../resources/dimensions.dart';
 import '../bloc/comment_bloc/comment_bloc.dart';
-import '../bloc/comment_bloc/comment_state.dart';
 import '../bloc/detail_bloc.dart';
 
 class BuildRoomDetail extends StatefulWidget {
