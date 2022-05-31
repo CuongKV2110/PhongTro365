@@ -31,6 +31,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         try {
           FirebaseFirestore fireStore = FirebaseFirestore.instance;
           var document = fireStore.collection('posts').doc();
+
           CollectionReference post =
               FirebaseFirestore.instance.collection('posts');
           CollectionReference users =

@@ -1,3 +1,5 @@
+import 'package:phongtro/models/comment.dart';
+
 abstract class CreatePostEvent {
   CreatePostEvent([List props = const []]);
 
@@ -33,6 +35,7 @@ class CreatePost extends CreatePostEvent {
   final bool conditioning;
   final String content;
   final List<String> imgUrl;
+  final List<String> comment;
   final String postID;
   final String userID;
   final String userAvatar;
@@ -60,6 +63,7 @@ class CreatePost extends CreatePostEvent {
     this.conditioning,
     this.content,
     this.imgUrl,
+    this.comment,
     this.postID,
     this.userID,
     this.userAvatar,

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
-
+import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
 import '../../../../resources/colors.dart';
 import '../../../../resources/dimensions.dart';
 
@@ -20,7 +19,7 @@ class ButtonWidget extends StatelessWidget {
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) {
-                return PostedScreen(back: 0, postId: postID);
+                return DetailRoomScreen(back: 0, postId: postID);
               },
             ),
           );

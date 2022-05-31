@@ -137,6 +137,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
       conditioning: true,
       content: '',
       imgUrl: [],
+      comment: [],
       postID: 'postID',
       userID: 'userID',
       userAvatar: 'userAvatar',

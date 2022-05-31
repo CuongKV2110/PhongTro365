@@ -1,96 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
-import '../../../../models/extension.dart';
-import '../../../../resources/colors.dart';
-import '../../../../resources/dimensions.dart';
-import '../widgets/extension_item_widget.dart';
-import '../widgets/image_widget.dart';
-import '../widgets/info_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phongtro/ui/screen/detail_room_screen/widgets/build_room_detail.dart';
+import '../bloc/detail_bloc.dart';
+import '../bloc/detail_event.dart';
+import '../bloc/detail_state.dart';
 
 class DetailRoomScreen extends StatefulWidget {
-  const DetailRoomScreen({Key? key}) : super(key: key);
+  int back;
+  late String postId;
+
+  DetailRoomScreen({required this.back, required this.postId});
 
   @override
   _DetailRoomScreenState createState() => _DetailRoomScreenState();
 }
 
 class _DetailRoomScreenState extends State<DetailRoomScreen> {
-  final List<Extension> lisExtension = [
-    Extension(
-      icon: 'images/wifi.png',
-      name: 'wifi',
-      isPress: false,
-    ),
-    Extension(
-      icon: 'images/toilet.png',
-      name: 'WC riêng',
-      isPress: false,
-    ),
-    Extension(
-      icon: 'images/time.png',
-      name: 'Giờ giấc',
-      isPress: false,
-    ),
-    Extension(
-      icon: 'images/xemay.png',
-      name: 'Để xe',
-      isPress: false,
-    ),
-    Extension(
-      icon: 'images/bep.png',
-      name: 'Bếp',
-      isPress: false,
-    ),
-    Extension(
-      icon: 'images/tulanh.png',
-      name: 'Tủ lạnh',
-      isPress: false,
-    ),
-    Extension(
-      icon: 'images/maygiat.png',
-      name: 'Máy giặt',
-      isPress: false,
-    ),
-    Extension(
-      icon: 'images/dieuhoa.png',
-      name: 'Điều hòa',
-      isPress: false,
-    ),
-  ];
+  final DetailBloc bloc = DetailBloc();
+
+  @override
+  void initState() {
+    bloc.add(GetData(widget.postId));
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              const ImageWidget(),
-              InfoWidget(
-                'Location',
-                'cost',
-                'acreage',
-                'owner',
-                'phone',
-                'time',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: lisExtension.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                ),
-                itemBuilder: (context, index) {
-                  return ExtensionItemWidget(lisExtension[index]);
-                },
-              ),
-            ],
-          ),
+    return Scaffold(
+      body: BlocProvider<DetailBloc>(
+        create: (context) => bloc,
+        child: BlocBuilder<DetailBloc, DetailState>(
+          builder: (context, state) {
+            if (state is DetailProcessing) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is DetailSuccess) {
+              return BuildRoomDetail(bloc, state.room, widget.back);
+            }
+            if (state is DetailError) {
+              return Center(
+                child: Text('Looi'),
+              );
+            }
+            return Center();
+          },
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:phongtro/models/comment.dart';
 part 'room.g.dart';
 
 @JsonSerializable()
@@ -23,6 +24,7 @@ class Room {
   bool conditioning;
   String content;
   List<String>? imgUrl;
+  List<String>? comment;
   String postID;
   String userID;
   String userAvatar;
@@ -50,6 +52,7 @@ class Room {
     required this.conditioning,
     required this.content,
     required this.imgUrl,
+    required this.comment,
     required this.postID,
     required this.userID,
     required this.userAvatar,

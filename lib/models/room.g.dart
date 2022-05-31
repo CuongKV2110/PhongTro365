@@ -28,6 +28,8 @@ Room _$RoomFromJson(Map<String, dynamic> json) => Room(
       content: json['content'] as String,
       imgUrl:
           (json['imgUrl'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      comment:
+          (json['comment'] as List<dynamic>?)?.map((e) => e as String).toList(),
       postID: json['postID'] as String,
       userID: json['userID'] as String,
       userAvatar: json['userAvatar'] as String,
@@ -56,6 +58,7 @@ Map<String, dynamic> _$RoomToJson(Room instance) => <String, dynamic>{
       'conditioning': instance.conditioning,
       'content': instance.content,
       'imgUrl': instance.imgUrl,
+      'comment': instance.comment,
       'postID': instance.postID,
       'userID': instance.userID,
       'userAvatar': instance.userAvatar,
