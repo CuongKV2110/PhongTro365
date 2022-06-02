@@ -15,6 +15,7 @@ import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
 import 'package:phongtro/ui/screen/saved_screen/bloc/saved_bloc.dart';
 import 'package:phongtro/ui/screen/saved_screen/bloc/saved_event.dart';
 
+import '../../detail_room_screen/pages/detail_room_screen.dart';
 import '../bloc/saved_state.dart';
 
 class SavedScreen extends StatefulWidget {
@@ -81,7 +82,7 @@ class _SavedScreenState extends State<SavedScreen> {
                             Navigator.of(context).push(
                               CupertinoPageRoute(
                                 builder: (context) {
-                                  return PostedScreen(
+                                  return DetailRoomScreen(
                                       back: 0, postId: list[index].postID);
                                 },
                               ),

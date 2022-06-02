@@ -76,22 +76,26 @@ class _BuildRoomDetailState extends State<BuildRoomDetail> {
           children: [
             SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
+              child: Column(
                 children: [
-                  const SizedBox(
-                    height: 10,
+                  ListView(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      _buildImage(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      _buildSlider(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      _buildBody(),
+                    ],
                   ),
-                  _buildImage(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  _buildSlider(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  _buildBody(),
                 ],
               ),
             ),
@@ -108,7 +112,7 @@ class _BuildRoomDetailState extends State<BuildRoomDetail> {
         left: 0,
         child: Container(
           width: AppDimensions.d100w,
-          height: 70,
+          height: 50,
           decoration: const BoxDecoration(
             border: Border(
               top: BorderSide(width: 1, color: AppColors.gray),
@@ -125,7 +129,7 @@ class _BuildRoomDetailState extends State<BuildRoomDetail> {
               children: [
                 const Icon(
                   Ionicons.happy_outline,
-                  color: AppColors.brownText,
+                  color: AppColors.black,
                 ),
                 const SizedBox(
                   width: 23,
@@ -147,7 +151,7 @@ class _BuildRoomDetailState extends State<BuildRoomDetail> {
                   onTap: () {},
                   child: const Icon(
                     Icons.attach_file,
-                    color: AppColors.brownText,
+                    color: AppColors.black,
                   ),
                 ),
                 const SizedBox(

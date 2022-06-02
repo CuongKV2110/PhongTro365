@@ -52,7 +52,7 @@ class _Post2ScreenState extends State<Post2Screen> {
   bool fridge = false;
   bool washing = false;
   bool conditioning = false;
-  final List<Extension> lisExtension = [
+  final List<Extension> listExtension = [
     Extension(
       icon: 'images/wifi.png',
       name: 'wifi',
@@ -213,7 +213,7 @@ class _Post2ScreenState extends State<Post2Screen> {
                       GridView.builder(
                           physics: const BouncingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: lisExtension.length,
+                          itemCount: listExtension.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
@@ -222,17 +222,17 @@ class _Post2ScreenState extends State<Post2Screen> {
                             return GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  lisExtension[index].isPress =
-                                      !lisExtension[index].isPress;
+                                  listExtension[index].isPress =
+                                      !listExtension[index].isPress;
                                 });
                               },
                               child: Column(
                                 children: [
                                   Image.asset(
-                                    lisExtension[index].icon,
+                                    listExtension[index].icon,
                                     width: 40,
                                     height: 40,
-                                    color: lisExtension[index].isPress
+                                    color: listExtension[index].isPress
                                         ? AppColors.blue
                                         : AppColors.black,
                                   ),
@@ -240,9 +240,9 @@ class _Post2ScreenState extends State<Post2Screen> {
                                     height: 4,
                                   ),
                                   Text(
-                                    lisExtension[index].name,
+                                    listExtension[index].name,
                                     style: TextStyle(
-                                      color: lisExtension[index].isPress
+                                      color: listExtension[index].isPress
                                           ? AppColors.blue
                                           : AppColors.black,
                                     ),
@@ -258,14 +258,14 @@ class _Post2ScreenState extends State<Post2Screen> {
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              wifi = lisExtension[0].isPress;
-                              wc = lisExtension[1].isPress;
-                              time = lisExtension[2].isPress;
-                              vehicle = lisExtension[3].isPress;
-                              kitchen = lisExtension[4].isPress;
-                              washing = lisExtension[5].isPress;
-                              fridge = lisExtension[6].isPress;
-                              conditioning = lisExtension[7].isPress;
+                              wifi = listExtension[0].isPress;
+                              wc = listExtension[1].isPress;
+                              time = listExtension[2].isPress;
+                              vehicle = listExtension[3].isPress;
+                              kitchen = listExtension[4].isPress;
+                              washing = listExtension[5].isPress;
+                              fridge = listExtension[6].isPress;
+                              conditioning = listExtension[7].isPress;
                             });
 
                             bloc.add(CheckData(

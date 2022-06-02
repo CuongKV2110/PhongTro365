@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/models/room.dart';
-import 'package:phongtro/resources/dimensions.dart';
+import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
 import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
 import 'package:phongtro/ui/screen/share_screen/bloc/share_bloc.dart';
 import 'package:phongtro/ui/screen/share_screen/widgets/share_item.dart';
@@ -20,8 +20,15 @@ class ShareScreen extends StatefulWidget {
 
 class _ShareScreenState extends State<ShareScreen> {
   final TextEditingController _searchController = TextEditingController();
-  List<Room> _foundList = [];
   ShareBloc shareBloc = ShareBloc();
+
+  final List<String> items = [
+    'Tìm theo giá',
+    'Tìm theo khu vực',
+    'Tìm phòng trống',
+    'Tìm phòng ghép',
+  ];
+  String? selectedValue;
 
   /*void _runSearch(String text) {
     List<Room> _results = [];
@@ -86,6 +93,19 @@ class _ShareScreenState extends State<ShareScreen> {
   }
 
   Widget _buildSearch(List<Room> list) {
+    List<Room> listPhongGhep = [];
+    List<Room> listPhongTrong = [];
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].type == 'Phòng ghép') {
+        listPhongGhep.add(list[i]);
+      }
+    }
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].type == 'Phòng trống') {
+        listPhongTrong.add(list[i]);
+      }
+    }
+
     return SizedBox(
       height: double.infinity,
       child: Padding(
@@ -136,42 +156,112 @@ class _ShareScreenState extends State<ShareScreen> {
             const SizedBox(
               height: 10,
             ),
-            Expanded(
-                child: GridView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                childAspectRatio: 0.6,
-                crossAxisSpacing: 26,
-                mainAxisSpacing: 36,
+            Center(
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2(
+                  isExpanded: true,
+                  items: items
+                      .map((item) => DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(
+                              item,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ))
+                      .toList(),
+                  value: selectedValue,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValue = value as String;
+                    });
+                  },
+                  icon: const Icon(Ionicons.options_outline,
+                      color: AppColors.orange1),
+                  iconSize: 26,
+                  buttonHeight: 50,
+                  buttonWidth: 80,
+                  buttonPadding: const EdgeInsets.only(left: 14, right: 14),
+                  buttonDecoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(
+                      color: Colors.black26,
+                    ),
+                    color: Colors.white,
+                  ),
+                  buttonElevation: 2,
+                  itemHeight: 40,
+                  itemPadding: const EdgeInsets.only(left: 14, right: 14),
+                  dropdownMaxHeight: 200,
+                  dropdownWidth: 200,
+                  dropdownPadding: null,
+                  dropdownDecoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    color: Colors.redAccent,
+                  ),
+                  dropdownElevation: 8,
+                  scrollbarRadius: const Radius.circular(40),
+                  scrollbarThickness: 6,
+                  scrollbarAlwaysShow: true,
+                  offset: const Offset(-20, 0),
+                ),
               ),
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        CupertinoPageRoute(
-                          builder: (context) {
-                            return PostedScreen(
-                              back: 0,
-                              postId: list[index].postID,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: ShareItem(list[index]),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                );
-              },
-            ))
+            ),
+            Expanded(
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 0.6,
+                  crossAxisSpacing: 26,
+                  mainAxisSpacing: 36,
+                ),
+                itemCount: selectedValue == 'Tìm phòng ghép'
+                    ? listPhongGhep.length
+                    : (selectedValue == 'Tìm phòng trống'
+                        ? listPhongTrong.length
+                        : list.length),
+                itemBuilder: (context, index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          CupertinoPageRoute(
+                            builder: (context) {
+                              return DetailRoomScreen(
+                                back: 0,
+                                postId: selectedValue == 'Tìm phòng ghép'
+                                    ? listPhongGhep[index].postID
+                                    : (selectedValue == 'Tìm phòng trống'
+                                        ? listPhongTrong[index].postID
+                                        : list[index].postID),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: ShareItem(
+                        selectedValue == 'Tìm phòng ghép'
+                            ? listPhongGhep[index]
+                            : (selectedValue == 'Tìm phòng trống'
+                                ? listPhongTrong[index]
+                                : list[index]),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),

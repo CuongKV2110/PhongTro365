@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/helpers/date_helper.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
 import 'package:phongtro/ui/screen/posted_screen/widgets/room_image.dart';
@@ -94,6 +95,24 @@ class _BuildRoomState extends State<BuildRoom> {
                     height: 10,
                   ),
                   Text(widget.room.content),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Ionicons.time_outline,
+                        size: 20,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        'Đã đăng vào: ' +
+                            DateHelper.getTimeAgo(widget.room.timePost),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
                     height: 10,
                   ),

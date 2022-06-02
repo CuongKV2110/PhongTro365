@@ -5,6 +5,7 @@ import 'package:phongtro/helpers/date_helper.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/detail_room_screen/bloc/comment_bloc/comment_bloc.dart';
 import 'package:phongtro/ui/screen/detail_room_screen/bloc/comment_bloc/comment_state.dart';
+import 'package:phongtro/ui/screen/detail_room_screen/widgets/dot_center.dart';
 
 import '../../../../models/comment_detail.dart';
 import '../../../../models/room.dart';
@@ -40,69 +41,105 @@ class _BuildCommentsState extends State<BuildComments> {
             return _buildCommentDetail(context, state.listComment);
           }
           if (state is CommentError) {
-            return Text('Chuaw co comemt');
+            return const Text('Chuaw co comemt');
           }
-          return Center();
+          return const Center();
         },
       ),
     );
   }
 
   _buildCommentDetail(BuildContext context, List<CommentDetail> list) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Padding(
-          padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
-          child: ListView.separated(
-            physics: BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: list.length,
-            separatorBuilder: (BuildContext context, int index) => SizedBox(
-              height: 16,
-            ),
-            itemBuilder: (BuildContext context, int index) {
-              return Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(list[index].avt),
-                  ),
-                  SizedBox(
-                    width: 6,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            list[index].username,
-                            style: const TextStyle(
-                                color: AppColors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            DateHelper.getTimeAgo(list[index].comment.time),
-                            style: TextStyle(
-                              fontSize: 12,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(26, 4, 26, 50),
+      child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: list.length,
+        separatorBuilder: (BuildContext context, int index) => const SizedBox(
+          height: 20,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                backgroundImage: CachedNetworkImageProvider(list[index].avt),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.gray.withOpacity(0.6),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 8, 10, 6),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              list[index].username,
+                              style: const TextStyle(
+                                  color: AppColors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold),
                             ),
-                          )
-                        ],
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            Text(
+                              list[index].comment.content,
+                              style: TextStyle(height: 1.6),
+                            )
+                          ],
+                        ),
                       ),
-                      Text(
-                        list[index].comment.content,
-                        style: const TextStyle(color: AppColors.black),
-                      ),
-                    ],
-                  )
-                ],
-              );
-            },
-          )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    Row(
+                      children: [
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        Text(
+                          DateHelper.getTimeAgo(list[index].comment.time),
+                          style: const TextStyle(),
+                        ),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        const DotCenter(),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        const Text('Thích'),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        const DotCenter(),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        const Text('Trả lời'),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          );
+        },
+      ),
     );
   }
 }

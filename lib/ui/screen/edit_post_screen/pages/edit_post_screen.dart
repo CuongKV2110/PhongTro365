@@ -1,12 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/providers/extension.dart';
 import 'package:phongtro/ui/screen/edit_post_screen/bloc/edit_post_bloc.dart';
 import 'package:phongtro/ui/screen/edit_post_screen/bloc/edit_post_state.dart';
 import 'package:phongtro/ui/screen/edit_post_screen/pages/edit_post_notify.dart';
-import 'package:phongtro/ui/screen/profile_screen/bloc/edit_state.dart';
-
 import '../../../../models/extension.dart';
 import '../../../../models/room.dart';
 import '../../../../resources/colors.dart';
@@ -68,6 +65,15 @@ class _EditPostScreenState extends State<EditPostScreen> {
     electricityController.text = widget.room.electricity;
     internetController.text = widget.room.internet;
     contentController.text = widget.room.content;
+    list[0].isPress = widget.room.wifi;
+    list[1].isPress = widget.room.wc;
+    list[2].isPress = widget.room.time;
+    list[3].isPress = widget.room.vehicle;
+    list[4].isPress = widget.room.kitchen;
+    list[5].isPress = widget.room.fridge;
+    list[6].isPress = widget.room.washing;
+    list[7].isPress = widget.room.conditioning;
+
     super.initState();
   }
 
@@ -326,6 +332,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
                     setState(() {
                       list[index].isPress = !list[index].isPress;
                     });
+                    print('A');
                   },
                   child: Column(
                     children: [
@@ -359,6 +366,18 @@ class _EditPostScreenState extends State<EditPostScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
+                  print(wifi);
+                  print(wc);
+                  print(vehicle);
+                  print(conditioning);
+                  wifi = list[0].isPress;
+                  wc = list[1].isPress;
+                  time = list[2].isPress;
+                  vehicle = list[3].isPress;
+                  kitchen = list[4].isPress;
+                  washing = list[5].isPress;
+                  fridge = list[6].isPress;
+                  conditioning = list[7].isPress;
                   if (_owner == 1) {
                     owner = 'Chung chủ';
                   } else {

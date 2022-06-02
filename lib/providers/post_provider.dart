@@ -48,6 +48,17 @@ class PostProvider {
       }
     }
 
+    CommentDetail cmt;
+    for (int i = 0; i < listCommentDetail.length - 1; i++) {
+      for (int j = i + 1; j < listCommentDetail.length; j++) {
+        if (listCommentDetail[i].comment.time <
+            listCommentDetail[j].comment.time) {
+          cmt = listCommentDetail[i];
+          listCommentDetail[i] = listCommentDetail[j];
+          listCommentDetail[j] = cmt;
+        }
+      }
+    }
     return listCommentDetail;
   }
 }
