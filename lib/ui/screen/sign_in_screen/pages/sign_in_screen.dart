@@ -220,7 +220,7 @@ class _SignInScreenState extends State<SignInScreen> {
           alignment: Alignment.center,
           child: const Text(
             'Đăng nhập',
-            style: const TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 18),
           ),
         ),
       ),

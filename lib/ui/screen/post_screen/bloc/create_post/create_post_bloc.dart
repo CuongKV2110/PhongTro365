@@ -31,12 +31,10 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         try {
           FirebaseFirestore fireStore = FirebaseFirestore.instance;
           var document = fireStore.collection('posts').doc();
-
           CollectionReference post =
               FirebaseFirestore.instance.collection('posts');
           CollectionReference users =
               FirebaseFirestore.instance.collection('users');
-
           File file1 = File(event.imgUrl[0]);
           File file2 = File(event.imgUrl[1]);
           File file3 = File(event.imgUrl[2]);
@@ -56,6 +54,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           listImg.add(imgDownloadURL1);
           listImg.add(imgDownloadURL2);
           listImg.add(imgDownloadURL3);
+
           await post.doc(document.id).set({
             'owner': event.owner,
             'type': event.type,

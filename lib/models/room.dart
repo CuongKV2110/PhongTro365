@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:phongtro/models/comment.dart';
 part 'room.g.dart';
 
 @JsonSerializable()

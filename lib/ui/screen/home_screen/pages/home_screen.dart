@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/providers/singleton.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/pages/newfeed_screen.dart';
 import 'package:phongtro/ui/screen/share_screen/pages/share_screen.dart';
-import 'package:phongtro/ui/screen/notify_screen/pages/notify_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
 import '../../../../resources/colors.dart';
+import '../../blog_screen/pages/blog_screen.dart';
 import '../../profile_screen/pages/profile_screen.dart';
 import '../widgets/build_drawer.dart';
 
@@ -52,8 +51,8 @@ class _HomeScreenState extends State<HomeScreen>
               _currentIndex == 0
                   ? 'Trang chủ'
                   : (_currentIndex == 1
-                      ? 'Tìm phòng'
-                      : (_currentIndex == 2 ? 'Đăng bài' : 'Thông báo')),
+                      ? 'Tìm kiếm'
+                      : (_currentIndex == 2 ? 'Đăng bài' : 'Tin tức')),
               style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 20,
@@ -113,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen>
               NewFeedScreen(),
               ShareScreen(),
               Post1Screen(),
-              NotifyScreen(),
+              BlogScreen(),
             ],
           ),
           bottomNavigationBar: _buildBottom(),
@@ -165,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen>
               height: 26,
             ),
           ),
-          label: 'Tìm phòng',
+          label: 'Tìm kiếm',
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -183,13 +182,13 @@ class _HomeScreenState extends State<HomeScreen>
           icon: Padding(
             padding: const EdgeInsets.symmetric(vertical: 2),
             child: Image.asset(
-              'images/notify2.png',
+              'images/blog2.png',
               color: _currentIndex == 3 ? AppColors.orange2 : AppColors.gray,
               width: 26,
               height: 26,
             ),
           ),
-          label: 'Thông báo',
+          label: 'Tin tức',
         ),
       ],
     );

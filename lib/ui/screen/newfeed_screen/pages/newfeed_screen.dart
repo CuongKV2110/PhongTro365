@@ -148,7 +148,6 @@ class _NewFeedScreenState extends State<NewFeedScreen>
     for (int i = 0; i < data.length - 1; i++) {
       for (int j = i + 1; j < data.length; j++) {
         if (data[i].timePost < data[j].timePost) {
-          // Hoan vi 2 so a[i] va a[j]
           room = data[i];
           data[i] = data[j];
           data[j] = room;
@@ -321,9 +320,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
         const Spacer(),
         GestureDetector(
           onTap: () {
-            setState(() {
-              /*bloc.list[index].isSave = !bloc.list[index].isSave;*/
-            });
+            setState(() {});
           },
           child: const Icon(
             Ionicons.bookmark_outline,

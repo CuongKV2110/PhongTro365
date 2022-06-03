@@ -50,25 +50,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginError();
         return;
       }
-
       if (ValidationHelper.isEmailValid(event.email) &&
           event.password.length >= 6) {
         try {
           UserCredential userCredential = await FirebaseAuth.instance
               .signInWithEmailAndPassword(
                   email: event.email, password: event.password);
-
           if (userCredential != null) {
             String? userID = userCredential.user?.uid;
-            print(userID);
-
             FirebaseFirestore fireStore = FirebaseFirestore.instance;
-
             DocumentSnapshot<Map<String, dynamic>> res =
                 await fireStore.collection('users').doc(userID).get();
-
             profile = Account.fromJson(res.data()!);
-
             singleton.account.userID = userID!;
             singleton.account.displayName = profile.displayName;
             singleton.account.email = profile.email;

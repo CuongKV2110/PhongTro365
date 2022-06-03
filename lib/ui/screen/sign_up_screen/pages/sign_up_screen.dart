@@ -62,8 +62,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       },
       child: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [

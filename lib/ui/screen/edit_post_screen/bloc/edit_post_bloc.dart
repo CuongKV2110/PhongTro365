@@ -34,7 +34,6 @@ class EditPostBloc extends Cubit<EditPostState> {
   ) async {
     emit(EditPostLoading());
     CollectionReference post = FirebaseFirestore.instance.collection('posts');
-
     await post.doc(postID).update({
       'owner': owner,
       'type': type,
@@ -56,12 +55,9 @@ class EditPostBloc extends Cubit<EditPostState> {
       'conditioning': conditioning,
       'content': content,
     });
-
     FirebaseFirestore fireStore = FirebaseFirestore.instance;
-
     DocumentSnapshot<Map<String, dynamic>> res =
         await fireStore.collection('posts').doc(postID).get();
-
     room = Room.fromJson(res.data()!);
     emit(EditPostSuccess(room));
   }
