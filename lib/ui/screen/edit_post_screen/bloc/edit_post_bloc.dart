@@ -11,6 +11,7 @@ class EditPostBloc extends Cubit<EditPostState> {
   late Room room;
 
   Future<void> EditPost(
+    int status,
     String owner,
     String type,
     String people,
@@ -35,6 +36,7 @@ class EditPostBloc extends Cubit<EditPostState> {
     emit(EditPostLoading());
     CollectionReference post = FirebaseFirestore.instance.collection('posts');
     await post.doc(postID).update({
+      'status': status,
       'owner': owner,
       'type': type,
       'people': people,

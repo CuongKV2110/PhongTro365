@@ -56,6 +56,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           listImg.add(imgDownloadURL3);
 
           await post.doc(document.id).set({
+            'status': event.status,
             'owner': event.owner,
             'type': event.type,
             'people': event.people,

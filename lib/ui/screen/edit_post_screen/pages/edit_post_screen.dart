@@ -389,6 +389,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
                     type = 'Phòng ghép';
                   }
                   bloc.EditPost(
+                    widget.room.status,
                     owner,
                     type,
                     peopleController.text.trim(),

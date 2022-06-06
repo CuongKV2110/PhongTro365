@@ -9,19 +9,18 @@ import 'package:phongtro/ui/screen/profile_screen/pages/view_profile.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../models/room.dart';
 import '../../../../resources/dimensions.dart';
-import '../bloc/newfeed_bloc.dart';
-import '../widgets/build_newfeed_bar.dart';
-import '../widgets/button_widget.dart';
-import '../widgets/info_widget.dart';
+import '../../newfeed_screen/bloc/newfeed_bloc.dart';
+import '../../newfeed_screen/widgets/button_widget.dart';
+import '../../newfeed_screen/widgets/info_widget.dart';
 
-class NewFeedScreen extends StatefulWidget {
-  const NewFeedScreen({Key? key}) : super(key: key);
+class PostManagerScreen extends StatefulWidget {
+  const PostManagerScreen({Key? key}) : super(key: key);
 
   @override
-  _NewFeedScreenState createState() => _NewFeedScreenState();
+  _PostManagerScreenState createState() => _PostManagerScreenState();
 }
 
-class _NewFeedScreenState extends State<NewFeedScreen>
+class _PostManagerScreenState extends State<PostManagerScreen>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -70,7 +69,6 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                         const SizedBox(
                           height: 10,
                         ),
-                        const BuildNewFeedBar(),
                         _buildNewFeed(state.data),
                       ],
                     ),
@@ -179,9 +177,45 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                       const SizedBox(height: 10),
                       _buildImage(data[index]),
                       const SizedBox(height: 10),
-                      _buildIcon(data[index]),
-                      const SizedBox(height: 10),
                       _buildContent(data[index]),
+                      const SizedBox(height: 10),
+                      Center(
+                        child: Container(
+                          width: AppDimensions.d30w,
+                          height: 24,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: Ink(
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    AppColors.orange1,
+                                    AppColors.orange2,
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Container(
+                                width: AppDimensions.d30w,
+                                height: 24,
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  'Xóa',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -307,34 +341,9 @@ class _NewFeedScreenState extends State<NewFeedScreen>
     );
   }
 
-  Widget _buildIcon(Room room) {
-    return Row(
-      children: [
-        Text(
-          'Chi phí: ' + room.cost + " VNĐ",
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: AppColors.black,
-            fontSize: 13,
-          ),
-        ),
-        const Spacer(),
-        GestureDetector(
-          onTap: () {
-            setState(() {});
-          },
-          child: const Icon(
-            Ionicons.bookmark_outline,
-            color: AppColors.black,
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildContent(Room room) {
     return Text(
-      room.content + room.status.toString(),
+      room.content,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(color: AppColors.black, fontSize: 13, height: 1.7),

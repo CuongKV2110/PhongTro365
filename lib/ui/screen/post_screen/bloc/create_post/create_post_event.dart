@@ -7,6 +7,7 @@ abstract class CreatePostEvent {
 }
 
 class CreatePost extends CreatePostEvent {
+  final int status;
   final String owner;
   final String type;
 
@@ -43,6 +44,7 @@ class CreatePost extends CreatePostEvent {
   final int timePost;
 
   CreatePost(
+    this.status,
     this.owner,
     this.type,
     this.people,

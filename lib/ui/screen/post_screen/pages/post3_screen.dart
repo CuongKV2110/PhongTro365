@@ -409,6 +409,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                                   _image3!.path
                                 ];
                                 Room room = Room(
+                                  status: 0,
                                   owner: widget.owner,
                                   type: widget.type,
                                   people: widget.people,
@@ -441,6 +442,7 @@ class _Post3ScreenState extends State<Post3Screen> {
                                 );
                                 _createPostBloc.add(
                                   CreatePost(
+                                      room.status,
                                       room.owner,
                                       room.type,
                                       room.people,

@@ -5,12 +5,29 @@ import '../models/account.dart';
 import '../models/room.dart';
 
 class PostProvider {
+  static Future<List<Room>> getDataStatus() async {
+    List<Room> list;
+    List<Room> resultList = [];
+    final FirebaseFirestore data = FirebaseFirestore.instance;
+
+    var post = await data.collection("posts").get();
+    list = post.docs.map((doc) => Room.fromJson(doc.data())).toList();
+
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].status == 1) {
+        resultList.add(list[i]);
+      }
+    }
+    return resultList;
+  }
+
   static Future<List<Room>> getData() async {
     List<Room> list;
     final FirebaseFirestore data = FirebaseFirestore.instance;
 
     var post = await data.collection("posts").get();
     list = post.docs.map((doc) => Room.fromJson(doc.data())).toList();
+
     return list;
   }
 

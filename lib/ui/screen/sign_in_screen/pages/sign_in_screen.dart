@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phongtro/ui/screen/admin_screen/pages/admin_screen.dart';
 import 'package:phongtro/ui/screen/home_screen/pages/home_screen.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';
@@ -44,9 +45,11 @@ class _SignInScreenState extends State<SignInScreen> {
         }
         if (state is LoginError) {
           UiHelper.hideLoading(context);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(_loginBloc.errorMessage),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(_loginBloc.errorMessage),
+            ),
+          );
         }
         if (state is LoginSuccess) {
           print('Login thanh cong');
@@ -59,11 +62,22 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
           );
         }
+        if (state is LoginAdmin) {
+          print('Login Admin');
+          UiHelper.hideLoading(context);
+          Navigator.of(context).pushReplacement(
+            CupertinoPageRoute(
+              builder: (context) {
+                return const AdminScreen();
+              },
+            ),
+          );
+        }
       },
       child: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [

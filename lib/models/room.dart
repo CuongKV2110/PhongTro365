@@ -1,8 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'room.g.dart';
 
 @JsonSerializable()
 class Room {
+  int status;
   String owner;
   String type;
   String people;
@@ -31,6 +33,7 @@ class Room {
   int timePost;
 
   Room({
+    required this.status,
     required this.owner,
     required this.type,
     required this.people,
