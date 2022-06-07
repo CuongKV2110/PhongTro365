@@ -9,7 +9,6 @@ class AdminBloc extends Cubit<AdminState> {
   Future<void> getData() async {
     emit(AdminLoading());
     List<Room> newList = await PostProvider.getData();
-
     emit(AdminLoaded(data: newList));
   }
 

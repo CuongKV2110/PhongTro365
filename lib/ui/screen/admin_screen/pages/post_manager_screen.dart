@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/bloc/newfeed_state.dart';
 import 'package:phongtro/ui/screen/profile_screen/pages/view_profile.dart';
@@ -20,22 +19,13 @@ class PostManagerScreen extends StatefulWidget {
   _PostManagerScreenState createState() => _PostManagerScreenState();
 }
 
-class _PostManagerScreenState extends State<PostManagerScreen>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
+class _PostManagerScreenState extends State<PostManagerScreen> {
   NewFeedBloc bloc = NewFeedBloc();
 
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    bloc.dispose();
-    super.dispose();
+    bloc.getData();
   }
 
   @override
@@ -54,25 +44,31 @@ class _PostManagerScreenState extends State<PostManagerScreen>
         child: Scaffold(
           backgroundColor: AppColors.white,
           body: BlocProvider<NewFeedBloc>(
-            create: (context) => bloc..getData(),
+            create: (context) => bloc,
             child: BlocBuilder<NewFeedBloc, NewFeedState>(
               builder: (context, state) {
                 if (state is NewFeedLoading) {
                   return _buildShimmer();
                 }
                 if (state is NewFeedLoaded) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: ListView(
-                      physics: const BouncingScrollPhysics(),
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        _buildNewFeed(state.data),
-                      ],
-                    ),
-                  );
+                  if (state.data.isEmpty) {
+                    return Center(
+                      child: Text('Khong co bai viet'),
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: ListView(
+                        physics: const BouncingScrollPhysics(),
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          _buildNewFeed(state.data),
+                        ],
+                      ),
+                    );
+                  }
                 }
                 return const Center();
               },
@@ -179,43 +175,7 @@ class _PostManagerScreenState extends State<PostManagerScreen>
                       const SizedBox(height: 10),
                       _buildContent(data[index]),
                       const SizedBox(height: 10),
-                      Center(
-                        child: Container(
-                          width: AppDimensions.d30w,
-                          height: 24,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            child: Ink(
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    AppColors.orange1,
-                                    AppColors.orange2,
-                                  ],
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Container(
-                                width: AppDimensions.d30w,
-                                height: 24,
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'Xóa',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      _buildButton(data[index].postID),
                     ],
                   ),
                 ),
@@ -226,6 +186,182 @@ class _PostManagerScreenState extends State<PostManagerScreen>
             ],
           );
         });
+  }
+
+  Widget _buildButton(String postID) {
+    return Row(
+      children: [
+        Expanded(
+          child: SizedBox(
+            height: 24,
+            child: ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(32.0),
+                        ),
+                      ),
+                      title: const Text(
+                        "Xác nhận ẩn bài viết",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      content: const Text("Bạn muốn ẩn bài viết này ?"),
+                      actions: [
+                        TextButton(
+                          child: const Text(
+                            "Ẩn",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            bloc.hidePost(postID);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text(
+                            "Thoát",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.orange1,
+                      AppColors.orange2,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Container(
+                  height: 24,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Ẩn bài viết',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        Expanded(
+          child: SizedBox(
+            height: 24,
+            child: ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(32.0),
+                        ),
+                      ),
+                      title: const Text(
+                        "Xác nhận xóa bài",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      content: const Text("Bạn muốn xóa bài viết này ?"),
+                      actions: [
+                        TextButton(
+                          child: const Text(
+                            "Xóa",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            bloc.deletePost(postID);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text(
+                            "Thoát",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.orange1,
+                      AppColors.orange2,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Container(
+                  height: 24,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Xóa bài viết',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildHeader(Room room) {

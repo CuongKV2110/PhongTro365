@@ -18,7 +18,7 @@ class PostNotifyScreen extends StatelessWidget {
         buttonsBorderRadius: BorderRadius.circular(20),
         headerAnimationLoop: false,
         animType: AnimType.TOPSLIDE,
-        title: 'Đăng bài thành công',
+        title: 'Đăng bài thành công. Đợi Admin duyệt nha !',
         showCloseIcon: false,
         btnOkOnPress: () {
           Navigator.of(context).pushAndRemoveUntil(

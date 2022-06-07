@@ -86,7 +86,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
   }
 
   Widget _buildShimmer() {
-    return Container(
+    return SizedBox(
       width: AppDimensions.d100w,
       height: AppDimensions.d100h,
       child: Shimmer.fromColors(

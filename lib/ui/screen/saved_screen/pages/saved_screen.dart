@@ -114,13 +114,23 @@ class _SavedScreenState extends State<SavedScreen> {
                                       SizedBox(
                                         width: AppDimensions.d49w,
                                         height: AppDimensions.d8h,
-                                        child: Text(
-                                          list[index].content,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 3,
-                                          style: TextStyle(
-                                              fontSize: AppFontSizes.fs12),
-                                        ),
+                                        child: list[index].status == 1
+                                            ? Text(
+                                                list[index].content,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 3,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        AppFontSizes.fs12),
+                                              )
+                                            : Text(
+                                                'Đang đợi duyệt',
+                                                style: TextStyle(
+                                                  color: AppColors.black,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
                                       ),
                                       Text(DateHelper.getTimeAgo(
                                           list[index].timePost)),
@@ -128,41 +138,48 @@ class _SavedScreenState extends State<SavedScreen> {
                                   ),
                                 ],
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  AwesomeDialog(
-                                    context: context,
-                                    dialogType: DialogType.QUESTION,
-                                    width: 360,
-                                    buttonsBorderRadius:
-                                        BorderRadius.circular(20),
-                                    headerAnimationLoop: false,
-                                    animType: AnimType.SCALE,
-                                    showCloseIcon: false,
-                                    btnOkOnPress: () {
-                                      savedBloc
-                                          .add(DeletePost(list[index].postID));
-                                      savedBloc.add(GetData());
-                                    },
-                                    btnOkText: 'Xóa',
-                                    btnCancelOnPress: () {
-                                      Navigator.of(context).push(
-                                        CupertinoPageRoute(
-                                          builder: (context) {
-                                            return EditPostScreen(list[index]);
+                              list[index].status == 1
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        AwesomeDialog(
+                                          context: context,
+                                          dialogType: DialogType.QUESTION,
+                                          width: 360,
+                                          buttonsBorderRadius:
+                                              BorderRadius.circular(20),
+                                          headerAnimationLoop: false,
+                                          animType: AnimType.SCALE,
+                                          showCloseIcon: false,
+                                          btnOkOnPress: () {
+                                            savedBloc.add(
+                                                DeletePost(list[index].postID));
+                                            savedBloc.add(GetData());
                                           },
-                                        ),
-                                      );
-                                    },
-                                    btnCancelText: 'Chỉnh sửa',
-                                    btnCancelColor: AppColors.red,
-                                    btnOkColor: AppColors.green2,
-                                  ).show();
-                                },
-                                child: const Icon(
-                                  Icons.more_horiz_outlined,
-                                ),
-                              )
+                                          btnOkText: 'Xóa',
+                                          btnCancelOnPress: () {
+                                            Navigator.of(context).push(
+                                              CupertinoPageRoute(
+                                                builder: (context) {
+                                                  return EditPostScreen(
+                                                      list[index]);
+                                                },
+                                              ),
+                                            );
+                                          },
+                                          btnCancelText: 'Chỉnh sửa',
+                                          btnCancelColor: AppColors.red,
+                                          btnOkColor: AppColors.green2,
+                                        ).show();
+                                      },
+                                      child: const Icon(
+                                        Icons.more_horiz_outlined,
+                                      ),
+                                    )
+                                  : Image.asset(
+                                      'images/await1.png',
+                                      width: 30,
+                                      height: 30,
+                                    ),
                             ],
                           ),
                         ),
