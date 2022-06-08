@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/ui/screen/admin_screen/pages/watting_detail_screen.dart';
+import 'package:phongtro/ui/screen/admin_screen/widget/shimer_widget.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/bloc/newfeed_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../helpers/date_helper.dart';
@@ -44,7 +45,7 @@ class _PostWattingScreenState extends State<PostWattingScreen> {
             child: BlocBuilder<NewFeedBloc, NewFeedState>(
               builder: (context, state) {
                 if (state is NewFeedLoading) {
-                  return _buildShimmer();
+                  return ShimmerWidget();
                 }
                 if (state is NewFeedLoaded) {
                   if (state.data.isEmpty) {
@@ -271,7 +272,7 @@ class _PostWattingScreenState extends State<PostWattingScreen> {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               shape: const RoundedRectangleBorder(
-                                borderRadius: const BorderRadius.all(
+                                borderRadius: BorderRadius.all(
                                   Radius.circular(32.0),
                                 ),
                               ),
@@ -365,36 +366,6 @@ class _PostWattingScreenState extends State<PostWattingScreen> {
           ],
         );
       },
-    );
-  }
-
-  Widget _buildShimmer() {
-    return SizedBox(
-      width: AppDimensions.d100w,
-      height: AppDimensions.d100h,
-      child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ListView.builder(
-            itemCount: 6,
-            itemBuilder: (context, index) {
-              return Card(
-                elevation: 1.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  children: const [
-                    SizedBox(height: 200),
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-      ),
     );
   }
 }

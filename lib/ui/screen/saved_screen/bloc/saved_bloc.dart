@@ -42,23 +42,4 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
       yield SavedLoaded(newList);
     }
   }
-
-/*Future<void> getData() async {
-    emit(SavedLoading());
-
-    List<Room> newList = await PostProvider.getData();
-
-    emit(SavedLoaded(newList));
-  }*/
-
-/* Future<void> deletePost() async {
-    emit(SavedLoading());
-
-    FirebaseFirestore fireStore = FirebaseFirestore.instance;
-
-    DocumentSnapshot<Map<String, dynamic>> res =
-    await fireStore.collection('posts').doc(event.postId).get();
-
-    emit(SavedLoaded(newList));
-  }*/
 }

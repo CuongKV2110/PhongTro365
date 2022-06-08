@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:phongtro/ui/screen/admin_screen/pages/account_manager_screen.dart';
 import 'package:phongtro/ui/screen/admin_screen/pages/post_manager_screen.dart';
 import 'package:phongtro/ui/screen/admin_screen/pages/postwaitting_screen.dart';
-import 'package:phongtro/ui/screen/newfeed_screen/pages/newfeed_screen.dart';
-
 import '../../../../resources/colors.dart';
-import '../../share_screen/pages/share_screen.dart';
 import '../widget/admin_drawer.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -72,7 +70,7 @@ class _AdminScreenState extends State<AdminScreen> {
             children: const [
               PostManagerScreen(),
               PostWattingScreen(),
-              ShareScreen(),
+              AccountManagerScreen(),
             ],
           ),
           bottomNavigationBar: _buildBottom(),

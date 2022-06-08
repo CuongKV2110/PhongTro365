@@ -286,7 +286,7 @@ class _PostManagerScreenState extends State<PostManagerScreen> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(32.0),
                         ),

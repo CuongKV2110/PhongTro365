@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/resources/fontsizes.dart';
 import 'package:phongtro/ui/screen/edit_post_screen/pages/edit_post_screen.dart';
-import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
 import 'package:phongtro/ui/screen/saved_screen/bloc/saved_bloc.dart';
 import 'package:phongtro/ui/screen/saved_screen/bloc/saved_event.dart';
 
