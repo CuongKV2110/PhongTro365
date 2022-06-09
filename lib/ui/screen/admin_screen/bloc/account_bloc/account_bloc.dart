@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phongtro/models/account.dart';
-import 'package:phongtro/models/room.dart';
+import 'package:phongtro/models/comment.dart';
 import 'package:phongtro/providers/account_provider.dart';
-import '../../../../../providers/post_provider.dart';
 import 'account_state.dart';
 
 class AccountBloc extends Cubit<AccountState> {
@@ -32,7 +31,21 @@ class AccountBloc extends Cubit<AccountState> {
       posts.doc(account.post[i]).delete();
     }
 
-    getData();
+    CollectionReference comments =
+        FirebaseFirestore.instance.collection('comments');
+    List<Comment> listComments;
+    final FirebaseFirestore data = FirebaseFirestore.instance;
+
+    var resComments = await data.collection("comments").get();
+
+    listComments =
+        resComments.docs.map((doc) => Comment.fromJson(doc.data())).toList();
+
+    for (int i = 0; i < listComments.length; i++) {
+      if (listComments[i].userId == account.userID) {
+        comments.doc(listComments[i].commentId).delete();
+      }
+    }
   }
 
   void refreshData() async {

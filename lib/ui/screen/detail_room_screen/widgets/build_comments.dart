@@ -41,7 +41,7 @@ class _BuildCommentsState extends State<BuildComments> {
             return _buildCommentDetail(context, state.listComment);
           }
           if (state is CommentError) {
-            return const Text('Chuaw co comemt');
+            return const Text('Chưa co comemt');
           }
           return const Center();
         },
@@ -60,83 +60,85 @@ class _BuildCommentsState extends State<BuildComments> {
           height: 20,
         ),
         itemBuilder: (BuildContext context, int index) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                backgroundImage: CachedNetworkImageProvider(list[index].avt),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: AppColors.gray.withOpacity(0.6),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 8, 10, 6),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              list[index].username,
-                              style: const TextStyle(
-                                  color: AppColors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              height: 6,
-                            ),
-                            Text(
-                              list[index].comment.content,
-                              style: TextStyle(height: 1.6),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          DateHelper.getTimeAgo(list[index].comment.time),
-                          style: const TextStyle(),
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        const DotCenter(),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        const Text('Thích'),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        const DotCenter(),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        const Text('Trả lời'),
-                      ],
-                    )
-                  ],
+          return GestureDetector(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundImage: CachedNetworkImageProvider(list[index].avt),
                 ),
-              )
-            ],
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: AppColors.gray.withOpacity(0.6),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 8, 10, 6),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                list[index].username,
+                                style: const TextStyle(
+                                    color: AppColors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              Text(
+                                list[index].comment.content,
+                                style: TextStyle(height: 1.6),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            DateHelper.getTimeAgo(list[index].comment.time),
+                            style: const TextStyle(),
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const DotCenter(),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Text('Thích'),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const DotCenter(),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Text('Trả lời'),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           );
         },
       ),

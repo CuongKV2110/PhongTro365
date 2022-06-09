@@ -1,24 +1,18 @@
+import 'package:phongtro/models/result.dart';
+
 import '../../../../models/room.dart';
+import '../../../../models/write.dart';
 
-abstract class NewFeedState {
-  final List<Room> data;
-  NewFeedState({required this.data});
-}
+abstract class NewFeedState {}
 
-class NewFeedInitial extends NewFeedState {
-  NewFeedInitial() : super(data: []);
-}
+class NewFeedInitial extends NewFeedState {}
 
-class NewFeedLoading extends NewFeedState {
-  NewFeedLoading() : super(data: []);
-}
+class NewFeedLoading extends NewFeedState {}
 
 class NewFeedLoaded extends NewFeedState {
-  final List<Room> data;
-  NewFeedLoaded({required this.data}) : super(data: data);
+  final Result result;
+
+  NewFeedLoaded(this.result);
 }
 
-class NewFeedError extends NewFeedState {
-  final String error;
-  NewFeedError({required this.error}) : super(data: []);
-}
+class NewFeedError extends NewFeedState {}

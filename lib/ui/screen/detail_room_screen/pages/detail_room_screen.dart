@@ -31,7 +31,7 @@ class _DetailRoomScreenState extends State<DetailRoomScreen> {
         child: BlocBuilder<DetailBloc, DetailState>(
           builder: (context, state) {
             if (state is DetailProcessing) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -39,11 +39,11 @@ class _DetailRoomScreenState extends State<DetailRoomScreen> {
               return BuildRoomDetail(bloc, state.room, widget.back);
             }
             if (state is DetailError) {
-              return Center(
+              return const Center(
                 child: Text('Looi'),
               );
             }
-            return Center();
+            return const Center();
           },
         ),
       ),

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../../../resources/colors.dart';
+import '../bloc/newfeed_bloc.dart';
 
 class BuildNewFeedBar extends StatelessWidget {
-  const BuildNewFeedBar({Key? key}) : super(key: key);
+  NewFeedBloc bloc;
+
+  BuildNewFeedBar(this.bloc);
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +44,11 @@ class BuildNewFeedBar extends StatelessWidget {
               width: 10,
             ),
             GestureDetector(
-              onTap: () {},
-              child: const Icon(Ionicons.options_outline,
-                  color: AppColors.orange1),
+              onTap: () {
+                bloc.refreshData();
+              },
+              child:
+                  const Icon(Ionicons.reload_outline, color: AppColors.orange1),
             )
           ],
         ),

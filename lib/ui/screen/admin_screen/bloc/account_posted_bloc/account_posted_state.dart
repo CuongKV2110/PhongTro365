@@ -1,24 +1,18 @@
+import 'package:phongtro/models/write_detail.dart';
+
 import '../../../../../models/room.dart';
 
-abstract class AccountPostedState {
-  final List<Room> data;
-  AccountPostedState({required this.data});
-}
+abstract class AccountPostedState {}
 
-class AccountPostedInitial extends AccountPostedState {
-  AccountPostedInitial() : super(data: []);
-}
+class AccountPostedInitial extends AccountPostedState {}
 
-class AccountPostedLoading extends AccountPostedState {
-  AccountPostedLoading() : super(data: []);
-}
+class AccountPostedLoading extends AccountPostedState {}
 
 class AccountPostedLoaded extends AccountPostedState {
-  final List<Room> data;
-  AccountPostedLoaded({required this.data}) : super(data: data);
+  final List<Room> room;
+  final List<WriteDetail> write;
+
+  AccountPostedLoaded(this.room, this.write);
 }
 
-class AccountPostedError extends AccountPostedState {
-  final String error;
-  AccountPostedError({required this.error}) : super(data: []);
-}
+class AccountPostedError extends AccountPostedState {}

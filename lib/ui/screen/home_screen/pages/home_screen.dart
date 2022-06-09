@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/providers/singleton.dart';
+import 'package:phongtro/ui/screen/create_post/pages/create_post_screen.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/pages/newfeed_screen.dart';
 import 'package:phongtro/ui/screen/share_screen/pages/share_screen.dart';
 import 'package:phongtro/ui/screen/post_screen/pages/post1_screen.dart';
@@ -52,7 +53,9 @@ class _HomeScreenState extends State<HomeScreen>
                   ? 'Trang chủ'
                   : (_currentIndex == 1
                       ? 'Tìm kiếm'
-                      : (_currentIndex == 2 ? 'Đăng bài' : 'Tin tức')),
+                      : (_currentIndex == 2
+                          ? 'Chọn chế độ bài viết'
+                          : 'Tin tức')),
               style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 20,
@@ -111,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen>
             children: const [
               NewFeedScreen(),
               ShareScreen(),
-              Post1Screen(),
+              CreatePostScreen(),
               BlogScreen(),
             ],
           ),
@@ -176,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen>
               height: 24,
             ),
           ),
-          label: 'Đăng bài',
+          label: 'Tạo bài viết',
         ),
         BottomNavigationBarItem(
           icon: Padding(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/models/room.dart';
+import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
 import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
 import 'package:phongtro/ui/screen/share_screen/bloc/share_bloc.dart';
@@ -112,13 +113,13 @@ class _ShareScreenState extends State<ShareScreen> {
         padding: const EdgeInsets.fromLTRB(19, 0, 29, 0),
         child: Column(
           children: [
-            Row(
+            /*Row(
               children: [
-                Expanded(
+               */ /* Expanded(
                   child: TextField(
                     controller: _searchController,
                     onChanged: (value) {
-                      /*_runSearch(_searchController.text);*/
+                      */ /**/ /*_runSearch(_searchController.text);*/ /**/ /*
                     },
                     style: const TextStyle(color: AppColors.black),
                     decoration: const InputDecoration(
@@ -142,7 +143,7 @@ class _ShareScreenState extends State<ShareScreen> {
                       ),
                     ),
                   ),
-                ),
+                ),*/ /*
                 const SizedBox(
                   width: 10,
                 ),
@@ -152,7 +153,7 @@ class _ShareScreenState extends State<ShareScreen> {
                       color: AppColors.orange1),
                 )
               ],
-            ),
+            ),*/
             const SizedBox(
               height: 10,
             ),
@@ -184,7 +185,7 @@ class _ShareScreenState extends State<ShareScreen> {
                       color: AppColors.orange1),
                   iconSize: 26,
                   buttonHeight: 50,
-                  buttonWidth: 80,
+                  buttonWidth: AppDimensions.d90w,
                   buttonPadding: const EdgeInsets.only(left: 14, right: 14),
                   buttonDecoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14),
@@ -210,6 +211,9 @@ class _ShareScreenState extends State<ShareScreen> {
                   offset: const Offset(-20, 0),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 20,
             ),
             Expanded(
               child: GridView.builder(

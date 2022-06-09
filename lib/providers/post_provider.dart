@@ -3,6 +3,7 @@ import 'package:phongtro/models/comment.dart';
 import 'package:phongtro/models/comment_detail.dart';
 import '../models/account.dart';
 import '../models/room.dart';
+import '../models/write.dart';
 
 class PostProvider {
   static Future<List<Room>> getDataStatus() async {
@@ -27,6 +28,16 @@ class PostProvider {
 
     var post = await data.collection("posts").get();
     list = post.docs.map((doc) => Room.fromJson(doc.data())).toList();
+
+    return list;
+  }
+
+  static Future<List<Write>> getWrite() async {
+    List<Write> list;
+    final FirebaseFirestore data = FirebaseFirestore.instance;
+
+    var writes = await data.collection("writes").get();
+    list = writes.docs.map((doc) => Write.fromJson(doc.data())).toList();
 
     return list;
   }

@@ -38,8 +38,10 @@ class _AdminScreenState extends State<AdminScreen> {
             centerTitle: true,
             title: Text(
               _currentIndex == 0
-                  ? 'Quản lý bài viết'
-                  : (_currentIndex == 1 ? 'Đợi duyệt' : 'Quản lý tài khoản'),
+                  ? 'Bài viết đã duyệt'
+                  : (_currentIndex == 1
+                      ? 'Bài viết đợi duyệt'
+                      : 'Quản lý tài khoản'),
               style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 20,
@@ -110,7 +112,7 @@ class _AdminScreenState extends State<AdminScreen> {
               height: 26,
             ),
           ),
-          label: 'Quản lý bài viết',
+          label: 'Bài viết đã duyệt',
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -122,7 +124,7 @@ class _AdminScreenState extends State<AdminScreen> {
               height: 26,
             ),
           ),
-          label: 'Đợi duyệt',
+          label: 'Bài viết đợi duyệt',
         ),
         BottomNavigationBarItem(
           icon: Padding(

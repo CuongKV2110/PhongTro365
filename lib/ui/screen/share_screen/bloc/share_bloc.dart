@@ -8,9 +8,14 @@ class ShareBloc extends Cubit<ShareState> {
 
   Future<void> getData() async {
     emit(ShareLoading());
-    List<Room> newList = await PostProvider.getData();
-
-    emit(ShareLoaded(newList));
+    List<Room> list = await PostProvider.getData();
+    List<Room> listfinal = [];
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].status == 1) {
+        listfinal.add(list[i]);
+      }
+    }
+    emit(ShareLoaded(listfinal));
   }
 
   void refreshData() async {

@@ -79,7 +79,7 @@ class _BuildRoomDetailState extends State<BuildRoomDetail> {
               child: Column(
                 children: [
                   ListView(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     children: [
                       const SizedBox(

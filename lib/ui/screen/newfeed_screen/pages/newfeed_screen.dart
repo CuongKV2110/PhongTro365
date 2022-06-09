@@ -3,11 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:phongtro/helpers/date_helper.dart';
+import 'package:phongtro/models/result.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/bloc/newfeed_state.dart';
 import 'package:phongtro/ui/screen/profile_screen/pages/view_profile.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../models/room.dart';
+import '../../../../models/write.dart';
+import '../../../../models/write_detail.dart';
 import '../../../../resources/dimensions.dart';
 import '../bloc/newfeed_bloc.dart';
 import '../widgets/build_newfeed_bar.dart';
@@ -27,6 +31,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
   bool get wantKeepAlive => true;
 
   NewFeedBloc bloc = NewFeedBloc();
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -70,8 +75,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                         const SizedBox(
                           height: 10,
                         ),
-                        const BuildNewFeedBar(),
-                        _buildNewFeed(state.data),
+                        _buildContent(_currentIndex, state.result),
                       ],
                     ),
                   );
@@ -79,6 +83,123 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                 return const Center();
               },
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent(int currentIndex, Result result) {
+    return SizedBox(
+      width: AppDimensions.d100w,
+      height: AppDimensions.d100h - 140,
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 46,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(),
+                  _buildItem(0, "Phòng cho thuê"),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  _buildItem(1, "Tin tìm phòng"),
+                  const Spacer(),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            _buildOptions(_currentIndex, result)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOptions(int index, Result result) {
+    if (index == 0) {
+      return _buildNewFeed(result.room);
+    } else {
+      return _buildWritePost(result.write);
+    }
+  }
+
+  Widget _buildWritePost(List<WriteDetail> write) {
+    return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: write.length,
+      itemBuilder: (context, index) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            InfoWidget(
+              write[index].avt,
+              write[index].username,
+              write[index].write.timePost,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(write[index].write.content)
+          ],
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return Column(
+          children: const [
+            SizedBox(
+              height: 10,
+            ),
+            Divider(
+              color: AppColors.gray,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildItem(int index, String text) {
+    bool active = _currentIndex == index;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
+      child: Container(
+        width: AppDimensions.d32w,
+        height: 40,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.orange1,
+              AppColors.orange2,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          color: active ? AppColors.yellowGao : AppColors.transparent,
+        ),
+        child: Center(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 14,
+                fontWeight: active ? FontWeight.bold : FontWeight.normal,
+                color: active ? AppColors.black : AppColors.black),
           ),
         ),
       ),
@@ -103,8 +224,8 @@ class _NewFeedScreenState extends State<NewFeedScreen>
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
-                  children: [
-                    const SizedBox(height: 340),
+                  children: const [
+                    SizedBox(height: 340),
                   ],
                 ),
               );
@@ -116,82 +237,43 @@ class _NewFeedScreenState extends State<NewFeedScreen>
   }
 
   Widget _buildNewFeed(List<Room> data) {
-    Room room = Room(
-      status: 0,
-      owner: "Chung chủ",
-      type: 'Phòng trống',
-      people: "32",
-      acreage: "",
-      cost: '3',
-      location: "ADADAD",
-      phone: "ADĐ",
-      water: '34',
-      electricity: '34',
-      internet: 'internet',
-      wifi: true,
-      wc: true,
-      time: true,
-      vehicle: true,
-      kitchen: true,
-      fridge: true,
-      washing: true,
-      conditioning: true,
-      content: '',
-      imgUrl: [],
-      comment: [],
-      postID: 'postID',
-      userID: 'userID',
-      userAvatar: 'userAvatar',
-      userName: 'userName',
-      timePost: 2,
-    );
-
-    for (int i = 0; i < data.length - 1; i++) {
-      for (int j = i + 1; j < data.length; j++) {
-        if (data[i].timePost < data[j].timePost) {
-          room = data[i];
-          data[i] = data[j];
-          data[j] = room;
-        }
-      }
-    }
-
     return ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-                width: AppDimensions.d90w,
-                height: AppDimensions.d50h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: AppColors.black50.withOpacity(0.2),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(19),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildHeader(data[index]),
-                      const SizedBox(height: 10),
-                      _buildImage(data[index]),
-                      const SizedBox(height: 10),
-                      _buildIcon(data[index]),
-                      const SizedBox(height: 10),
-                      _buildContent(data[index]),
-                    ],
-                  ),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            Container(
+              width: AppDimensions.d90w,
+              height: AppDimensions.d50h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: AppColors.black50.withOpacity(0.2),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(19),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildHeader(data[index]),
+                    const SizedBox(height: 10),
+                    _buildImage(data[index]),
+                    const SizedBox(height: 10),
+                    _buildIcon(data[index]),
+                    const SizedBox(height: 10),
+                    _buildContentPost(data[index]),
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              )
-            ],
-          );
-        });
+            ),
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        );
+      },
+    );
   }
 
   Widget _buildHeader(Room room) {
@@ -207,7 +289,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
               ),
             );
           },
-          child: InfoWidget(room),
+          child: InfoWidget(room.userAvatar, room.userName, room.timePost),
         ),
         const Spacer(),
         ButtonWidget(room.postID),
@@ -319,20 +401,12 @@ class _NewFeedScreenState extends State<NewFeedScreen>
           ),
         ),
         const Spacer(),
-        GestureDetector(
-          onTap: () {
-            setState(() {});
-          },
-          child: const Icon(
-            Ionicons.bookmark_outline,
-            color: AppColors.black,
-          ),
-        ),
+        Text("Bình luận (" + room.comment!.length.toString() + ')'),
       ],
     );
   }
 
-  Widget _buildContent(Room room) {
+  Widget _buildContentPost(Room room) {
     return Text(
       room.content + room.status.toString(),
       maxLines: 2,

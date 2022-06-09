@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phongtro/models/write_detail.dart';
 import 'package:phongtro/resources/colors.dart';
 import 'package:phongtro/ui/screen/newfeed_screen/bloc/newfeed_state.dart';
 import 'package:phongtro/ui/screen/profile_screen/pages/view_profile.dart';
@@ -51,24 +52,48 @@ class _PostManagerScreenState extends State<PostManagerScreen> {
                   return _buildShimmer();
                 }
                 if (state is NewFeedLoaded) {
-                  if (state.data.isEmpty) {
-                    return Center(
-                      child: Text('Khong co bai viet'),
-                    );
-                  } else {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: ListView(
-                        physics: const BouncingScrollPhysics(),
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          _buildNewFeed(state.data),
-                        ],
-                      ),
-                    );
-                  }
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: ListView(
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'Bài viết cho thuê phòng',
+                          style: TextStyle(
+                              color: AppColors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        _buildNewFeed(state.result.room),
+                        const Divider(
+                          color: AppColors.gray,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'Bài viết tìm phòng',
+                          style: TextStyle(
+                              color: AppColors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        _buildListPost(state.result.write),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  );
                 }
                 return const Center();
               },
@@ -79,8 +104,227 @@ class _PostManagerScreenState extends State<PostManagerScreen> {
     );
   }
 
+  Widget _buildListPost(List<WriteDetail> write) {
+    return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: write.length,
+      itemBuilder: (context, index) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            InfoWidget(
+              write[index].avt,
+              write[index].username,
+              write[index].write.timePost,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(write[index].write.content),
+            const SizedBox(
+              height: 20,
+            ),
+            _buildButtonPost(write[index].write.writeId),
+          ],
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return Column(
+          children: const [
+            SizedBox(
+              height: 20,
+            ),
+            Divider(
+              color: AppColors.gray,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildButtonPost(String postID) {
+    return Row(
+      children: [
+        Expanded(
+          child: SizedBox(
+            height: 24,
+            child: ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(32.0),
+                        ),
+                      ),
+                      title: const Text(
+                        "Xác nhận ẩn bài viết",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      content: const Text("Bạn muốn ẩn bài viết này ?"),
+                      actions: [
+                        TextButton(
+                          child: const Text(
+                            "Ẩn",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            bloc.hideWrite(postID);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text(
+                            "Thoát",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.orange1,
+                      AppColors.orange2,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Container(
+                  height: 24,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Ẩn bài viết',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        Expanded(
+          child: SizedBox(
+            height: 24,
+            child: ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(32.0),
+                        ),
+                      ),
+                      title: const Text(
+                        "Xác nhận xóa bài",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      content: const Text("Bạn muốn xóa bài viết này ?"),
+                      actions: [
+                        TextButton(
+                          child: const Text(
+                            "Xóa",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            bloc.deleteWrite(postID);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text(
+                            "Thoát",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.orange1,
+                      AppColors.orange2,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Container(
+                  height: 24,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Xóa bài viết',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildShimmer() {
-    return Container(
+    return SizedBox(
       width: AppDimensions.d100w,
       height: AppDimensions.d100h,
       child: Shimmer.fromColors(
@@ -377,7 +621,7 @@ class _PostManagerScreenState extends State<PostManagerScreen> {
               ),
             );
           },
-          child: InfoWidget(room),
+          child: InfoWidget(room.userAvatar, room.userName, room.timePost),
         ),
         const Spacer(),
         ButtonWidget(room.postID),

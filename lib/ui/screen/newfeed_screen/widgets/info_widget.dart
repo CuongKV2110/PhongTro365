@@ -7,9 +7,11 @@ import '../../../../models/room.dart';
 import '../../../../resources/colors.dart';
 
 class InfoWidget extends StatelessWidget {
-  Room room;
+  String avt;
+  String userName;
+  int time;
 
-  InfoWidget(this.room);
+  InfoWidget(this.avt, this.userName, this.time);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class InfoWidget extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 20,
-          backgroundImage: CachedNetworkImageProvider(room.userAvatar),
+          backgroundImage: CachedNetworkImageProvider(avt),
         ),
         const SizedBox(
           width: 8,
@@ -26,7 +28,7 @@ class InfoWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              room.userName,
+              userName,
               style: const TextStyle(
                 color: AppColors.black,
                 fontSize: 16,
@@ -37,7 +39,7 @@ class InfoWidget extends StatelessWidget {
               height: 6,
             ),
             Text(
-              DateHelper.getTimeAgo(room.timePost),
+              DateHelper.getTimeAgo(time),
               style: const TextStyle(
                 color: AppColors.black,
                 fontSize: 13,
