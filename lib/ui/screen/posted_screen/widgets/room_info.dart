@@ -54,7 +54,7 @@ class RoomInfo extends StatelessWidget {
             const SizedBox(
               width: 4,
             ),
-            Text(room.cost),
+            Text(room.cost.toString()),
             const Text(' VNĐ'),
           ],
         ),
@@ -97,7 +97,7 @@ class RoomInfo extends StatelessWidget {
                   const SizedBox(
                     width: 4,
                   ),
-                  Text(room.acreage),
+                  Text(room.acreage.toString()),
                   const Text(' m2'),
                 ],
               ),
@@ -134,7 +134,7 @@ class RoomInfo extends StatelessWidget {
                   const SizedBox(
                     width: 4,
                   ),
-                  Text(room.phone)
+                  Text(room.phone.toString())
                 ],
               ),
             ),

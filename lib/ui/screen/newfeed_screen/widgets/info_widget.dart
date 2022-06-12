@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:phongtro/helpers/date_helper.dart';
-import 'package:phongtro/providers/singleton.dart';
-
-import '../../../../models/room.dart';
 import '../../../../resources/colors.dart';
 
 class InfoWidget extends StatelessWidget {

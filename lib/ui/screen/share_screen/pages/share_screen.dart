@@ -6,7 +6,6 @@ import 'package:ionicons/ionicons.dart';
 import 'package:phongtro/models/room.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
-import 'package:phongtro/ui/screen/posted_screen/pages/posted_screen.dart';
 import 'package:phongtro/ui/screen/share_screen/bloc/share_bloc.dart';
 import 'package:phongtro/ui/screen/share_screen/widgets/share_item.dart';
 import '../../../../resources/colors.dart';
@@ -20,31 +19,19 @@ class ShareScreen extends StatefulWidget {
 }
 
 class _ShareScreenState extends State<ShareScreen> {
-  final TextEditingController _searchController = TextEditingController();
   ShareBloc shareBloc = ShareBloc();
 
   final List<String> items = [
-    'Tìm theo giá',
-    'Tìm theo khu vực',
-    'Tìm phòng trống',
-    'Tìm phòng ghép',
+    'Tất cả phòng',
+    'Phòng dưới 3 triệu',
+    'Phòng từ 3 - 5 triệu',
+    'Phòng trên 5 triệu',
+    'Phòng ghép',
+    'Phòng trống',
+    'Phòng ở Hà Nội',
+    'Phòng ở Hồ Chí Minh',
   ];
   String? selectedValue;
-
-  /*void _runSearch(String text) {
-    List<Room> _results = [];
-    if (text.isEmpty) {
-      _results = [];
-    } else {
-      _results = _foundList
-          .where((Room) => Room.cost.toLowerCase().contains(text.toLowerCase()))
-          .toList();
-    }
-
-    setState(() {
-      _foundList = _results;
-    });
-  }*/
 
   @override
   void initState() {
@@ -96,6 +83,11 @@ class _ShareScreenState extends State<ShareScreen> {
   Widget _buildSearch(List<Room> list) {
     List<Room> listPhongGhep = [];
     List<Room> listPhongTrong = [];
+    List<Room> list3tr = [];
+    List<Room> list5tr = [];
+    List<Room> list3to5tr = [];
+    List<Room> listHN = [];
+    List<Room> listHCM = [];
     for (int i = 0; i < list.length; i++) {
       if (list[i].type == 'Phòng ghép') {
         listPhongGhep.add(list[i]);
@@ -106,6 +98,33 @@ class _ShareScreenState extends State<ShareScreen> {
         listPhongTrong.add(list[i]);
       }
     }
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].cost < 3000000) {
+        list3tr.add(list[i]);
+      }
+    }
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].cost > 5000000) {
+        list5tr.add(list[i]);
+      }
+    }
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].cost >= 3000000 && 5000000 > list[i].cost) {
+        list3to5tr.add(list[i]);
+      }
+    }
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].location.contains('HN') ||
+          list[i].location.contains('Hà Nội')) {
+        listHN.add(list[i]);
+      }
+    }
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].location.contains('HCM') ||
+          list[i].location.contains('Hồ Chí Minh')) {
+        listHCM.add(list[i]);
+      }
+    }
 
     return SizedBox(
       height: double.infinity,
@@ -113,47 +132,6 @@ class _ShareScreenState extends State<ShareScreen> {
         padding: const EdgeInsets.fromLTRB(19, 0, 29, 0),
         child: Column(
           children: [
-            /*Row(
-              children: [
-               */ /* Expanded(
-                  child: TextField(
-                    controller: _searchController,
-                    onChanged: (value) {
-                      */ /**/ /*_runSearch(_searchController.text);*/ /**/ /*
-                    },
-                    style: const TextStyle(color: AppColors.black),
-                    decoration: const InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.black),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.black),
-                      ),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.black),
-                      ),
-                      hintText: 'Tìm kiếm',
-                      hintStyle: TextStyle(
-                        color: AppColors.black50,
-                        fontSize: 15,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: AppColors.black50,
-                      ),
-                    ),
-                  ),
-                ),*/ /*
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Icon(Ionicons.options_outline,
-                      color: AppColors.orange1),
-                )
-              ],
-            ),*/
             const SizedBox(
               height: 10,
             ),
@@ -197,7 +175,8 @@ class _ShareScreenState extends State<ShareScreen> {
                   buttonElevation: 2,
                   itemHeight: 40,
                   itemPadding: const EdgeInsets.only(left: 14, right: 14),
-                  dropdownMaxHeight: 200,
+                  dropdownMaxHeight: 400,
+                  alignment: Alignment.center,
                   dropdownWidth: 200,
                   dropdownPadding: null,
                   dropdownDecoration: BoxDecoration(
@@ -212,7 +191,7 @@ class _ShareScreenState extends State<ShareScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -225,11 +204,24 @@ class _ShareScreenState extends State<ShareScreen> {
                   crossAxisSpacing: 26,
                   mainAxisSpacing: 36,
                 ),
-                itemCount: selectedValue == 'Tìm phòng ghép'
-                    ? listPhongGhep.length
-                    : (selectedValue == 'Tìm phòng trống'
-                        ? listPhongTrong.length
-                        : list.length),
+                itemCount: selectedValue == "Tất cả phòng"
+                    ? list.length
+                    : (selectedValue == 'Phòng dưới 3 triệu'
+                        ? list3tr.length
+                        : (selectedValue == 'Phòng từ 3 - 5 triệu'
+                            ? list3to5tr.length
+                            : (selectedValue == 'Phòng trên 5 triệu'
+                                ? list5tr.length
+                                : (selectedValue == 'Phòng ghép'
+                                    ? listPhongGhep.length
+                                    : (selectedValue == 'Phòng trống'
+                                        ? listPhongTrong.length
+                                        : (selectedValue == 'Phòng ở Hà Nội'
+                                            ? listHN.length
+                                            : (selectedValue ==
+                                                    'Phòng ở Hồ Chí Minh'
+                                                ? listHCM.length
+                                                : list.length))))))),
                 itemBuilder: (context, index) {
                   return Container(
                     alignment: Alignment.center,
@@ -239,23 +231,61 @@ class _ShareScreenState extends State<ShareScreen> {
                           CupertinoPageRoute(
                             builder: (context) {
                               return DetailRoomScreen(
-                                back: 0,
-                                postId: selectedValue == 'Tìm phòng ghép'
-                                    ? listPhongGhep[index].postID
-                                    : (selectedValue == 'Tìm phòng trống'
-                                        ? listPhongTrong[index].postID
-                                        : list[index].postID),
-                              );
+                                  back: 0,
+                                  postId: selectedValue == 'Tất cả phòng'
+                                      ? list[index].postID
+                                      : (selectedValue == 'Phòng dưới 3 triệu'
+                                          ? list3tr[index].postID
+                                          : (selectedValue ==
+                                                  'Phòng từ 3 - 5 triệu'
+                                              ? list3to5tr[index].postID
+                                              : (selectedValue ==
+                                                      'Phòng trên 5 triệu'
+                                                  ? list5tr[index].postID
+                                                  : (selectedValue == 'Phòng ghép'
+                                                      ? listPhongGhep[
+                                                              index]
+                                                          .postID
+                                                      : (selectedValue ==
+                                                              'Phòng trống'
+                                                          ? listPhongTrong[
+                                                                  index]
+                                                              .postID
+                                                          : (selectedValue ==
+                                                                  'Phòng ở Hà Nội'
+                                                              ? listHN[index]
+                                                                  .postID
+                                                              : (selectedValue ==
+                                                                      'Phòng ở Hồ Chí Minh'
+                                                                  ? listHCM[
+                                                                          index]
+                                                                      .postID
+                                                                  : list[index]
+                                                                      .postID))))))));
                             },
                           ),
                         );
                       },
                       child: ShareItem(
-                        selectedValue == 'Tìm phòng ghép'
-                            ? listPhongGhep[index]
-                            : (selectedValue == 'Tìm phòng trống'
-                                ? listPhongTrong[index]
-                                : list[index]),
+                        selectedValue == 'Tất cả phòng'
+                            ? list[index]
+                            : (selectedValue == 'Phòng dưới 3 triệu'
+                                ? list3tr[index]
+                                : (selectedValue == 'Phòng từ 3 - 5 triệu'
+                                    ? list3to5tr[index]
+                                    : (selectedValue == 'Phòng trên 5 triệu'
+                                        ? list5tr[index]
+                                        : (selectedValue == 'Phòng ghép'
+                                            ? listPhongGhep[index]
+                                            : (selectedValue == 'Phòng trống'
+                                                ? listPhongTrong[index]
+                                                : (selectedValue ==
+                                                        'Phòng ở Hà Nội'
+                                                    ? listHN[index]
+                                                    : (selectedValue ==
+                                                            'Phòng ở Hồ Chí Minh'
+                                                        ? listHCM[index]
+                                                        : list[index]))))))),
                       ),
                     ),
                     decoration: BoxDecoration(

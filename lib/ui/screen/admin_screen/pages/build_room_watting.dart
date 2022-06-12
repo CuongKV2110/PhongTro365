@@ -148,8 +148,8 @@ class _BuildRoomWattingState extends State<BuildRoomWatting> {
                         width: 4,
                       ),
                       const Text("Tiền nước: "),
-                      Text(widget.room.water),
-                      const Text(" VNĐ/người"),
+                      Text(widget.room.water.toString()),
+                      const Text(" VNĐ/m3"),
                     ],
                   ),
                   const SizedBox(
@@ -168,7 +168,7 @@ class _BuildRoomWattingState extends State<BuildRoomWatting> {
                         width: 4,
                       ),
                       const Text("Tiền điện: "),
-                      Text(widget.room.electricity),
+                      Text(widget.room.electricity.toString()),
                       const Text(" VNĐ/số"),
                     ],
                   ),
@@ -188,9 +188,7 @@ class _BuildRoomWattingState extends State<BuildRoomWatting> {
                         width: 4,
                       ),
                       const Text("Tiền mạng: "),
-                      Text(widget.room.internet == null
-                          ? 'Trong'
-                          : widget.room.internet),
+                      Text(widget.room.internet.toString()),
                       const Text(" VNĐ/người"),
                     ],
                   ),

@@ -17,7 +17,7 @@ class WriteBloc extends Cubit<WriteState> {
       'content': content,
       'userId': Singleton.instance.account.userID,
       'timePost': DateTime.now().millisecondsSinceEpoch ~/ 1000,
-      'status': 1,
+      'status': 0,
       'comment': [],
     });
 

@@ -135,7 +135,7 @@ class _BuildRoomDetailState extends State<BuildRoomDetail> {
                   width: 23,
                 ),
                 SizedBox(
-                  width: 140,
+                  width: AppDimensions.d60w,
                   height: 60,
                   child: Center(
                     child: TextField(

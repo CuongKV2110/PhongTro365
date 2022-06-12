@@ -69,7 +69,7 @@ class _AccountPostedScreenState extends State<AccountPostedScreen> {
                 return const ShimmerWidget();
               }
               if (state is AccountPostedLoaded) {
-                if (state.room.isEmpty) {
+                if (state.room.isEmpty && state.write.isEmpty) {
                   return const Center(
                     child: Text('Không có bài viết nào'),
                   );

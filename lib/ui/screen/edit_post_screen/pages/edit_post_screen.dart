@@ -56,14 +56,14 @@ class _EditPostScreenState extends State<EditPostScreen> {
 
   @override
   void initState() {
-    peopleController.text = widget.room.people;
-    acreageController.text = widget.room.acreage;
-    costController.text = widget.room.cost;
+    peopleController.text = widget.room.people.toString();
+    acreageController.text = widget.room.acreage.toString();
+    costController.text = widget.room.cost.toString();
     locationController.text = widget.room.location;
-    phoneController.text = widget.room.phone;
-    waterController.text = widget.room.water;
-    electricityController.text = widget.room.electricity;
-    internetController.text = widget.room.internet;
+    phoneController.text = widget.room.phone.toString();
+    waterController.text = widget.room.water.toString();
+    electricityController.text = widget.room.electricity.toString();
+    internetController.text = widget.room.internet.toString();
     contentController.text = widget.room.content;
     list[0].isPress = widget.room.wifi;
     list[1].isPress = widget.room.wc;

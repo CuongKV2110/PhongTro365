@@ -122,7 +122,7 @@ class ViewProfile extends StatelessWidget {
                                     height: 10,
                                   ),
                                   Text(
-                                    room.phone,
+                                    room.phone.toString(),
                                     style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 12,

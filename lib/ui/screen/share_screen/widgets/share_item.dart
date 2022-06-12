@@ -61,7 +61,7 @@ class ShareItem extends StatelessWidget {
                         width: 6,
                       ),
                       Text(
-                        room.cost + ' VNĐ',
+                        room.cost.toString() + ' VNĐ',
                         style: const TextStyle(
                           color: AppColors.orange1,
                           fontWeight: FontWeight.bold,

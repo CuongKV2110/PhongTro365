@@ -11,20 +11,20 @@ class CreatePost extends CreatePostEvent {
   final String owner;
   final String type;
 
-  final String people;
+  final int people;
 
-  final String acreage;
+  final int acreage;
 
-  final String cost;
+  final int cost;
 
   final String location;
-  final String phone;
+  final int phone;
 
-  final String water;
+  final int water;
 
-  final String electricity;
+  final int electricity;
 
-  final String internet;
+  final int internet;
 
   final bool wifi;
   final bool wc;

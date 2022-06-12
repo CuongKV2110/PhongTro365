@@ -24,23 +24,17 @@ class AccountBloc extends Cubit<AccountState> {
   Future<void> deleteAccount(Account account) async {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     CollectionReference posts = FirebaseFirestore.instance.collection('posts');
-
     users.doc(account.userID).delete();
-
     for (int i = 0; i < account.post.length; i++) {
       posts.doc(account.post[i]).delete();
     }
-
     CollectionReference comments =
         FirebaseFirestore.instance.collection('comments');
     List<Comment> listComments;
     final FirebaseFirestore data = FirebaseFirestore.instance;
-
     var resComments = await data.collection("comments").get();
-
     listComments =
         resComments.docs.map((doc) => Comment.fromJson(doc.data())).toList();
-
     for (int i = 0; i < listComments.length; i++) {
       if (listComments[i].userId == account.userID) {
         comments.doc(listComments[i].commentId).delete();

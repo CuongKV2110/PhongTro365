@@ -121,7 +121,7 @@ class _SavedScreenState extends State<SavedScreen> {
                                                     fontSize:
                                                         AppFontSizes.fs12),
                                               )
-                                            : Text(
+                                            : const Text(
                                                 'Đang đợi duyệt',
                                                 style: TextStyle(
                                                   color: AppColors.black,

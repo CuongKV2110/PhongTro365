@@ -452,7 +452,9 @@ class _PostWattingScreenState extends State<PostWattingScreen> {
                                   style: TextStyle(fontSize: AppFontSizes.fs12),
                                 ),
                               ),
-                              Text("Giá phòng: " + list[index].cost + " VNĐ"),
+                              Text("Giá phòng: " +
+                                  list[index].cost.toString() +
+                                  " VNĐ"),
                             ],
                           ),
                         ],

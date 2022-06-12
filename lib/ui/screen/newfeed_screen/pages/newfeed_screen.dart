@@ -393,7 +393,7 @@ class _NewFeedScreenState extends State<NewFeedScreen>
     return Row(
       children: [
         Text(
-          'Chi phí: ' + room.cost + " VNĐ",
+          'Chi phí: ' + room.cost.toString() + " VNĐ",
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: AppColors.black,

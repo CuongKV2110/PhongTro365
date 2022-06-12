@@ -26,14 +26,14 @@ class NewFeedBloc extends Cubit<NewFeedState> {
       status: 0,
       owner: "Chung chủ",
       type: 'Phòng trống',
-      people: "32",
-      acreage: "",
-      cost: '3',
+      people: 1,
+      acreage: 1,
+      cost: 1,
       location: "ADADAD",
-      phone: "ADĐ",
-      water: '34',
-      electricity: '34',
-      internet: 'internet',
+      phone: 1,
+      water: 1,
+      electricity: 1,
+      internet: 1,
       wifi: true,
       wc: true,
       time: true,
@@ -130,14 +130,14 @@ class NewFeedBloc extends Cubit<NewFeedState> {
       status: 0,
       owner: "Chung chủ",
       type: 'Phòng trống',
-      people: "32",
-      acreage: "",
-      cost: '3',
+      people: 1,
+      acreage: 1,
+      cost: 1,
       location: "ADADAD",
-      phone: "ADĐ",
-      water: '34',
-      electricity: '34',
-      internet: 'internet',
+      phone: 1,
+      water: 1,
+      electricity: 1,
+      internet: 1,
       wifi: true,
       wc: true,
       time: true,
@@ -247,21 +247,6 @@ class NewFeedBloc extends Cubit<NewFeedState> {
         FirebaseFirestore.instance.collection('writes');
 
     writes.doc(postID).delete();
-
-    /* CollectionReference comments =
-        FirebaseFirestore.instance.collection('comments');
-    List<Comment> listComments;
-    final FirebaseFirestore data = FirebaseFirestore.instance;
-
-    var resComments = await data.collection("comments").get();
-    listComments =
-        resComments.docs.map((doc) => Comment.fromJson(doc.data())).toList();
-
-    for (int i = 0; i < listComments.length; i++) {
-      if (listComments[i].postId == postID) {
-        comments.doc(listComments[i].commentId).delete();
-      }
-    }*/
 
     getData();
   }

@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               BuildProfile(Singleton.instance.account),
@@ -36,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
+          children: const [
             MyPostWidget(),
             SavedWidget(),
             SettingsWidget(),
@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
+          children: const [
             LanguageWidget(),
             LogOutWidget(),
             AboutWidget(),
