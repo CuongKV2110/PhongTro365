@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          home: const SignInScreen(),
+          home: const SplashScreen(),
           debugShowCheckedModeBanner: false,
           locale: const Locale('vi'),
           localizationsDelegates: const [

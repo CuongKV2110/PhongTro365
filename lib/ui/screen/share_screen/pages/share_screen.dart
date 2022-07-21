@@ -7,6 +7,7 @@ import 'package:phongtro/models/room.dart';
 import 'package:phongtro/resources/dimensions.dart';
 import 'package:phongtro/ui/screen/detail_room_screen/pages/detail_room_screen.dart';
 import 'package:phongtro/ui/screen/share_screen/bloc/share_bloc.dart';
+import 'package:phongtro/ui/screen/share_screen/pages/search_screen.dart';
 import 'package:phongtro/ui/screen/share_screen/widgets/share_item.dart';
 import '../../../../resources/colors.dart';
 import '../bloc/share_state.dart';
@@ -23,11 +24,6 @@ class _ShareScreenState extends State<ShareScreen> {
 
   final List<String> items = [
     'Tất cả phòng',
-    'Phòng dưới 3 triệu',
-    'Phòng từ 3 - 5 triệu',
-    'Phòng trên 5 triệu',
-    'Phòng ghép',
-    'Phòng trống',
     'Phòng ở Hà Nội',
     'Phòng ở Hồ Chí Minh',
   ];
@@ -88,6 +84,10 @@ class _ShareScreenState extends State<ShareScreen> {
     List<Room> list3to5tr = [];
     List<Room> listHN = [];
     List<Room> listHCM = [];
+    List<Room> listHN1 = [];
+    List<Room> listHCM1 = [];
+    List<Room> listHN2 = [];
+    List<Room> listHCM2 = [];
     for (int i = 0; i < list.length; i++) {
       if (list[i].type == 'Phòng ghép') {
         listPhongGhep.add(list[i]);
@@ -125,6 +125,28 @@ class _ShareScreenState extends State<ShareScreen> {
         listHCM.add(list[i]);
       }
     }
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].location.contains('HN') ||
+          list[i].location.contains('Hà Nội') && list[i].cost < 3000000) {
+        listHN1.add(list[i]);
+      }
+      if (list[i].location.contains('HCM') ||
+          list[i].location.contains('Hồ Chí Minh') && list[i].cost < 3000000) {
+        listHCM1.add(list[i]);
+      }
+      if (list[i].location.contains('HN') ||
+          list[i].location.contains('Hà Nội') &&
+              list[i].cost >= 3000000 &&
+              5000000 > list[i].cost) {
+        listHN2.add(list[i]);
+      }
+      if (list[i].location.contains('HCM') ||
+          list[i].location.contains('Hồ Chí Minh') &&
+              list[i].cost >= 3000000 &&
+              5000000 > list[i].cost) {
+        listHCM2.add(list[i]);
+      }
+    }
 
     return SizedBox(
       height: double.infinity,
@@ -142,14 +164,100 @@ class _ShareScreenState extends State<ShareScreen> {
                   items: items
                       .map((item) => DropdownMenuItem<String>(
                             value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              overflow: TextOverflow.ellipsis,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: Icon(Icons.arrow_forward_ios),
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(32.0),
+                                            ),
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              child: const Text(
+                                                "Phòng dưới 3 triệu",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  CupertinoPageRoute(
+                                                    builder: (context) {
+                                                      return SearchScreen(
+                                                          listHN1,
+                                                          "Phòng dưới 3 triệu");
+                                                    },
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text(
+                                                "Phòng từ 3-5 triệu",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  CupertinoPageRoute(
+                                                    builder: (context) {
+                                                      return SearchScreen(
+                                                          listHN2,
+                                                          "Phòng từ 3-5 triệu");
+                                                    },
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text(
+                                                "Phòng trên 5 triệu",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  CupertinoPageRoute(
+                                                    builder: (context) {
+                                                      return SearchScreen(
+                                                        list5tr,
+                                                        "Phòng trên 5 triệu",
+                                                      );
+                                                    },
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                )
+                              ],
                             ),
                           ))
                       .toList(),

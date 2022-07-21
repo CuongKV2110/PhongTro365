@@ -173,7 +173,7 @@ class _SignInScreenState extends State<SignInScreen> {
           TextField(
             controller: passwordController,
             style: const TextStyle(color: AppColors.black),
-            obscureText: true,
+            /* obscureText: true,*/
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Mật khẩu',

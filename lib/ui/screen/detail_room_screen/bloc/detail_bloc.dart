@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:phongtro/models/comment.dart';
 import 'package:phongtro/providers/post_provider.dart';
 
 import '../../../../models/room.dart';
@@ -47,7 +46,6 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
           FirebaseFirestore.instance.collection('comments');
 
       var document = FirebaseFirestore.instance.collection('comments').doc();
-
       comments.doc(document.id).set({
         'commentId': document.id,
         'postId': event.comment.postId,
@@ -61,14 +59,10 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
           .collection('posts')
           .doc(event.comment.postId)
           .get();
-
       room = Room.fromJson(res.data()!);
       listIDComment = room.comment!;
-
       listIDComment.add(document.id);
-
       await post.doc(event.comment.postId).update({'comment': listIDComment});
-
       yield DetailSuccess(room);
     }
 
